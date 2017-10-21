@@ -1,0 +1,16 @@
+[
+{
+  "modid": "creepypasta",
+  "name": "Creepypasta Mod",
+  "description": "This is a scary mod where its not your regualr survival world. There is dangers that are not just zombies and creepers, but things that stalk you and want your soul...",
+  "version": "1.0",
+  "mcversion": "[1.12][1.12.1][1.12.2]",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Ocelot5836"],
+  "credits": "The Creepypasta Mod Team for making the assets. The SCMC Mod team for providing some of the code for this mod.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
