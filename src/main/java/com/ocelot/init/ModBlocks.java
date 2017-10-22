@@ -1,7 +1,7 @@
 package com.ocelot.init;
 
 import com.ocelot.Reference;
-import com.ocelot.items.ItemSmileDog;
+import com.ocelot.blocks.BlockNitratePowderOre;
 import com.ocelot.proxy.ClientProxy;
 
 import net.minecraft.block.Block;
@@ -16,25 +16,27 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModBlocks {
 
+	public static Block NITRATE_POWDER_ORE;
+
 	/**
 	 * Initializes the blocks.
 	 */
 	public static void init() {
-		
+		NITRATE_POWDER_ORE = new BlockNitratePowderOre();
 	}
 
 	/**
 	 * Register's the blocks.
 	 */
 	public static void register() {
-		
+		registerBlock(NITRATE_POWDER_ORE);
 	}
 
 	/**
 	 * Register's the renders for the normal blocks.
 	 */
 	public static void registerRenders() {
-
+		registerRender(NITRATE_POWDER_ORE);
 	}
 
 	/**

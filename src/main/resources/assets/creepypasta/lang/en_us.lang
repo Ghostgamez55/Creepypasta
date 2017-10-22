@@ -4,6 +4,11 @@ language.region=United States
 language.code=en_us
 
 item.smile_dog.name=smiledog.jpeg
+item.ticcys_axe.name=Ticcy's Axe
+item.nitrate_powder.name=Nitrate Powder
+item.pill.anti_depressants.name=Anti Depressants
+
+tile.nitrate_powder_ore.name=Nitrate Powder Ore
 
 entity.smile_dog.name=Smile Dog
 

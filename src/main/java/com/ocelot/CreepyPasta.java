@@ -1,9 +1,11 @@
 package com.ocelot;
 
 import com.ocelot.init.ModBlocks;
+import com.ocelot.init.ModCrafting;
 import com.ocelot.init.ModEntities;
 import com.ocelot.init.ModItems;
 import com.ocelot.proxy.CommonProxy;
+import com.ocelot.world.OreGen;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -12,6 +14,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * This class is the basis for the entire creepypasta mod.<br>
@@ -42,7 +45,10 @@ public class Creepypasta {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		ModCrafting.init();
 		ModEntities.init();
+		
+		GameRegistry.registerWorldGenerator(new OreGen(), 0);
 
 		proxy.init(event);
 	}
