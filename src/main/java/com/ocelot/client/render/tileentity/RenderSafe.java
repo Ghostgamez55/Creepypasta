@@ -17,13 +17,12 @@ import net.minecraft.util.ResourceLocation;
  */
 public class RenderSafe extends TileEntitySpecialRenderer<TileEntitySafe> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/models/safe.png");
-	private ModelSafe safe;
+	private static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/models/safe/safe.png");
+	private ModelSafe safe = new ModelSafe();
 	private boolean isChristmas;
 
 	public RenderSafe() {
 		Calendar calendar = Calendar.getInstance();
-		safe = new ModelSafe();
 
 		if (calendar.get(2) + 1 == 12 && calendar.get(5) >= 24 && calendar.get(5) <= 26) {
 			this.isChristmas = true;

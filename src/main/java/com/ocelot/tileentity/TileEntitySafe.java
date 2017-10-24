@@ -164,7 +164,7 @@ public class TileEntitySafe extends TileEntityLockableLoot implements ITickable 
 
 			float f3 = 0.5F;
 
-			if (this.lidAngle < 0.5F && f2 >= 0.5F) {
+			if (this.lidAngle < 0.2F && f2 >= 0.2F) {
 				double d3 = (double) i + 0.5D;
 				double d0 = (double) k + 0.5D;
 
