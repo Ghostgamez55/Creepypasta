@@ -13,6 +13,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
+/**
+ * @author Ocelot5836
+ */
 public class BlockNitratePowderOre extends Block {
 
 	public BlockNitratePowderOre() {
@@ -20,7 +23,7 @@ public class BlockNitratePowderOre extends Block {
 		setUnlocalizedName("nitrate_powder_ore");
 		setRegistryName("nitrate_powder_ore");
 		setSoundType(SoundType.STONE);
-		setHarvestLevel("pickaxe", 1);
+		setHarvestLevel("pickaxe", 2);
 		setHardness(3.0f);
 		setResistance(15.0f);
 		setCreativeTab(CreepypastaCreativeTabs.CREEPYPASTA);

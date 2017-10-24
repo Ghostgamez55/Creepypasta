@@ -9,7 +9,13 @@ item.nitrate_powder.name=Nitrate Powder
 item.pill.anti_depressants.name=Anti Depressants
 
 tile.nitrate_powder_ore.name=Nitrate Powder Ore
+tile.safe.name=Safe
+
+container.safe=Safe
 
 entity.smile_dog.name=Smile Dog
+
+block.safe.lock=Safe Locks
+block.safe.unlock=Safe Unlocks
 
 itemGroup.creepyPasta=Creepypasta

@@ -15,6 +15,9 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
+/**
+ * @author Ocelot5836
+ */
 public class OreGen implements IWorldGenerator {
 
 	private WorldGenerator nitrate_powder_overworld;

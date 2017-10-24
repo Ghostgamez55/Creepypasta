@@ -1,12 +1,15 @@
 package com.ocelot.init;
 
 import com.ocelot.Reference;
-import com.ocelot.items.ItemTiccyAxe;
 import com.ocelot.items.tool.ItemModAxe;
+import com.ocelot.items.tool.ItemTiccyAxe;
 
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 
+/**
+ * @author Ocelot5836
+ */
 public class ModTools extends ModItems {
 
 	public static final ToolMaterial BLOODY_MATERIAL = EnumHelper.addToolMaterial(Reference.MOD_ID + ":bloody", 2, 600, 5.0F, 2.0F, 12);

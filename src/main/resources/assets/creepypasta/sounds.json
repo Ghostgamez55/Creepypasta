@@ -1,0 +1,12 @@
+{
+	"block.safe.lock": {
+		"category": "block",
+		"subtitle": "block.safe.lock",
+		"sounds": [ { "name": "creepypasta:block/safe/lock", "stream": true } ]
+	},
+	"block.safe.unlock": {
+		"category": "block",
+		"subtitle": "block.safe.unlock",
+		"sounds": [ { "name": "creepypasta:block/safe/unlock", "stream": true } ]
+	}
+}

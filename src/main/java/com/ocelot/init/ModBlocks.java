@@ -2,11 +2,15 @@ package com.ocelot.init;
 
 import com.ocelot.Reference;
 import com.ocelot.blocks.BlockNitratePowderOre;
+import com.ocelot.blocks.BlockSafe;
 import com.ocelot.proxy.ClientProxy;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.IStateMapper;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
@@ -14,15 +18,20 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * @author Ocelot5836
+ */
 public class ModBlocks {
 
 	public static Block NITRATE_POWDER_ORE;
+	public static Block SAFE;
 
 	/**
 	 * Initializes the blocks.
 	 */
-	public static void init() {
+	public static void preInit() {
 		NITRATE_POWDER_ORE = new BlockNitratePowderOre();
+		SAFE = new BlockSafe();
 	}
 
 	/**
@@ -30,6 +39,7 @@ public class ModBlocks {
 	 */
 	public static void register() {
 		registerBlock(NITRATE_POWDER_ORE);
+		registerBlock(SAFE);
 	}
 
 	/**
@@ -37,6 +47,7 @@ public class ModBlocks {
 	 */
 	public static void registerRenders() {
 		registerRender(NITRATE_POWDER_ORE);
+		registerRender(SAFE);
 	}
 
 	/**
@@ -51,7 +62,16 @@ public class ModBlocks {
 	 */
 	@SideOnly(Side.CLIENT)
 	public static void createStateMappers() {
+		ModelLoader.setCustomStateMapper(SAFE, getDefaultStateMapper(SAFE));
+	}
 
+	private static IStateMapper getDefaultStateMapper(final Block block) {
+		return new StateMapperBase() {
+			@Override
+			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+				return new ModelResourceLocation(block.getRegistryName(), "normal");
+			}
+		};
 	}
 
 	/**

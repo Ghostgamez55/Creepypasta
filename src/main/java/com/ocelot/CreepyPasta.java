@@ -1,12 +1,15 @@
 package com.ocelot;
 
+import com.ocelot.events.ModEventHandler;
 import com.ocelot.init.ModBlocks;
 import com.ocelot.init.ModCrafting;
 import com.ocelot.init.ModEntities;
 import com.ocelot.init.ModItems;
 import com.ocelot.proxy.CommonProxy;
+import com.ocelot.sound.ModSounds;
 import com.ocelot.world.OreGen;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -34,8 +37,9 @@ public class Creepypasta {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		ModBlocks.init();
-		ModItems.init();
+		ModSounds.register();
+		ModBlocks.preInit();
+		ModItems.preInit();
 		ModItems.register();
 		ModBlocks.register();
 		ModEntities.preInit();
@@ -47,8 +51,9 @@ public class Creepypasta {
 	public void init(FMLInitializationEvent event) {
 		ModCrafting.init();
 		ModEntities.init();
-		
+
 		GameRegistry.registerWorldGenerator(new OreGen(), 0);
+		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
 
 		proxy.init(event);
 	}

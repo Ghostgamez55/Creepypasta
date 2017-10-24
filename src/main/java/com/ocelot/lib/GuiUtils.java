@@ -52,4 +52,8 @@ public class GuiUtils {
 	public static void bindTexture(String path) {
 		bindTexture(path, Reference.MOD_ID);
 	}
+
+	public static void bindTexture(ResourceLocation texture) {
+		MC.getTextureManager().bindTexture(texture);
+	}
 }

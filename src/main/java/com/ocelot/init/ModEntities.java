@@ -4,15 +4,22 @@ import com.ocelot.Creepypasta;
 import com.ocelot.Reference;
 import com.ocelot.client.render.entity.RenderSmileDog;
 import com.ocelot.client.render.entity.RenderTiccy;
+import com.ocelot.client.render.tileentity.RenderSafe;
 import com.ocelot.entity.hostile.EntityTiccy;
 import com.ocelot.entity.living.EntitySmileDog;
+import com.ocelot.tileentity.TileEntitySafe;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
+/**
+ * @author Ocelot5836
+ */
 public class ModEntities {
 
 	/** The current entity id */
@@ -28,7 +35,9 @@ public class ModEntities {
 	}
 
 	private static void registerTileEntities() {
+		GameRegistry.registerTileEntity(TileEntitySafe.class, Reference.MOD_ID + ":TileEntitySafe");
 
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySafe.class, new RenderSafe());
 	}
 
 	/**

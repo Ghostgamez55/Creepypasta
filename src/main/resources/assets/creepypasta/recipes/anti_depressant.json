@@ -1,5 +1,5 @@
 {
-    "type": "crafting_shaped",
+    "type": "minecraft:crafting_shaped",
     "pattern": [
         "NNN",
         "NCN",
@@ -14,7 +14,7 @@
         }
     },
     "result": {
-        "item": "minecraft:pill",
+        "item": "creepypasta:pill",
         "count": 1,
 		"data": 0
     }

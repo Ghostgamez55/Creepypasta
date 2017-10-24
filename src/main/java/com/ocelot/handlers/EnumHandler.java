@@ -2,7 +2,10 @@ package com.ocelot.handlers;
 
 import net.minecraft.util.IStringSerializable;
 
-public class ItemEnumHandler {
+/**
+ * @author Ocelot5836
+ */
+public class EnumHandler {
 
 	public static enum PillTypes implements IStringSerializable {
 		ANTI_DEPRESSANTS("anti_depressants", 0);

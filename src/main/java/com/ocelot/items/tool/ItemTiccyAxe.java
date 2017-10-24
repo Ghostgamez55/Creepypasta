@@ -1,8 +1,10 @@
-package com.ocelot.items;
+package com.ocelot.items.tool;
 
 import com.ocelot.creativetab.CreepypastaCreativeTabs;
-import com.ocelot.items.tool.ItemModAxe;
 
+/**
+ * @author Ocelot5836
+ */
 public class ItemTiccyAxe extends ItemModAxe {
 
 	public ItemTiccyAxe(ToolMaterial material) {

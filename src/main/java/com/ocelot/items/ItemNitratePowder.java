@@ -4,6 +4,9 @@ import com.ocelot.creativetab.CreepypastaCreativeTabs;
 
 import net.minecraft.item.Item;
 
+/**
+ * @author Ocelot5836
+ */
 public class ItemNitratePowder extends Item {
 
 	public ItemNitratePowder() {

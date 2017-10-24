@@ -25,6 +25,9 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 
+/**
+ * @author Ocelot5836
+ */
 public class EntityTiccy extends EntityMob {
 
 	public EntityTiccy(World world) {

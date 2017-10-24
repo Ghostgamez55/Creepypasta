@@ -1,13 +1,16 @@
 package com.ocelot.items;
 
 import com.ocelot.creativetab.CreepypastaCreativeTabs;
-import com.ocelot.handlers.ItemEnumHandler.PillTypes;
+import com.ocelot.handlers.EnumHandler.PillTypes;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
+/**
+ * @author Ocelot5836
+ */
 public class ItemPill extends ItemFood {
 
 	public ItemPill() {

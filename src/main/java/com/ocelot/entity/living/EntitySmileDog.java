@@ -46,6 +46,9 @@ import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * @author Ocelot5836
+ */
 public class EntitySmileDog extends EntityWolf {
 
 	private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityWolf.class, DataSerializers.FLOAT);
@@ -63,9 +66,15 @@ public class EntitySmileDog extends EntityWolf {
 
 	public EntitySmileDog(World world) {
 		super(world);
-		this.setSize(0.6F, 0.85F);
+		setSize(0.6F, 0.85F);
 	}
 
+	public EntitySmileDog(World world, double x, double y, double z) {
+		super(world);
+		setSize(0.6F, 0.85F);
+		setPosition(x, y, z);
+	}
+	
 	protected void initEntityAI() {
 		this.tasks.addTask(1, new EntityAISwimming(this));
 		this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));

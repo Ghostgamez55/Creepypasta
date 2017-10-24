@@ -13,6 +13,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.ResourceLocation;
 
+/**
+ * @author Ocelot5836
+ */
 public class RenderTiccy extends RenderLiving<EntityTiccy> {
 
 	private static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/entity/ticcy.png");

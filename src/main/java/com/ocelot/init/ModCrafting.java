@@ -55,7 +55,7 @@ public class ModCrafting {
 	 *            the name of the json in the files.
 	 */
 	private static void addRecipe(String fileName) {
-		addRecipe(fileName, "");
+		addRecipe(fileName, "anti_depressant");
 	}
 
 	/**

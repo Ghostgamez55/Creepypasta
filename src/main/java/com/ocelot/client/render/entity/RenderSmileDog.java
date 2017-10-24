@@ -9,6 +9,9 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
+/**
+ * @author Ocelot5836
+ */
 public class RenderSmileDog extends RenderLiving<EntitySmileDog> {
 
 	private static final ResourceLocation WOLF_TEXTURES = new ResourceLocation(Reference.MOD_ID, "textures/entity/smile_dog/normal.png");

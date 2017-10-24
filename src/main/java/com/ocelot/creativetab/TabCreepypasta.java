@@ -5,6 +5,9 @@ import com.ocelot.init.ModItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
+/**
+ * @author Ocelot5836
+ */
 public class TabCreepypasta extends CreativeTabs {
 
 	public TabCreepypasta() {

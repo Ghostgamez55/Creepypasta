@@ -21,6 +21,7 @@ public class ClientProxy extends CommonProxy {
 	public void preInit(FMLPreInitializationEvent event) {
 		ModItems.linkModels();
 		ModBlocks.linkModels();
+		ModBlocks.createStateMappers();
 	}
 
 	@Override

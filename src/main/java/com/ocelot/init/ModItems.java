@@ -1,7 +1,7 @@
 package com.ocelot.init;
 
 import com.ocelot.Reference;
-import com.ocelot.handlers.ItemEnumHandler;
+import com.ocelot.handlers.EnumHandler;
 import com.ocelot.items.ItemNitratePowder;
 import com.ocelot.items.ItemPill;
 import com.ocelot.items.ItemSmileDog;
@@ -14,6 +14,9 @@ import net.minecraft.item.ItemArmor;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
+/**
+ * @author Ocelot5836
+ */
 public class ModItems {
 
 	public static Item SMILE_DOG;
@@ -23,7 +26,7 @@ public class ModItems {
 	/**
 	 * Initializes all the items.
 	 */
-	public static void init() {
+	public static void preInit() {
 		SMILE_DOG = new ItemSmileDog();
 		PILL = new ItemPill();
 		NITRATE_POWDER = new ItemNitratePowder();
@@ -66,8 +69,8 @@ public class ModItems {
 	 * Registers the renders for all the items.
 	 */
 	public static void linkModels() {
-		for (int i = 0; i < ItemEnumHandler.PillTypes.values().length; i++) {
-			registerRender(PILL, i, "pill_" + ItemEnumHandler.PillTypes.values()[i].getName());
+		for (int i = 0; i < EnumHandler.PillTypes.values().length; i++) {
+			registerRender(PILL, i, "pill_" + EnumHandler.PillTypes.values()[i].getName());
 		}
 	}
 
