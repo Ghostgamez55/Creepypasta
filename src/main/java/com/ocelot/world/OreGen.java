@@ -60,17 +60,17 @@ public class OreGen implements IWorldGenerator {
 		}
 	}
 
-	private class NetherGenPredicate implements Predicate<IBlockState> {
-		@Override
-		public boolean apply(IBlockState input) {
-			return input != null && input.getBlock() == Blocks.NETHERRACK;
-		}
-	}
-	
-	private class EndGenPredicate implements Predicate<IBlockState> {
-		@Override
-		public boolean apply(IBlockState input) {
-			return input != null && input.getBlock() == Blocks.END_STONE;
-		}
-	}
+//	private class NetherGenPredicate implements Predicate<IBlockState> {
+//		@Override
+//		public boolean apply(IBlockState input) {
+//			return input != null && input.getBlock() == Blocks.NETHERRACK;
+//		}
+//	}
+//	
+//	private class EndGenPredicate implements Predicate<IBlockState> {
+//		@Override
+//		public boolean apply(IBlockState input) {
+//			return input != null && input.getBlock() == Blocks.END_STONE;
+//		}
+//	}
 }
