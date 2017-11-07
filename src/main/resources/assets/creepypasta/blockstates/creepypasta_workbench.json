@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "creepypasta:creepypasta_workbench", "y": 0 },
+		"facing=east": { "model": "creepypasta:creepypasta_workbench", "y": 90 },
+		"facing=south": { "model": "creepypasta:creepypasta_workbench", "y": 180 },
+		"facing=west": { "model": "creepypasta:creepypasta_workbench", "y": 270 }
+    }
+}

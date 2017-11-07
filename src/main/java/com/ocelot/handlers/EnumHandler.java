@@ -7,15 +7,15 @@ import net.minecraft.util.IStringSerializable;
  */
 public class EnumHandler {
 
-	public static enum PillTypes implements IStringSerializable {
+	public enum PillTypes implements IStringSerializable {
 		ANTI_DEPRESSANTS("anti_depressants", 0);
 
 		private String name;
-		private int id;
+		private byte id;
 
 		private PillTypes(String name, int id) {
 			this.name = name;
-			this.id = id;
+			this.id = (byte) id;
 		}
 		
 		@Override

@@ -2,6 +2,7 @@ package com.ocelot.init;
 
 import com.google.gson.JsonObject;
 import com.ocelot.Reference;
+import com.ocelot.enums.EnumModCraftingRecipes;
 
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
@@ -34,7 +35,9 @@ public class ModCrafting {
 	 * Registers the crafting recipes.
 	 */
 	private static void registerCraftingRecipes() {
-		addRecipe("anti_depressant");
+		for (int i = 0; i < EnumModCraftingRecipes.values().length; i++) {
+			addRecipe(EnumModCraftingRecipes.values()[i].getName(), EnumModCraftingRecipes.values()[i].getPath());
+		}
 
 		for (int i = 0; i < EnumDyeColor.values().length; i++) {
 
@@ -55,7 +58,7 @@ public class ModCrafting {
 	 *            the name of the json in the files.
 	 */
 	private static void addRecipe(String fileName) {
-		addRecipe(fileName, "anti_depressant");
+		addRecipe(fileName, null);
 	}
 
 	/**
@@ -67,7 +70,15 @@ public class ModCrafting {
 	 *            the sub path of the json in the files.
 	 */
 	private static void addRecipe(String fileName, String subPath) {
-		CraftingHelper.register(new ResourceLocation(Reference.MOD_ID + ":" + subPath + "/" + fileName + ".json"), new IRecipeFactory() {
+		String location;
+
+		if (subPath == null) {
+			location = Reference.MOD_ID + ":" + fileName + ".json";
+		} else {
+			location = Reference.MOD_ID + ":" + subPath + "/" + fileName + ".json";
+		}
+
+		CraftingHelper.register(new ResourceLocation(location), new IRecipeFactory() {
 			@Override
 			public IRecipe parse(JsonContext context, JsonObject json) {
 				return CraftingHelper.getRecipe(json, context);

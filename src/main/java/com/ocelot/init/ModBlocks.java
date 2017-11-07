@@ -1,6 +1,7 @@
 package com.ocelot.init;
 
 import com.ocelot.Reference;
+import com.ocelot.blocks.BlockCreepypastaWorkbench;
 import com.ocelot.blocks.BlockNitratePowderOre;
 import com.ocelot.blocks.BlockSafe;
 import com.ocelot.proxy.ClientProxy;
@@ -10,6 +11,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.IStateMapper;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -25,6 +27,7 @@ public class ModBlocks {
 
 	public static Block NITRATE_POWDER_ORE;
 	public static Block SAFE;
+	public static Block CREEPYPASTA_WORKBENCH;
 
 	/**
 	 * Initializes the blocks.
@@ -32,6 +35,7 @@ public class ModBlocks {
 	public static void preInit() {
 		NITRATE_POWDER_ORE = new BlockNitratePowderOre();
 		SAFE = new BlockSafe();
+		CREEPYPASTA_WORKBENCH = new BlockCreepypastaWorkbench();
 	}
 
 	/**
@@ -40,6 +44,7 @@ public class ModBlocks {
 	public static void register() {
 		registerBlock(NITRATE_POWDER_ORE);
 		registerBlock(SAFE);
+		registerBlock(CREEPYPASTA_WORKBENCH);
 	}
 
 	/**
@@ -48,6 +53,7 @@ public class ModBlocks {
 	public static void registerRenders() {
 		registerRender(NITRATE_POWDER_ORE);
 		registerRender(SAFE);
+		registerRender(CREEPYPASTA_WORKBENCH);
 	}
 
 	/**
@@ -63,6 +69,7 @@ public class ModBlocks {
 	@SideOnly(Side.CLIENT)
 	public static void createStateMappers() {
 		ModelLoader.setCustomStateMapper(SAFE, getDefaultStateMapper(SAFE));
+		ModelLoader.setCustomStateMapper(CREEPYPASTA_WORKBENCH, (new StateMap.Builder().ignore(BlockCreepypastaWorkbench.PART).build()));
 	}
 
 	private static IStateMapper getDefaultStateMapper(final Block block) {

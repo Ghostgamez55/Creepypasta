@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "NNNN",
+        "NCNN",
+        "NNNN"
+    ],
+    "key": {
+        "N": {
+            "item": "creepypasta:nitrate_powder"
+        },
+        "C": {
+            "item": "minecraft:carrot"
+        }
+    },
+    "result": {
+        "item": "creepypasta:pill",
+        "count": 1,
+		"data": 0
+    }
+}

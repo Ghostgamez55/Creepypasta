@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "III",
+        "IBI",
+        "III"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:iron_block"
+        },
+        "B": {
+            "item": "minecraft:stone_button"
+        }
+    },
+    "result": {
+        "item": "creepypasta:safe",
+        "count": 1,
+		"data": 0
+    }
+}

@@ -59,18 +59,4 @@ public class OreGen implements IWorldGenerator {
 			generator.generate(world, rand, new BlockPos(x, y, z));
 		}
 	}
-
-//	private class NetherGenPredicate implements Predicate<IBlockState> {
-//		@Override
-//		public boolean apply(IBlockState input) {
-//			return input != null && input.getBlock() == Blocks.NETHERRACK;
-//		}
-//	}
-//	
-//	private class EndGenPredicate implements Predicate<IBlockState> {
-//		@Override
-//		public boolean apply(IBlockState input) {
-//			return input != null && input.getBlock() == Blocks.END_STONE;
-//		}
-//	}
 }

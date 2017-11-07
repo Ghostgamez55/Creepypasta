@@ -1,5 +1,6 @@
 package com.ocelot;
 
+import com.ocelot.crafting.CreepypastaWorkbenchManager;
 import com.ocelot.events.ModEventHandler;
 import com.ocelot.init.ModBlocks;
 import com.ocelot.init.ModCrafting;
@@ -51,6 +52,8 @@ public class Creepypasta {
 	public void init(FMLInitializationEvent event) {
 		ModCrafting.init();
 		ModEntities.init();
+		
+		CreepypastaWorkbenchManager.init();
 
 		GameRegistry.registerWorldGenerator(new OreGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new ModEventHandler());

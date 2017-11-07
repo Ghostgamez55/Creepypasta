@@ -10,7 +10,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,14 +22,13 @@ import net.minecraft.util.datafix.FixTypes;
 import net.minecraft.util.datafix.walkers.ItemStackDataLists;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.LockCode;
 
 /**
  * @author Ocelot5836
  */
 public class TileEntitySafe extends TileEntityLockableLoot implements ITickable {
 
-	private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(27, ItemStack.EMPTY);
+	private NonNullList<ItemStack> inventory;
 	/** The current angle of the lid (between 0 and 1) */
 	public float lidAngle;
 	/** The angle of the lid last tick */
@@ -39,6 +37,10 @@ public class TileEntitySafe extends TileEntityLockableLoot implements ITickable 
 	public int numPlayersUsing;
 	/** Server sync counter (once per 20 ticks) */
 	private int ticksSinceSync;
+
+	public TileEntitySafe() {
+		inventory = NonNullList.<ItemStack>withSize(getSizeInventory(), ItemStack.EMPTY);
+	}
 
 	/**
 	 * Returns the number of slots in the inventory.

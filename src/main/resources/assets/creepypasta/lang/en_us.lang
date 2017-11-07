@@ -13,6 +13,8 @@ tile.safe.name=Safe
 
 container.safe=Safe
 
+gui.creepypasta_workbench=Workbench
+
 entity.smile_dog.name=Smile Dog
 
 block.safe.lock=Safe Locks
