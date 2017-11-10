@@ -1,4 +1,4 @@
-package com.ocelot.entity.living;
+package com.ocelot.entity.passive;
 
 import java.util.UUID;
 

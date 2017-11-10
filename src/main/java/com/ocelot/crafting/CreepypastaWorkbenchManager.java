@@ -1,205 +1,162 @@
 package com.ocelot.crafting;
 
-import java.io.BufferedReader;
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.Reader;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collections;
-import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
-import javax.annotation.Nullable;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.ocelot.inventory.InventoryCrafting;
 
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
-import com.ocelot.Reference;
-
-import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.JsonUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.RegistryNamespaced;
 import net.minecraft.world.World;
 
 public class CreepypastaWorkbenchManager {
+	/** The static instance of this class */
+	private static final CreepypastaWorkbenchManager INSTANCE = new CreepypastaWorkbenchManager();
+	/** A list of all the recipes added */
+	private final List<IRecipe> recipes = Lists.<IRecipe>newArrayList();
 
-	private static final Logger LOGGER = LogManager.getLogger();
-	private static int nextAvailableId;
-	public static final RegistryNamespaced<ResourceLocation, IRecipe> REGISTRY = net.minecraftforge.registries.GameData.getWrapper(IRecipe.class);
-
-	public static boolean init() {
-		try {
-			return parseJsonRecipes();
-		} catch (Throwable var1) {
-			return false;
-		}
+	/**
+	 * Returns the static instance of this class
+	 */
+	public static CreepypastaWorkbenchManager getInstance() {
+		return INSTANCE;
 	}
 
-	private static boolean parseJsonRecipes() {
-		FileSystem filesystem = null;
-		Gson gson = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
-		boolean flag1;
+	private CreepypastaWorkbenchManager() {
+		this.addRecipe(new ItemStack(Items.DIAMOND, 1), "CCC", "CCC", "CCC", 'C', Blocks.COBBLESTONE);
+		this.addShapelessRecipe(new ItemStack(Items.DIAMOND, 1), Blocks.COBBLESTONE);
+		Collections.sort(this.recipes, new CreepypastaRecipeSorter(this));
+	}
 
-		try {
-			URL url = CreepypastaWorkbenchManager.class.getResource("/assets/.mcassetsroot");
+	/**
+	 * Adds a shaped recipe to the games recipe list.
+	 */
+	public CreepypastaWorkbenchShapedRecipes addRecipe(ItemStack stack, Object... recipeComponents) {
+		String s = "";
+		int i = 0;
+		int j = 0;
+		int k = 0;
 
-			if (url != null) {
-				URI uri = url.toURI();
-				Path path;
+		if (recipeComponents[i] instanceof String[]) {
+			String[] astring = (String[]) ((String[]) recipeComponents[i++]);
 
-				if ("file".equals(uri.getScheme())) {
-					path = Paths.get(CreepypastaWorkbenchManager.class.getResource("/assets/" + Reference.MOD_ID + "/creepypasta_recipes").toURI());
-				} else {
-					if (!"jar".equals(uri.getScheme())) {
-						LOGGER.error("Unsupported scheme " + uri + " trying to list all recipes");
-						boolean flag2 = false;
-						return flag2;
-					}
+			for (String s2 : astring) {
+				++k;
+				j = s2.length();
+				s = s + s2;
+			}
+		} else {
+			while (recipeComponents[i] instanceof String) {
+				String s1 = (String) recipeComponents[i++];
+				++k;
+				j = s1.length();
+				s = s + s1;
+			}
+		}
 
-					filesystem = FileSystems.newFileSystem(uri, Collections.emptyMap());
-					path = filesystem.getPath("/assets/" + Reference.MOD_ID + "/creepypasta_recipes");
-				}
+		Map<Character, ItemStack> map;
 
-				Iterator<Path> iterator = Files.walk(path).iterator();
+		for (map = Maps.<Character, ItemStack>newHashMap(); i < recipeComponents.length; i += 2) {
+			Character character = (Character) recipeComponents[i];
+			ItemStack itemstack = ItemStack.EMPTY;
 
-				while (iterator.hasNext()) {
-					Path path1 = iterator.next();
-
-					if ("json".equals(FilenameUtils.getExtension(path1.toString()))) {
-						Path path2 = path.relativize(path1);
-						String s = FilenameUtils.removeExtension(path2.toString()).replaceAll("\\\\", "/");
-						ResourceLocation resourcelocation = new ResourceLocation(s);
-						BufferedReader bufferedreader = null;
-
-						try {
-							boolean flag;
-
-							try {
-								bufferedreader = Files.newBufferedReader(path1);
-								register(s, parseRecipeJson((JsonObject) JsonUtils.fromJson(gson, bufferedreader, JsonObject.class)));
-							} catch (JsonParseException jsonparseexception) {
-								LOGGER.error("Parsing error loading recipe " + resourcelocation, (Throwable) jsonparseexception);
-								flag = false;
-								return flag;
-							} catch (IOException ioexception) {
-								LOGGER.error("Couldn't read recipe " + resourcelocation + " from " + path1, (Throwable) ioexception);
-								flag = false;
-								return flag;
-							}
-						} finally {
-							IOUtils.closeQuietly((Reader) bufferedreader);
-						}
-					}
-				}
-
-				return true;
+			if (recipeComponents[i + 1] instanceof Item) {
+				itemstack = new ItemStack((Item) recipeComponents[i + 1]);
+			} else if (recipeComponents[i + 1] instanceof Block) {
+				itemstack = new ItemStack((Block) recipeComponents[i + 1], 1, 32767);
+			} else if (recipeComponents[i + 1] instanceof ItemStack) {
+				itemstack = (ItemStack) recipeComponents[i + 1];
 			}
 
-			LOGGER.error("Couldn't find .mcassetsroot");
-			flag1 = false;
-		} catch (IOException | URISyntaxException urisyntaxexception) {
-			LOGGER.error("Couldn't get a list of all recipe files", (Throwable) urisyntaxexception);
-			flag1 = false;
-			return flag1;
-		} finally {
-			IOUtils.closeQuietly((Closeable) filesystem);
+			map.put(character, itemstack);
 		}
 
-		return flag1;
-	}
+		ItemStack[] aitemstack = new ItemStack[j * k];
 
-	private static IRecipe parseRecipeJson(JsonObject p_193376_0_) {
-		String s = JsonUtils.getString(p_193376_0_, "type");
+		for (int l = 0; l < j * k; ++l) {
+			char c0 = s.charAt(l);
 
-		if ("crafting_shaped".equals(s)) {
-			return CreepypastaWorkbenchShapedRecipes.deserialize(p_193376_0_);
-		} else if ("crafting_shapeless".equals(s)) {
-			return CreepypastaWorkbenchShapelessRecipes.deserialize(p_193376_0_);
-		} else {
-			throw new JsonSyntaxException("Invalid or unsupported recipe type '" + s + "'");
+			if (map.containsKey(Character.valueOf(c0))) {
+				aitemstack[l] = ((ItemStack) map.get(Character.valueOf(c0))).copy();
+			} else {
+				aitemstack[l] = ItemStack.EMPTY;
+			}
 		}
+
+		CreepypastaWorkbenchShapedRecipes shapedrecipes = new CreepypastaWorkbenchShapedRecipes(j, k, aitemstack, stack);
+		this.recipes.add(shapedrecipes);
+		return shapedrecipes;
 	}
 
-	public static void register(String name, IRecipe recipe) {
-		register(new ResourceLocation(name), recipe);
-	}
+	/**
+	 * Adds a shapeless crafting recipe to the the game.
+	 */
+	public void addShapelessRecipe(ItemStack stack, Object... recipeComponents) {
+		List<ItemStack> list = Lists.<ItemStack>newArrayList();
 
-	public static void register(ResourceLocation name, IRecipe recipe) {
-		if (REGISTRY.containsKey(name)) {
-			throw new IllegalStateException("Duplicate recipe ignored with ID " + name);
-		} else {
-			REGISTRY.register(nextAvailableId++, name, recipe);
+		for (Object object : recipeComponents) {
+			if (object instanceof ItemStack) {
+				list.add(((ItemStack) object).copy());
+			} else if (object instanceof Item) {
+				list.add(new ItemStack((Item) object));
+			} else {
+				if (!(object instanceof Block)) {
+					throw new IllegalArgumentException("Invalid shapeless recipe: unknown type " + object.getClass().getName() + "!");
+				}
+
+				list.add(new ItemStack((Block) object));
+			}
 		}
+
+		this.recipes.add(new CreepypastaWorkbenchShapelessRecipes(stack, list));
+	}
+
+	/**
+	 * Adds an IRecipe to the list of crafting recipes.
+	 */
+	public void addRecipe(IRecipe recipe) {
+		this.recipes.add(recipe);
 	}
 
 	/**
 	 * Retrieves an ItemStack that has multiple recipes for it.
 	 */
-	public static ItemStack findMatchingResult(InventoryCrafting p_82787_0_, World craftMatrix) {
-		for (IRecipe irecipe : REGISTRY) {
-			if (irecipe.matches(p_82787_0_, craftMatrix)) {
-				return irecipe.getCraftingResult(p_82787_0_);
+	public ItemStack findMatchingRecipe(InventoryCrafting craftMatrix, World worldIn) {
+		for (IRecipe irecipe : this.recipes) {
+			if (irecipe.matches(craftMatrix, worldIn)) {
+				return irecipe.getCraftingResult(craftMatrix);
 			}
 		}
 
 		return ItemStack.EMPTY;
 	}
 
-	@Nullable
-	public static IRecipe findMatchingRecipe(InventoryCrafting craftMatrix, World worldIn) {
-		for (IRecipe irecipe : REGISTRY) {
+	public ItemStack[] getRemainingItems(InventoryCrafting craftMatrix, World worldIn) {
+		for (IRecipe irecipe : this.recipes) {
 			if (irecipe.matches(craftMatrix, worldIn)) {
-				return irecipe;
+				return irecipe.getRemainingItems(craftMatrix);
 			}
 		}
 
-		return null;
-	}
+		ItemStack[] aitemstack = new ItemStack[craftMatrix.getSizeInventory()];
 
-	public static NonNullList<ItemStack> getRemainingItems(InventoryCrafting p_180303_0_, World craftMatrix) {
-		for (IRecipe irecipe : REGISTRY) {
-			if (irecipe.matches(p_180303_0_, craftMatrix)) {
-				return irecipe.getRemainingItems(p_180303_0_);
-			}
+		for (int i = 0; i < aitemstack.length; ++i) {
+			aitemstack[i] = craftMatrix.getStackInSlot(i);
 		}
 
-		NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>withSize(p_180303_0_.getSizeInventory(), ItemStack.EMPTY);
-
-		for (int i = 0; i < nonnulllist.size(); ++i) {
-			nonnulllist.set(i, p_180303_0_.getStackInSlot(i));
-		}
-
-		return nonnulllist;
+		return aitemstack;
 	}
 
-	@Nullable
-	public static IRecipe getRecipe(ResourceLocation name) {
-		return REGISTRY.getObject(name);
-	}
-
-	public static int getIDForRecipe(IRecipe recipe) {
-		return REGISTRY.getIDForObject(recipe);
-	}
-
-	@Nullable
-	public static IRecipe getRecipeById(int id) {
-		return REGISTRY.getObjectById(id);
+	/**
+	 * returns the List<> of all recipes
+	 */
+	public List<IRecipe> getRecipeList() {
+		return this.recipes;
 	}
 }

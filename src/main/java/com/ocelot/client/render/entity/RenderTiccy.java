@@ -24,17 +24,7 @@ public class RenderTiccy extends RenderLiving<EntityTiccy> {
 		super(renderManager, new ModelBiped(0, 0, 64, 64), 0.5F);
 	}
 
-	/**
-	 * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-	 */
 	protected ResourceLocation getEntityTexture(EntityTiccy entity) {
 		return TEXTURE;
-	}
-
-	/**
-	 * Allows the render to do state modifications necessary before the model is rendered.
-	 */
-	protected void preRenderCallback(EntityTiccy entitylivingbaseIn, float partialTickTime) {
-		//GlStateManager.scale(0.9375F, 0.9375F, 0.9375F);
 	}
 }

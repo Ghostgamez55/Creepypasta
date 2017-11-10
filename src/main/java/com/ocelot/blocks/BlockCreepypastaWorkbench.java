@@ -51,8 +51,8 @@ public class BlockCreepypastaWorkbench extends Block {
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-//		if (world.isRemote)
-			player.openGui(Creepypasta.instance, GuiHandler.CREEPYPASTA_WORKBENCH_ID, world, (int) hitX, (int) hitY, (int) hitZ);
+		// if (world.isRemote)
+		player.openGui(Creepypasta.instance, GuiHandler.CREEPYPASTA_WORKBENCH_ID, world, (int) hitX, (int) hitY, (int) hitZ);
 		return true;
 	}
 
@@ -103,10 +103,17 @@ public class BlockCreepypastaWorkbench extends Block {
 
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		if (state.getValue(PART) == Part.TOP)
-			return new AxisAlignedBB(-5.5 * 0.0625, 1, 0, 22 * 0.0625, -1, 1);
-		else
-			return new AxisAlignedBB(-5.5 * 0.0625, 0, 0, 22 * 0.0625, 2, 1);
+		if (state.getValue(PART) == Part.TOP) {
+			if (state.getValue(FACING) == EnumFacing.NORTH || state.getValue(FACING) == EnumFacing.SOUTH)
+				return new AxisAlignedBB(-5 * 0.0625, 1, 0, 22 * 0.0625, -1, 1);
+			else
+				return new AxisAlignedBB(0, 1, -5 * 0.0625, 16 * 0.0625, -1, 22 * 0.0625);
+		} else {
+			if (state.getValue(FACING) == EnumFacing.NORTH || state.getValue(FACING) == EnumFacing.SOUTH)
+				return new AxisAlignedBB(-5 * 0.0625, 2, 0, 22 * 0.0625, -1, 1);
+			else
+				return new AxisAlignedBB(0, 0, -5 * 0.0625, 16 * 0.0625, 2, 22 * 0.0625);
+		}
 	}
 
 	@Override

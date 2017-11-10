@@ -16,6 +16,9 @@ container.safe=Safe
 gui.creepypasta_workbench=Workbench
 
 entity.smile_dog.name=Smile Dog
+entity.smile_man.name=Smile Man
+entity.ticcy.name=Ticcy
+entity.slenderman.name=Slenderman
 
 block.safe.lock=Safe Locks
 block.safe.unlock=Safe Unlocks

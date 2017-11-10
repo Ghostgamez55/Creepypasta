@@ -45,12 +45,12 @@ public class GuiUtils {
 		return false;
 	}
 
-	public static void bindTexture(String path, String domain) {
+	public static void bindTexture(String domain, String path) {
 		MC.getTextureManager().bindTexture(new ResourceLocation(domain, path));
 	}
 
 	public static void bindTexture(String path) {
-		bindTexture(path, Reference.MOD_ID);
+		bindTexture(Reference.MOD_ID,path);
 	}
 
 	public static void bindTexture(ResourceLocation texture) {

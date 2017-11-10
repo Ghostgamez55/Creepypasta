@@ -18,6 +18,9 @@ public class ModEventHandler {
 
 	public static int sanity = 100;
 
+	/**
+	 * TODO add the ability to spawn smile dog when holding his image
+	 */
 	@SubscribeEvent
 	public void onLivingUpdateEvent(LivingUpdateEvent event) {
 		// World world = event.getEntity().world;
@@ -37,7 +40,7 @@ public class ModEventHandler {
 		ElementType type = event.getType();
 		Minecraft mc = Minecraft.getMinecraft();
 		Gui gui = mc.ingameGUI;
-		if (type == ElementType.TEXT && !mc.player.isSpectator()) {
+		if (mc.playerController.gameIsSurvivalOrAdventure()) {
 			GlStateManager.pushMatrix();
 			GlStateManager.enableBlend();
 			GlStateManager.enableAlpha();
@@ -54,9 +57,8 @@ public class ModEventHandler {
 			y /= 2;
 			GlStateManager.scale(2, 2, 2);
 			gui.drawTexturedModalRect(x + 4 + sanity, y + 31, 0, 69, 7, 9);
-			GlStateManager.disableAlpha();
-			GlStateManager.disableBlend();
 			GlStateManager.popMatrix();
 		}
+		GuiUtils.bindTexture("minecraft", "textures/gui/icons.png");
 	}
 }

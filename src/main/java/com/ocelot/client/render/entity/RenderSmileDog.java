@@ -1,7 +1,7 @@
 package com.ocelot.client.render.entity;
 
 import com.ocelot.Reference;
-import com.ocelot.entity.living.EntitySmileDog;
+import com.ocelot.entity.passive.EntitySmileDog;
 
 import net.minecraft.client.model.ModelWolf;
 import net.minecraft.client.renderer.GlStateManager;

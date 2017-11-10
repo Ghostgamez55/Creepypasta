@@ -3,14 +3,20 @@ package com.ocelot.init;
 import com.ocelot.Creepypasta;
 import com.ocelot.Reference;
 import com.ocelot.client.render.entity.RenderSmileDog;
+import com.ocelot.client.render.entity.RenderSmileMan;
 import com.ocelot.client.render.entity.RenderTiccy;
 import com.ocelot.client.render.tileentity.RenderSafe;
+import com.ocelot.entity.hostile.EntitySlenderman;
 import com.ocelot.entity.hostile.EntityTiccy;
-import com.ocelot.entity.living.EntitySmileDog;
+import com.ocelot.entity.passive.EntitySmileDog;
+import com.ocelot.entity.passive.EntitySmileMan;
 import com.ocelot.tileentity.TileEntitySafe;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -45,14 +51,17 @@ public class ModEntities {
 	 */
 	private static void registerEntities() {
 		registerEntity(EntitySmileDog.class, "smile_dog", 32, 1, true, 0x639fff, 0x62ffe5);
+		registerEntity(EntitySmileMan.class, "smile_man", 32, 1, true, 0x639fff, 0x62ffe5);
+
 		registerEntity(EntityTiccy.class, "ticcy", 32, 1, true, 0x639fff, 0x62ffe5);
+		registerEntity(EntitySlenderman.class, "slenderman", 32, 1, true, 0x639fff, 0x62ffe5);
 	}
 
 	/**
 	 * Adds the entity's spawn location.
 	 */
 	public static void registerSpawns() {
-
+		EntityRegistry.addSpawn(EntitySlenderman.class, 10, 0, 1, EnumCreatureType.MONSTER, Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.MUTATED_TAIGA);
 	}
 
 	/**
@@ -60,8 +69,11 @@ public class ModEntities {
 	 */
 	public static void registerEntityRenders() {
 		Minecraft mc = Minecraft.getMinecraft();
-		RenderingRegistry.registerEntityRenderingHandler(EntitySmileDog.class, new RenderSmileDog(mc.getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTiccy.class, new RenderTiccy(mc.getRenderManager()));
+		RenderManager renderManager = mc.getRenderManager();
+
+		RenderingRegistry.registerEntityRenderingHandler(EntitySmileDog.class, new RenderSmileDog(renderManager));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTiccy.class, new RenderTiccy(renderManager));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySmileMan.class, new RenderSmileMan(renderManager));
 	}
 
 	/**

@@ -53,8 +53,6 @@ public class Creepypasta {
 		ModCrafting.init();
 		ModEntities.init();
 		
-		CreepypastaWorkbenchManager.init();
-
 		GameRegistry.registerWorldGenerator(new OreGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
 

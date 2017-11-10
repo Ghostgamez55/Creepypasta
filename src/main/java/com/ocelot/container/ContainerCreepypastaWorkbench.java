@@ -1,15 +1,15 @@
 package com.ocelot.container;
 
 import com.ocelot.crafting.CreepypastaWorkbenchManager;
+import com.ocelot.inventory.InventoryCraftResult;
+import com.ocelot.inventory.InventoryCrafting;
+import com.ocelot.inventory.SlotCrafting;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCraftResult;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -50,7 +50,7 @@ public class ContainerCreepypastaWorkbench extends Container {
 
 	@Override
 	public void onCraftMatrixChanged(IInventory inventoryIn) {
-		this.craftResult.setInventorySlotContents(0, CreepypastaWorkbenchManager.findMatchingResult(this.craftMatrix, world));
+		this.craftResult.setInventorySlotContents(0, CreepypastaWorkbenchManager.getInstance().findMatchingRecipe(this.craftMatrix, world));
 	}
 
 	/**
