@@ -1,7 +1,11 @@
 package com.ocelot.init;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ocelot.Reference;
 import com.ocelot.handlers.EnumHandler;
+import com.ocelot.items.ItemKey;
 import com.ocelot.items.ItemNitratePowder;
 import com.ocelot.items.ItemPill;
 import com.ocelot.items.ItemSmileDog;
@@ -18,10 +22,13 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
  * @author Ocelot5836
  */
 public class ModItems {
+	
+	public static final List<Item> ITEMS = new ArrayList<Item>();
 
 	public static Item SMILE_DOG;
 	public static Item PILL;
 	public static Item NITRATE_POWDER;
+	public static Item KEY;
 
 	/**
 	 * Initializes all the items.
@@ -30,6 +37,7 @@ public class ModItems {
 		SMILE_DOG = new ItemSmileDog();
 		PILL = new ItemPill();
 		NITRATE_POWDER = new ItemNitratePowder();
+		KEY = new ItemKey();
 
 		ModTools.init();
 	}
@@ -49,8 +57,10 @@ public class ModItems {
 	 */
 	public static void register() {
 		registerItem(SMILE_DOG);
-		registerItem(PILL);
 		registerItem(NITRATE_POWDER);
+		registerItem(KEY);
+		
+		registerMetaItem(PILL);
 
 		ModTools.register();
 	}
@@ -59,9 +69,10 @@ public class ModItems {
 	 * Registers the renders for all the items.
 	 */
 	public static void registerRenders() {
-		registerRender(SMILE_DOG);
-		registerRender(NITRATE_POWDER);
-
+		for(Item item : ITEMS) {
+			registerRender(item);
+		}
+		
 		ModTools.registerRenders();
 	}
 
@@ -79,6 +90,15 @@ public class ModItems {
 	 *            The item to be registered.
 	 */
 	protected static void registerItem(Item item) {
+		ForgeRegistries.ITEMS.register(item);
+		ITEMS.add(item);
+	}
+	
+	/**
+	 * @param item
+	 *            The item to be registered.
+	 */
+	protected static void registerMetaItem(Item item) {
 		ForgeRegistries.ITEMS.register(item);
 	}
 

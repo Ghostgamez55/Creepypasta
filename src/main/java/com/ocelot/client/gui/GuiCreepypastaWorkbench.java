@@ -2,7 +2,7 @@ package com.ocelot.client.gui;
 
 import com.ocelot.Reference;
 import com.ocelot.container.ContainerCreepypastaWorkbench;
-import com.ocelot.lib.GuiUtils;
+import com.ocelot.lib.TextureUtils;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -32,7 +32,7 @@ public class GuiCreepypastaWorkbench extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		GlStateManager.color(1, 1, 1, 1);
-		GuiUtils.bindTexture(getTexture());
+		TextureUtils.bindTexture(getTexture());
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 	}
 

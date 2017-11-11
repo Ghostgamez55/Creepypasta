@@ -1,6 +1,6 @@
 package com.ocelot.events;
 
-import com.ocelot.lib.GuiUtils;
+import com.ocelot.lib.TextureUtils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -45,7 +45,7 @@ public class ModEventHandler {
 			GlStateManager.enableBlend();
 			GlStateManager.enableAlpha();
 			GlStateManager.color(1, 1, 1, 1);
-			GuiUtils.bindTexture("textures/gui/sanity.png");
+			TextureUtils.bindTexture("textures/gui/sanity.png");
 			ScaledResolution resolution = event.getResolution();
 			float screenWidth = resolution.getScaledWidth() * resolution.getScaleFactor();
 			float screenHeight = resolution.getScaledHeight() * resolution.getScaleFactor();
@@ -59,6 +59,6 @@ public class ModEventHandler {
 			gui.drawTexturedModalRect(x + 4 + sanity, y + 31, 0, 69, 7, 9);
 			GlStateManager.popMatrix();
 		}
-		GuiUtils.bindTexture("minecraft", "textures/gui/icons.png");
+		TextureUtils.bindTexture("minecraft", "textures/gui/icons.png");
 	}
 }

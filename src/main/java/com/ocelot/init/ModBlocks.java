@@ -1,7 +1,11 @@
 package com.ocelot.init;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ocelot.Reference;
 import com.ocelot.blocks.BlockCreepypastaWorkbench;
+import com.ocelot.blocks.BlockItemRecolorer;
 import com.ocelot.blocks.BlockNitratePowderOre;
 import com.ocelot.blocks.BlockSafe;
 import com.ocelot.proxy.ClientProxy;
@@ -25,9 +29,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class ModBlocks {
 
+	public static final List<Block> BLOCKS = new ArrayList<Block>();
+	
 	public static Block NITRATE_POWDER_ORE;
 	public static Block SAFE;
 	public static Block CREEPYPASTA_WORKBENCH;
+	public static Block ITEM_RECOLORER;
 
 	/**
 	 * Initializes the blocks.
@@ -36,6 +43,7 @@ public class ModBlocks {
 		NITRATE_POWDER_ORE = new BlockNitratePowderOre();
 		SAFE = new BlockSafe();
 		CREEPYPASTA_WORKBENCH = new BlockCreepypastaWorkbench();
+		ITEM_RECOLORER = new BlockItemRecolorer();
 	}
 
 	/**
@@ -45,15 +53,16 @@ public class ModBlocks {
 		registerBlock(NITRATE_POWDER_ORE);
 		registerBlock(SAFE);
 		registerBlock(CREEPYPASTA_WORKBENCH);
+		registerBlock(ITEM_RECOLORER);
 	}
 
 	/**
 	 * Register's the renders for the normal blocks.
 	 */
-	public static void registerRenders() {
-		registerRender(NITRATE_POWDER_ORE);
-		registerRender(SAFE);
-		registerRender(CREEPYPASTA_WORKBENCH);
+	public static void registerRenders() {		
+		for(Block block : BLOCKS) {
+			registerRender(block);
+		}
 	}
 
 	/**
@@ -91,6 +100,7 @@ public class ModBlocks {
 		ItemBlock item = new ItemBlock(block);
 		item.setRegistryName(block.getRegistryName());
 		ForgeRegistries.ITEMS.register(item);
+		BLOCKS.add(block);
 	}
 
 	/**

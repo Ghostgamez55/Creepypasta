@@ -2,6 +2,7 @@ package com.ocelot.init;
 
 import com.ocelot.Creepypasta;
 import com.ocelot.Reference;
+import com.ocelot.client.render.entity.RenderSlenderman;
 import com.ocelot.client.render.entity.RenderSmileDog;
 import com.ocelot.client.render.entity.RenderSmileMan;
 import com.ocelot.client.render.entity.RenderTiccy;
@@ -10,6 +11,7 @@ import com.ocelot.entity.hostile.EntitySlenderman;
 import com.ocelot.entity.hostile.EntityTiccy;
 import com.ocelot.entity.passive.EntitySmileDog;
 import com.ocelot.entity.passive.EntitySmileMan;
+import com.ocelot.tileentity.TileEntityItemRecolorer;
 import com.ocelot.tileentity.TileEntitySafe;
 
 import net.minecraft.client.Minecraft;
@@ -42,6 +44,7 @@ public class ModEntities {
 
 	private static void registerTileEntities() {
 		GameRegistry.registerTileEntity(TileEntitySafe.class, Reference.MOD_ID + ":TileEntitySafe");
+		GameRegistry.registerTileEntity(TileEntityItemRecolorer.class, Reference.MOD_ID + ":TileEntityItemRecolorer");
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySafe.class, new RenderSafe());
 	}
@@ -72,8 +75,10 @@ public class ModEntities {
 		RenderManager renderManager = mc.getRenderManager();
 
 		RenderingRegistry.registerEntityRenderingHandler(EntitySmileDog.class, new RenderSmileDog(renderManager));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTiccy.class, new RenderTiccy(renderManager));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySmileMan.class, new RenderSmileMan(renderManager));
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityTiccy.class, new RenderTiccy(renderManager));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySlenderman.class, new RenderSlenderman(renderManager));
 	}
 
 	/**

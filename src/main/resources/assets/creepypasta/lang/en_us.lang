@@ -7,6 +7,8 @@ item.smile_dog.name=smiledog.jpeg
 item.ticcys_axe.name=Ticcy's Axe
 item.nitrate_powder.name=Nitrate Powder
 item.pill.anti_depressants.name=Anti Depressants
+item.key.name=Key
+item.key.tooltip=Bound
 
 tile.nitrate_powder_ore.name=Nitrate Powder Ore
 tile.safe.name=Safe
@@ -14,6 +16,10 @@ tile.safe.name=Safe
 container.safe=Safe
 
 gui.creepypasta_workbench=Workbench
+gui.item_recolorer=Item Recolorer
+gui.item_recolorer.field_0=Red
+gui.item_recolorer.field_1=Green
+gui.item_recolorer.field_2=Blue
 
 entity.smile_dog.name=Smile Dog
 entity.smile_man.name=Smile Man
