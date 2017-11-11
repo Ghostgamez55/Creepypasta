@@ -14,11 +14,6 @@ public class TileEntityItemRecolorer extends BasicTileEntity implements ICapabil
 	public TileEntityItemRecolorer() {
 		handler = new ItemStackHandler(1);
 	}
-
-	@Override
-	protected void onServerUpdate() {
-		
-	}
 	
 	@Override
 	public void writeNBTTag(NBTTagCompound nbt) {

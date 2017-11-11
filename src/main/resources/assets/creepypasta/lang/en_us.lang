@@ -12,6 +12,7 @@ item.key.tooltip=Bound
 
 tile.nitrate_powder_ore.name=Nitrate Powder Ore
 tile.safe.name=Safe
+tile.battery.name=Battery
 
 container.safe=Safe
 
@@ -20,6 +21,9 @@ gui.item_recolorer=Item Recolorer
 gui.item_recolorer.field_0=Red
 gui.item_recolorer.field_1=Green
 gui.item_recolorer.field_2=Blue
+gui.battery=Battery
+gui.battery.insert_energy.tooltip=Insert Energy
+gui.battery.extract_energy.tooltip=Extract Energy
 
 entity.smile_dog.name=Smile Dog
 entity.smile_man.name=Smile Man

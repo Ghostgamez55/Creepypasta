@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "creepypasta:battery", "y": 0 },
+		"facing=east": { "model": "creepypasta:battery", "y": 90 },
+		"facing=south": { "model": "creepypasta:battery", "y": 180 },
+		"facing=west": { "model": "creepypasta:battery", "y": 270 }
+    }
+}

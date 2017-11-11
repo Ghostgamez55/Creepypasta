@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ocelot.Reference;
+import com.ocelot.blocks.BlockBattery;
 import com.ocelot.blocks.BlockCreepypastaWorkbench;
 import com.ocelot.blocks.BlockItemRecolorer;
 import com.ocelot.blocks.BlockNitratePowderOre;
@@ -35,6 +36,7 @@ public class ModBlocks {
 	public static Block SAFE;
 	public static Block CREEPYPASTA_WORKBENCH;
 	public static Block ITEM_RECOLORER;
+	public static Block BATTERY;
 
 	/**
 	 * Initializes the blocks.
@@ -44,6 +46,7 @@ public class ModBlocks {
 		SAFE = new BlockSafe();
 		CREEPYPASTA_WORKBENCH = new BlockCreepypastaWorkbench();
 		ITEM_RECOLORER = new BlockItemRecolorer();
+		BATTERY = new BlockBattery();
 	}
 
 	/**
@@ -54,6 +57,7 @@ public class ModBlocks {
 		registerBlock(SAFE);
 		registerBlock(CREEPYPASTA_WORKBENCH);
 		registerBlock(ITEM_RECOLORER);
+		registerBlock(BATTERY);
 	}
 
 	/**

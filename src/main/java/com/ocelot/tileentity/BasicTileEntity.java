@@ -1,8 +1,6 @@
 package com.ocelot.tileentity;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -13,10 +11,13 @@ public abstract class BasicTileEntity extends TileEntity implements ITickable {
 
 	@Override
 	public void update() {
-		if (!this.world.isRemote)
-			this.onServerUpdate();
-		else
-			this.onClientUpdate();
+		if (this.world != null) {
+			if (!this.world.isRemote) {
+				this.onServerUpdate();
+			} else {
+				this.onClientUpdate();
+			}
+		}
 	}
 
 	protected void onClientUpdate() {
