@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.ocelot.Reference;
 import com.ocelot.handlers.EnumHandler;
+import com.ocelot.items.ItemBattery;
 import com.ocelot.items.ItemKey;
 import com.ocelot.items.ItemNitratePowder;
 import com.ocelot.items.ItemPill;
@@ -22,22 +23,26 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
  * @author Ocelot5836
  */
 public class ModItems {
-	
+
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 
 	public static Item SMILE_DOG;
-	public static Item PILL;
 	public static Item NITRATE_POWDER;
 	public static Item KEY;
+
+	public static Item PILL;
+	public static Item BATTERY;
 
 	/**
 	 * Initializes all the items.
 	 */
 	public static void preInit() {
 		SMILE_DOG = new ItemSmileDog();
-		PILL = new ItemPill();
 		NITRATE_POWDER = new ItemNitratePowder();
 		KEY = new ItemKey();
+
+		PILL = new ItemPill();
+		BATTERY = new ItemBattery();
 
 		ModTools.init();
 	}
@@ -59,8 +64,9 @@ public class ModItems {
 		registerItem(SMILE_DOG);
 		registerItem(NITRATE_POWDER);
 		registerItem(KEY);
-		
+
 		registerMetaItem(PILL);
+		registerMetaItem(BATTERY);
 
 		ModTools.register();
 	}
@@ -69,11 +75,9 @@ public class ModItems {
 	 * Registers the renders for all the items.
 	 */
 	public static void registerRenders() {
-		for(Item item : ITEMS) {
+		for (Item item : ITEMS) {
 			registerRender(item);
 		}
-		
-		ModTools.registerRenders();
 	}
 
 	/**
@@ -82,6 +86,10 @@ public class ModItems {
 	public static void linkModels() {
 		for (int i = 0; i < EnumHandler.PillTypes.values().length; i++) {
 			registerRender(PILL, i, "pill_" + EnumHandler.PillTypes.values()[i].getName());
+		}
+
+		for (int i = 0; i < EnumHandler.BatteryTypes.values().length; i++) {
+			registerRender(BATTERY, i, "battery_item_" + EnumHandler.BatteryTypes.values()[i].getName());
 		}
 	}
 
@@ -93,7 +101,7 @@ public class ModItems {
 		ForgeRegistries.ITEMS.register(item);
 		ITEMS.add(item);
 	}
-	
+
 	/**
 	 * @param item
 	 *            The item to be registered.

@@ -6,6 +6,7 @@ import com.ocelot.Creepypasta;
 import com.ocelot.client.gui.GuiHandler;
 import com.ocelot.creativetab.CreepypastaCreativeTabs;
 import com.ocelot.tileentity.TileEntityBattery;
+import com.ocelot.tileentity.TileEntityBattery;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -20,6 +21,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -29,6 +32,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 
 public class BlockBattery extends Block implements ITileEntityProvider {
 
@@ -118,5 +123,18 @@ public class BlockBattery extends Block implements ITileEntityProvider {
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityBattery();
+	}
+	
+	@Override
+	public void breakBlock(World world, BlockPos pos, IBlockState state) {
+		if (world.getTileEntity(pos) instanceof TileEntityBattery) {
+			TileEntityBattery te = (TileEntityBattery) world.getTileEntity(pos);
+			IItemHandler handler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+			for (int slot = 0; slot < handler.getSlots(); slot++) {
+				ItemStack stack = handler.getStackInSlot(slot);
+				InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
+			}
+		}
+		super.breakBlock(world, pos, state);
 	}
 }

@@ -19,8 +19,8 @@ import net.minecraft.world.World;
 public class ItemKey extends Item {
 
 	public ItemKey() {
-		setUnlocalizedName("key");
 		setRegistryName("key");
+		setUnlocalizedName("key");
 		setCreativeTab(CreepypastaCreativeTabs.CREEPYPASTA);
 		setMaxStackSize(1);
 	}

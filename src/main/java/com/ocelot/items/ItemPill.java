@@ -15,8 +15,8 @@ public class ItemPill extends ItemFood {
 
 	public ItemPill() {
 		super(0, 0, false);
-		setUnlocalizedName("pill");
 		setRegistryName("pill");
+		setUnlocalizedName("pill");
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setCreativeTab(CreepypastaCreativeTabs.CREEPYPASTA);

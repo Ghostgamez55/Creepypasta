@@ -32,7 +32,7 @@ import net.minecraftforge.fml.common.versioning.ArtifactVersion;
  * @author CJMinecraft
  *
  */
-@Mod(name = CJCore.NAME, version = CJCore.VERSION, modid = CJCore.MODID, guiFactory = CJCore.GUI_FACTORY, acceptedMinecraftVersions = CJCore.ACCEPTED_MC_VERSIONS, customProperties = { @CustomProperty(k = "useVersionChecker", v = "true") }, useMetadata = true)
+@Mod(name = CJCore.NAME, version = CJCore.VERSION, modid = CJCore.MODID, acceptedMinecraftVersions = CJCore.ACCEPTED_MC_VERSIONS, customProperties = { @CustomProperty(k = "useVersionChecker", v = "true") }, useMetadata = true)
 public class CJCore {
 
 	public static final List<String> DEPENDANTS = new ArrayList<String>();
@@ -42,7 +42,6 @@ public class CJCore {
 	public static final String VERSION = "0.0.2.4";
 	public static final String ACCEPTED_MC_VERSIONS = "[1.12][1.12.1][1.12.2]";
 	public static final String ACCEPTED_MC_VERSION = ForgeVersion.mcVersion;
-	public static final String GUI_FACTORY = "cjminecraft.core.config.CJCoreGuiFactory";
 	public static final String SERVER_PROXY_CLASS = "cjminecraft.core.proxy.ServerProxy";
 	public static final String CLIENT_PROXY_CLASS = "cjminecraft.core.proxy.ClientProxy";
 	public static final Logger logger = LogManager.getFormatterLogger(NAME);

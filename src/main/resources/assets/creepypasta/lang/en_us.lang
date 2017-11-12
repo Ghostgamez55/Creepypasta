@@ -9,6 +9,9 @@ item.nitrate_powder.name=Nitrate Powder
 item.pill.anti_depressants.name=Anti Depressants
 item.key.name=Key
 item.key.tooltip=Bound
+item.bat.name=Bat
+item.bat_spiked.name=Spiked Bat
+item.bat_barbed_wire.name=Barbed Wire Bat
 
 tile.nitrate_powder_ore.name=Nitrate Powder Ore
 tile.safe.name=Safe
@@ -18,9 +21,7 @@ container.safe=Safe
 
 gui.creepypasta_workbench=Workbench
 gui.item_recolorer=Item Recolorer
-gui.item_recolorer.field_0=Red
-gui.item_recolorer.field_1=Green
-gui.item_recolorer.field_2=Blue
+gui.item_recolorer.color=Color
 gui.battery=Battery
 gui.battery.insert_energy.tooltip=Insert Energy
 gui.battery.extract_energy.tooltip=Extract Energy

@@ -1,5 +1,6 @@
 package com.ocelot.client.gui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +12,8 @@ import com.ocelot.lib.TextureUtils;
 import com.ocelot.tileentity.TileEntityBattery;
 
 import cjminecraft.core.client.gui.EnergyBar;
+import cjminecraft.core.energy.EnergyUnits;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
@@ -22,8 +25,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 public class GuiBattery extends GuiContainer {
-
-	public static int sync = 0;
 
 	private EntityPlayer player;
 	private TileEntityBattery te;
@@ -52,12 +53,7 @@ public class GuiBattery extends GuiContainer {
 	@Override
 	public void updateScreen() {
 		super.updateScreen();
-
-		sync++;
-		sync %= 1;
-		if (sync == 0) {
-			this.energyBar.syncData(this.te.getPos(), EnumFacing.NORTH);
-		}
+		this.energyBar.syncData(this.te.getPos(), EnumFacing.NORTH);
 	}
 
 	@Override
@@ -71,7 +67,7 @@ public class GuiBattery extends GuiContainer {
 			drawTooltip(I18n.format("gui.battery.extract_energy.tooltip"), guiLeft + 115, guiTop + 35, 18, 18, mouseX, mouseY);
 
 		if (this.energyBar.isMouseOver()) {
-			this.drawHoveringText(Arrays.asList(this.energyBar.energy + " RF / " + this.energyBar.capacity + " RF"), mouseX, mouseY);
+			this.drawHoveringText(Arrays.asList(this.energyBar.energy + " " + EnergyUnits.REDSTONE_FLUX.getSuffix() + " / " + this.energyBar.capacity + " " + EnergyUnits.REDSTONE_FLUX.getSuffix()), mouseX, mouseY);
 		}
 	}
 
@@ -93,7 +89,7 @@ public class GuiBattery extends GuiContainer {
 		this.mc.fontRenderer.drawString(I18n.format("gui.battery"), this.xSize / 2 - this.mc.fontRenderer.getStringWidth(I18n.format("gui.battery")) / 2, 6, 4210752);
 		this.mc.fontRenderer.drawString(this.player.inventory.getDisplayName().getFormattedText(), 8, 72, 4210752);
 	}
-
+	
 	public static ResourceLocation getTexture() {
 		return new ResourceLocation(Reference.MOD_ID, "textures/gui/container/battery.png");
 	}

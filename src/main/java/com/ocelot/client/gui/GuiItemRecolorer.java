@@ -1,7 +1,9 @@
 package com.ocelot.client.gui;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -11,6 +13,8 @@ import com.ocelot.lib.GuiUtils;
 import com.ocelot.lib.TextureUtils;
 import com.ocelot.tileentity.TileEntityItemRecolorer;
 
+import cjminecraft.core.client.gui.EnergyBar;
+import cjminecraft.core.energy.EnergyUnits;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,7 +23,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
@@ -27,19 +34,22 @@ public class GuiItemRecolorer extends GuiContainer {
 
 	private EntityPlayer player;
 	private TileEntityItemRecolorer te;
+	private IItemHandler handler;
+	private IEnergyStorage storage;
 
 	private List<GuiTextField> textFields = new ArrayList<GuiTextField>();
 
-	private static final Pattern COLOR = Pattern.compile("^({1,10})");
+	private static final Pattern COLOR = Pattern.compile("[1-9]");
 
-	private GuiTextField red;
-	private GuiTextField green;
-	private GuiTextField blue;
+	private GuiTextField color;
+	private EnergyBar energyBar;
 
 	public GuiItemRecolorer(EntityPlayer player, TileEntityItemRecolorer te) {
 		super(new ContainerItemRecolorer(player, te));
 		this.player = player;
 		this.te = te;
+		this.handler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+		this.storage = te.getCapability(CapabilityEnergy.ENERGY, null);
 	}
 
 	@Override
@@ -48,17 +58,36 @@ public class GuiItemRecolorer extends GuiContainer {
 		ySize = 192;
 		super.initGui();
 
-		int x = 16;
-		int y = 16;
+		energyBar = new EnergyBar(0, guiLeft + 150, guiTop + 10, 16, 90, 0, 0);
+		buttonList.clear();
+		buttonList.add(energyBar);
 
-		red = new GuiTextField(0, fontRenderer, x + guiLeft, y + guiTop, 50, 16);
-		green = new GuiTextField(0, fontRenderer, x + guiLeft, y + guiTop + 20, 50, 16);
-		blue = new GuiTextField(0, fontRenderer, x + guiLeft, y + guiTop + 40, 50, 16);
+		color = new GuiTextField(0, fontRenderer, 10 + guiLeft, 22 + guiTop, 50, 16);
 
 		textFields.clear();
-		textFields.add(red);
-		textFields.add(green);
-		textFields.add(blue);
+		textFields.add(color);
+	}
+
+	@Override
+	public void updateScreen() {
+		super.updateScreen();
+
+//		ItemStack stack = handler.getStackInSlot(0);
+//		if (this.energyBar.energy > 0 && stack != null) {
+//			NBTTagCompound nbt;
+//			if (stack.hasTagCompound()) {
+//				nbt = stack.getTagCompound();
+//			} else {
+//				nbt = new NBTTagCompound();
+//			}
+//
+//			if (color.getText() != null && color.getText().length() > 0) {
+//				nbt.setInteger("color", Color.decode(color.getText()).getRGB());
+//				stack.setTagCompound(nbt);
+//			}
+//		}
+
+		this.energyBar.syncData(this.te.getPos(), EnumFacing.NORTH);
 	}
 
 	@Override
@@ -73,7 +102,11 @@ public class GuiItemRecolorer extends GuiContainer {
 
 		for (int i = 0; i < textFields.size(); i++) {
 			GuiTextField field = textFields.get(i);
-			drawTooltip(I18n.format("gui.item_recolorer.field_" + i), field.x, field.y, field.width, field.height, mouseX, mouseY);
+			drawTooltip(I18n.format("gui.item_recolorer.color"), field.x, field.y, field.width, field.height, mouseX, mouseY);
+		}
+
+		if (this.energyBar.isMouseOver()) {
+			this.drawHoveringText(Arrays.asList(this.energyBar.energy + " " + EnergyUnits.REDSTONE_FLUX.getSuffix() + " / " + this.energyBar.capacity + " " + EnergyUnits.REDSTONE_FLUX.getSuffix()), mouseX, mouseY);
 		}
 	}
 

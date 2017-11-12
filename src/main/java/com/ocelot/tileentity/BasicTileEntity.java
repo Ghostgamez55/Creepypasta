@@ -20,10 +20,10 @@ public abstract class BasicTileEntity extends TileEntity implements ITickable {
 		}
 	}
 
-	protected void onClientUpdate() {
+	public void onClientUpdate() {
 	}
 
-	protected void onServerUpdate() {
+	public void onServerUpdate() {
 	}
 
 	@Override

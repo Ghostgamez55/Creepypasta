@@ -30,12 +30,5 @@ public class CreepypastaJEIPlugin implements IModPlugin {
 				}
 			}
 		}
-
-		registry.addRecipeClickArea(GuiItemRecolorer.class, 76, 51, 24, 17, CreepypastaRecipeCategoryUid.ITEM_RECOLORER);
-	}
-
-	@Override
-	public void registerCategories(IRecipeCategoryRegistration registry) {
-
 	}
 }

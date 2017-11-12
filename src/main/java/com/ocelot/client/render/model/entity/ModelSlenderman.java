@@ -4,10 +4,8 @@ package com.ocelot.client.render.model.entity;
 // Designed by Stereo Strider with Cubik Studio - https://cubik.studio
 
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 
 public class ModelSlenderman extends ModelBase {
 
@@ -143,13 +141,11 @@ public class ModelSlenderman extends ModelBase {
 		e18.setTextureSize(64, 64);
 		e18.mirror = false;
 		setRotation(e18, 0F, 0F, 0F);
-		
-		e1.showModel = false;
 	}
 
 	public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
-				
+
 		e1.render(scale);
 		e2.render(scale);
 		e3.render(scale);
@@ -176,7 +172,8 @@ public class ModelSlenderman extends ModelBase {
 		model.rotateAngleZ = z;
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+	@Override
+	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
 	}
 }

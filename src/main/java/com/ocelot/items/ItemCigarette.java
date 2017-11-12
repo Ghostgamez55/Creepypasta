@@ -4,14 +4,11 @@ import com.ocelot.creativetab.CreepypastaCreativeTabs;
 
 import net.minecraft.item.Item;
 
-/**
- * @author Ocelot5836
- */
-public class ItemSmileDog extends Item {
-
-	public ItemSmileDog() {
-		setRegistryName("smile_dog");
-		setUnlocalizedName("smile_dog");
+public class ItemCigarette extends Item{
+	
+	public ItemCigarette() {
+		setRegistryName("cigarette");
+		setUnlocalizedName("cigarette");
 		setCreativeTab(CreepypastaCreativeTabs.CREEPYPASTA);
 	}
 }

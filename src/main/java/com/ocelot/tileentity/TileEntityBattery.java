@@ -14,6 +14,8 @@ public class TileEntityBattery extends BasicTileEntity {
 
 	private ItemStackHandler handler;
 	private CustomForgeEnergyStorage storage;
+	public int energyDifference = 0;
+	private int transfer;
 
 	public TileEntityBattery() {
 		this.handler = new ItemStackHandler(2);
@@ -21,27 +23,28 @@ public class TileEntityBattery extends BasicTileEntity {
 	}
 
 	@Override
-	protected void onServerUpdate() {
-		if (this.storage.getEnergyStored() > this.storage.getMaxExtract()) {
-			this.storage.extractEnergyInternal((int) EnergyUtils.giveEnergyAllFaces(this.world, this.pos, 1000, EnergyUnits.REDSTONE_FLUX, false), false);
+	public void onServerUpdate() {
+
+		if (this.storage.getEnergyStored() > 1000) {
+			this.storage.extractEnergyInternal((int) EnergyUtils.giveEnergyAllFaces(this.world, this.pos, 1000, EnergyUnits.FORGE_ENERGY, false), false);
 		} else {
-			if (this.storage.getEnergyStored() > 0)
-				this.storage.extractEnergyInternal((int) EnergyUtils.giveEnergyAllFaces(this.world, this.pos, this.storage.getEnergyStored(), EnergyUnits.REDSTONE_FLUX, false), false);
+			this.storage.extractEnergyInternal((int) EnergyUtils.giveEnergyAllFaces(this.world, this.pos, this.storage.getEnergyStored(), EnergyUnits.FORGE_ENERGY, false), false);
 		}
-
-		if (this.storage.getMaxEnergyStored() > this.storage.getEnergyStored()) {
-			this.storage.receiveEnergyInternal((int) EnergyUtils.takeEnergyAllFaces(this.world, this.pos, 1000, EnergyUnits.REDSTONE_FLUX, false), false);
-		}
-
-		if (this.storage.getEnergyStored() > this.storage.getMaxExtract()) {
-			this.storage.extractEnergyInternal((int) EnergyUtils.giveEnergy(this.handler.getStackInSlot(1), 1000, EnergyUnits.REDSTONE_FLUX, false, null), false);
+		if (this.storage.getEnergyStored() < this.storage.getMaxEnergyStored() - 999) {
+			this.storage.receiveEnergyInternal((int) EnergyUtils.takeEnergyAllFaces(this.world, this.pos, 1000, EnergyUnits.FORGE_ENERGY, false), false);
 		} else {
-			if (this.storage.getEnergyStored() > 0)
-				this.storage.extractEnergyInternal((int) EnergyUtils.giveEnergy(this.handler.getStackInSlot(1), this.storage.getEnergyStored(), EnergyUnits.REDSTONE_FLUX, false, null), false);
+			this.storage.receiveEnergyInternal((int) EnergyUtils.takeEnergyAllFaces(this.world, this.pos, this.storage.getMaxEnergyStored() - this.storage.getEnergyStored(), EnergyUnits.FORGE_ENERGY, false), false);
 		}
-
-		if (this.storage.getMaxEnergyStored() > this.storage.getEnergyStored()) {
-			this.storage.receiveEnergyInternal((int) EnergyUtils.takeEnergy(this.handler.getStackInSlot(0), 1000, EnergyUnits.REDSTONE_FLUX, false, null), false);
+		
+		if (this.storage.getEnergyStored() > 1000) {
+			this.storage.extractEnergyInternal((int) EnergyUtils.giveEnergy(this.handler.getStackInSlot(1), 1000, EnergyUnits.FORGE_ENERGY, false, null), false);
+		} else {
+			this.storage.extractEnergyInternal((int) EnergyUtils.giveEnergy(this.handler.getStackInSlot(1), this.storage.getEnergyStored(), EnergyUnits.FORGE_ENERGY, false, null), false);
+		}
+		if (this.storage.getEnergyStored() < this.storage.getMaxEnergyStored() - 999) {
+			this.storage.receiveEnergyInternal((int) EnergyUtils.takeEnergy(this.handler.getStackInSlot(0), 1000, EnergyUnits.FORGE_ENERGY, false, null), false);
+		} else {
+			this.storage.receiveEnergyInternal((int) EnergyUtils.takeEnergy(this.handler.getStackInSlot(0), this.storage.getMaxEnergyStored() - this.storage.getEnergyStored(), EnergyUnits.FORGE_ENERGY, false, null), false);
 		}
 	}
 
@@ -55,6 +58,7 @@ public class TileEntityBattery extends BasicTileEntity {
 	public void readNBTTag(NBTTagCompound nbt) {
 		this.handler.deserializeNBT(nbt.getCompoundTag("ItemStackHandler"));
 		this.storage.readFromNBT(nbt);
+		this.storage.setMaxTransfer(0);
 	}
 
 	@Override

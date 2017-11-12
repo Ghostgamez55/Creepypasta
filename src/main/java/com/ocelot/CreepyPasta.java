@@ -10,6 +10,8 @@ import com.ocelot.proxy.CommonProxy;
 import com.ocelot.sound.ModSounds;
 import com.ocelot.world.OreGen;
 
+import cjminecraft.core.config.CJCoreConfig;
+import cjminecraft.core.energy.EnergyUnits;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -38,6 +40,9 @@ public class Creepypasta {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		CJCoreConfig.DEFAULT_ENERGY_UNIT = EnergyUnits.REDSTONE_FLUX;
+		CJCoreConfig.ENERGY_BAR_SHOW_CAPACITY = true;
+
 		ModSounds.register();
 		ModBlocks.preInit();
 		ModItems.preInit();

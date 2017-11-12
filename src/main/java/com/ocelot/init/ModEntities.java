@@ -2,6 +2,7 @@ package com.ocelot.init;
 
 import com.ocelot.Creepypasta;
 import com.ocelot.Reference;
+import com.ocelot.client.render.entity.RenderCrow;
 import com.ocelot.client.render.entity.RenderSlenderman;
 import com.ocelot.client.render.entity.RenderSmileDog;
 import com.ocelot.client.render.entity.RenderSmileMan;
@@ -9,6 +10,7 @@ import com.ocelot.client.render.entity.RenderTiccy;
 import com.ocelot.client.render.tileentity.RenderSafe;
 import com.ocelot.entity.hostile.EntitySlenderman;
 import com.ocelot.entity.hostile.EntityTiccy;
+import com.ocelot.entity.passive.EntityCrow;
 import com.ocelot.entity.passive.EntitySmileDog;
 import com.ocelot.entity.passive.EntitySmileMan;
 import com.ocelot.tileentity.TileEntityBattery;
@@ -57,6 +59,7 @@ public class ModEntities {
 	private static void registerEntities() {
 		registerEntity(EntitySmileDog.class, "smile_dog", 32, 1, true, 0x639fff, 0x62ffe5);
 		registerEntity(EntitySmileMan.class, "smile_man", 32, 1, true, 0x639fff, 0x62ffe5);
+		registerEntity(EntityCrow.class, "crow", 32, 1, true, 0x639fff, 0x62ffe5);
 
 		registerEntity(EntityTiccy.class, "ticcy", 32, 1, true, 0x639fff, 0x62ffe5);
 		registerEntity(EntitySlenderman.class, "slenderman", 32, 1, true, 0x639fff, 0x62ffe5);
@@ -78,7 +81,8 @@ public class ModEntities {
 
 		RenderingRegistry.registerEntityRenderingHandler(EntitySmileDog.class, new RenderSmileDog(renderManager));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySmileMan.class, new RenderSmileMan(renderManager));
-		
+		RenderingRegistry.registerEntityRenderingHandler(EntityCrow.class, new RenderCrow(renderManager));
+
 		RenderingRegistry.registerEntityRenderingHandler(EntityTiccy.class, new RenderTiccy(renderManager));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySlenderman.class, new RenderSlenderman(renderManager));
 	}

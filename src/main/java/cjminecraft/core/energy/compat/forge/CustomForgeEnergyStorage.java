@@ -1,11 +1,8 @@
 package cjminecraft.core.energy.compat.forge;
 
-import cjminecraft.core.CJCore;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.relauncher.Side;
 
 /**
  * An improved version of an {@link EnergyStorage}
@@ -70,17 +67,17 @@ public class CustomForgeEnergyStorage extends EnergyStorage {
 	}
 
 	/**
-	 * Read and set all values from the data inside the given
-	 * {@link NBTTagCompound}
+	 * Read and set all values from the data inside the given {@link NBTTagCompound}
 	 * 
 	 * @param nbt
 	 *            The {@link NBTTagCompound} with all the data
 	 */
-	public void readFromNBT(NBTTagCompound nbt) {
+	public NBTTagCompound readFromNBT(NBTTagCompound nbt) {
 		this.energy = nbt.getInteger("Energy");
 		this.capacity = nbt.getInteger("Capacity");
 		this.maxReceive = nbt.getInteger("MaxReceive");
 		this.maxExtract = nbt.getInteger("MaxExtract");
+		return nbt;
 	}
 
 	/**
@@ -89,11 +86,12 @@ public class CustomForgeEnergyStorage extends EnergyStorage {
 	 * @param nbt
 	 *            The {@link NBTTagCompound} to write to
 	 */
-	public void writeToNBT(NBTTagCompound nbt) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		nbt.setInteger("Energy", this.energy);
 		nbt.setInteger("Capacity", this.capacity);
 		nbt.setInteger("MaxReceive", this.maxReceive);
 		nbt.setInteger("MaxExtract", this.maxExtract);
+		return nbt;
 	}
 
 	/**
