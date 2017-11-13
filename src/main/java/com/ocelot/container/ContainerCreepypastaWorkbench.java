@@ -1,6 +1,6 @@
 package com.ocelot.container;
 
-import com.ocelot.crafting.CreepypastaWorkbenchManager;
+import com.ocelot.crafting.workbench.CreepypastaWorkbenchManager;
 import com.ocelot.inventory.InventoryCraftResult;
 import com.ocelot.inventory.InventoryCrafting;
 import com.ocelot.inventory.SlotCrafting;

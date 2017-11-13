@@ -35,10 +35,6 @@ public class EntityTiccy extends EntityMob {
 		this.setSize(0.6F, 1.95F);
 	}
 
-	public static void registerFixesVindicator(DataFixer fixer) {
-		EntityLiving.registerFixesMob(fixer, EntityVindicator.class);
-	}
-
 	protected void initEntityAI() {
 		super.initEntityAI();
 		this.tasks.addTask(0, new EntityAISwimming(this));

@@ -48,4 +48,25 @@ public class EnumHandler {
 			return id;
 		}
 	}
+	
+	public enum CrossTypes implements IStringSerializable {
+		TIER_0("tier_0", 0), TIRE_1("tier_1", 1), TIER_2("tier_2", 2);
+
+		private String name;
+		private byte id;
+
+		private CrossTypes(String name, int id) {
+			this.name = name.toLowerCase();
+			this.id = (byte) id;
+		}
+
+		@Override
+		public String getName() {
+			return name;
+		}
+
+		public int getId() {
+			return id;
+		}
+	}
 }

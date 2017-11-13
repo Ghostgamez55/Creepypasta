@@ -1,4 +1,4 @@
-package com.ocelot.crafting;
+package com.ocelot.crafting.workbench;
 
 import javax.annotation.Nullable;
 
@@ -7,7 +7,7 @@ import com.ocelot.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public interface IRecipe {
+public interface CustomIRecipe {
 	/**
 	 * Used to check if a recipe matches current crafting inventory
 	 */

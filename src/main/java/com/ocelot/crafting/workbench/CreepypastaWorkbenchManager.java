@@ -1,4 +1,4 @@
-package com.ocelot.crafting;
+package com.ocelot.crafting.workbench;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +19,7 @@ public class CreepypastaWorkbenchManager {
 	/** The static instance of this class */
 	private static final CreepypastaWorkbenchManager INSTANCE = new CreepypastaWorkbenchManager();
 	/** A list of all the recipes added */
-	private final List<IRecipe> recipes = Lists.<IRecipe>newArrayList();
+	private final List<CustomIRecipe> recipes = Lists.<CustomIRecipe>newArrayList();
 
 	/**
 	 * Returns the static instance of this class
@@ -120,7 +120,7 @@ public class CreepypastaWorkbenchManager {
 	/**
 	 * Adds an IRecipe to the list of crafting recipes.
 	 */
-	public void addRecipe(IRecipe recipe) {
+	public void addRecipe(CustomIRecipe recipe) {
 		this.recipes.add(recipe);
 	}
 
@@ -128,7 +128,7 @@ public class CreepypastaWorkbenchManager {
 	 * Retrieves an ItemStack that has multiple recipes for it.
 	 */
 	public ItemStack findMatchingRecipe(InventoryCrafting craftMatrix, World worldIn) {
-		for (IRecipe irecipe : this.recipes) {
+		for (CustomIRecipe irecipe : this.recipes) {
 			if (irecipe.matches(craftMatrix, worldIn)) {
 				return irecipe.getCraftingResult(craftMatrix);
 			}
@@ -138,7 +138,7 @@ public class CreepypastaWorkbenchManager {
 	}
 
 	public ItemStack[] getRemainingItems(InventoryCrafting craftMatrix, World worldIn) {
-		for (IRecipe irecipe : this.recipes) {
+		for (CustomIRecipe irecipe : this.recipes) {
 			if (irecipe.matches(craftMatrix, worldIn)) {
 				return irecipe.getRemainingItems(craftMatrix);
 			}
@@ -156,7 +156,7 @@ public class CreepypastaWorkbenchManager {
 	/**
 	 * returns the List<> of all recipes
 	 */
-	public List<IRecipe> getRecipeList() {
+	public List<CustomIRecipe> getRecipeList() {
 		return this.recipes;
 	}
 }

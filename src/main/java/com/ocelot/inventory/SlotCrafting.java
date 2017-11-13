@@ -1,6 +1,6 @@
 package com.ocelot.inventory;
 
-import com.ocelot.crafting.CreepypastaWorkbenchManager;
+import com.ocelot.crafting.workbench.CreepypastaWorkbenchManager;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

@@ -7,6 +7,7 @@ import com.ocelot.client.render.entity.RenderSlenderman;
 import com.ocelot.client.render.entity.RenderSmileDog;
 import com.ocelot.client.render.entity.RenderSmileMan;
 import com.ocelot.client.render.entity.RenderTiccy;
+import com.ocelot.client.render.tileentity.RenderItemRecolorer;
 import com.ocelot.client.render.tileentity.RenderSafe;
 import com.ocelot.entity.hostile.EntitySlenderman;
 import com.ocelot.entity.hostile.EntityTiccy;
@@ -51,6 +52,7 @@ public class ModEntities {
 		GameRegistry.registerTileEntity(TileEntityBattery.class, Reference.MOD_ID + ":TileEntityBattery");
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySafe.class, new RenderSafe());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityItemRecolorer.class, new RenderItemRecolorer());
 	}
 
 	/**

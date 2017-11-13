@@ -6,9 +6,12 @@ import java.util.List;
 import com.ocelot.Reference;
 import com.ocelot.blocks.BlockBattery;
 import com.ocelot.blocks.BlockCreepypastaWorkbench;
+import com.ocelot.blocks.BlockCross;
 import com.ocelot.blocks.BlockItemRecolorer;
 import com.ocelot.blocks.BlockNitratePowderOre;
 import com.ocelot.blocks.BlockSafe;
+import com.ocelot.blocks.item.ItemBlockMeta;
+import com.ocelot.handlers.EnumHandler.CrossTypes;
 import com.ocelot.proxy.ClientProxy;
 
 import net.minecraft.block.Block;
@@ -31,8 +34,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModBlocks {
 
 	public static final List<Block> BLOCKS = new ArrayList<Block>();
-	
+
 	public static Block NITRATE_POWDER_ORE;
+	public static Block CROSS;
 	public static Block SAFE;
 	public static Block CREEPYPASTA_WORKBENCH;
 	public static Block ITEM_RECOLORER;
@@ -43,6 +47,7 @@ public class ModBlocks {
 	 */
 	public static void preInit() {
 		NITRATE_POWDER_ORE = new BlockNitratePowderOre();
+		CROSS = new BlockCross();
 		SAFE = new BlockSafe();
 		CREEPYPASTA_WORKBENCH = new BlockCreepypastaWorkbench();
 		ITEM_RECOLORER = new BlockItemRecolorer();
@@ -54,6 +59,7 @@ public class ModBlocks {
 	 */
 	public static void register() {
 		registerBlock(NITRATE_POWDER_ORE);
+		registerBlock(CROSS, new ItemBlockMeta(CROSS));
 		registerBlock(SAFE);
 		registerBlock(CREEPYPASTA_WORKBENCH);
 		registerBlock(ITEM_RECOLORER);
@@ -63,8 +69,8 @@ public class ModBlocks {
 	/**
 	 * Register's the renders for the normal blocks.
 	 */
-	public static void registerRenders() {		
-		for(Block block : BLOCKS) {
+	public static void registerRenders() {
+		for (Block block : BLOCKS) {
 			registerRender(block);
 		}
 	}
@@ -73,7 +79,9 @@ public class ModBlocks {
 	 * Link's the meta block's item models to the block's in the {@link ClientProxy}'s preInitialization.
 	 */
 	public static void linkModels() {
-
+		for (int i = 0; i < CrossTypes.values().length; i++) {
+			registerRender(CROSS, i, "cross_" + CrossTypes.values()[i].getName());
+		}
 	}
 
 	/**

@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IRecipeFactory;
 import net.minecraftforge.common.crafting.JsonContext;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -70,13 +71,7 @@ public class ModCrafting {
 	 *            the sub path of the json in the files.
 	 */
 	private static void addRecipe(String fileName, String subPath) {
-		String location;
-
-		if (subPath == null) {
-			location = Reference.MOD_ID + ":" + fileName + ".json";
-		} else {
-			location = Reference.MOD_ID + ":" + subPath + "/" + fileName + ".json";
-		}
+		String location = subPath == null ? Reference.MOD_ID + ":" + fileName + ".json" : Reference.MOD_ID + ":" + subPath + "/" + fileName + ".json";
 
 		CraftingHelper.register(new ResourceLocation(location), new IRecipeFactory() {
 			@Override
@@ -84,6 +79,16 @@ public class ModCrafting {
 				return CraftingHelper.getRecipe(json, context);
 			}
 		});
+	}
+
+	/**
+	 * Adds the an IRecipe to the crafting table.
+	 * 
+	 * @param recipe
+	 *            The recipe to add
+	 */
+	private static void addRecipe(IRecipe recipe) {
+		ForgeRegistries.RECIPES.register(recipe);
 	}
 
 	/**

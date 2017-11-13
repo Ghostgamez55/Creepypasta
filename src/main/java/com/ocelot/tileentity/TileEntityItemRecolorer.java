@@ -1,6 +1,7 @@
 package com.ocelot.tileentity;
 
 import cjminecraft.core.energy.compat.forge.CustomForgeEnergyStorage;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -35,6 +36,16 @@ public class TileEntityItemRecolorer extends BasicTileEntity implements ICapabil
 		this.handler.deserializeNBT(nbt.getCompoundTag("ItemStackHandler"));
 		this.storage.readFromNBT(nbt);
 	}
+	
+	@Override
+	public void writeNBTTagToClient(NBTTagCompound nbt) {
+		nbt.setTag("ItemStackHandler", this.handler.serializeNBT());
+	}
+	
+	@Override
+	public void readNBTTagFromClient(NBTTagCompound nbt) {
+		this.handler.deserializeNBT(nbt.getCompoundTag("ItemStackHandler"));
+	}
 
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
@@ -52,5 +63,9 @@ public class TileEntityItemRecolorer extends BasicTileEntity implements ICapabil
 		if (capability == CapabilityEnergy.ENERGY)
 			return true;
 		return super.hasCapability(capability, facing);
+	}
+
+	public ItemStack getStack() {
+		return handler.getStackInSlot(0);
 	}
 }

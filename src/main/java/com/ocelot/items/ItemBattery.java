@@ -35,14 +35,16 @@ public class ItemBattery extends Item {
 		for (int i = 0; i < BatteryTypes.values().length; i++) {
 			if (isInCreativeTab(tab)) {
 				NBTTagCompound nbt = new NBTTagCompound();
-				CustomForgeEnergyStorage storage = new CustomForgeEnergyStorage(100000, 1000, 1000, 100000);
+				CustomForgeEnergyStorage storage = new CustomForgeEnergyStorage(100000 * (i + 1), 1000 * (i + 1), 1000 * (i + 1), 100000 * (i + 1));
 				storage.writeToNBT(nbt);
 				ItemStack stack = new ItemStack(this, 1, i, nbt);
+				stack.setTagCompound(nbt);
 				items.add(stack);
 				nbt = new NBTTagCompound();
-				storage = new CustomForgeEnergyStorage(100000, 1000, 1000, 0);
+				storage = new CustomForgeEnergyStorage(100000 * (i + 1), 1000 * (i + 1), 1000 * (i + 1), 0 * (i + 1));
 				storage.writeToNBT(nbt);
 				stack = new ItemStack(this, 1, i, nbt);
+				stack.setTagCompound(nbt);
 				items.add(stack);
 			}
 		}
@@ -84,8 +86,10 @@ public class ItemBattery extends Item {
 
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
-		if (nbt != null && nbt.hasKey("Energy") && nbt.hasKey("Capacity") && nbt.hasKey("MaxReceive") && nbt.hasKey("MaxExtract"))
+		if (nbt != null && nbt.hasKey("Energy") && nbt.hasKey("Capacity") && nbt.hasKey("MaxReceive") && nbt.hasKey("MaxExtract")) {
+			stack.setTagCompound(nbt);
 			return new ForgeEnergyCapabilityProvider(stack, nbt);
+		}
 		return new ForgeEnergyCapabilityProvider(stack, 0, 0, 0, 0);
 	}
 
@@ -93,7 +97,8 @@ public class ItemBattery extends Item {
 	public ItemStack getDefaultInstance() {
 		NBTTagCompound nbt = new ItemStack(this).serializeNBT();
 		CustomForgeEnergyStorage storage = new CustomForgeEnergyStorage(100000, 1000, 1000, 0);
-		nbt = storage.writeToNBT(nbt);
-		return new ItemStack(nbt);
+		ItemStack stack = new ItemStack(nbt);
+		stack.setTagCompound(nbt);
+		return stack;
 	}
 }

@@ -1,10 +1,10 @@
-package com.ocelot.crafting;
+package com.ocelot.crafting.workbench;
 
 import com.ocelot.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class CreepypastaWorkbenchShapedRecipes implements IRecipe {
+public class CreepypastaWorkbenchShapedRecipes implements CustomIRecipe {
 
 	/** How many horizontal slots this recipe is wide. */
 	public final int recipeWidth;

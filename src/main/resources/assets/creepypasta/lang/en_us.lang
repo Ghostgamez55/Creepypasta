@@ -3,24 +3,27 @@ language.name=English
 language.region=United States
 language.code=en_us
 
-item.smile_dog.name=smiledog.jpeg
+item.smile_dog.name=smiledog\.jpeg
 item.ticcys_axe.name=Ticcy's Axe
 item.nitrate_powder.name=Nitrate Powder
 item.pill.anti_depressants.name=Anti Depressants
 item.key.name=Key
 item.key.tooltip=Bound
-item.bat.name=Bat
+item.bat_wood.name=Bat
 item.bat_spiked.name=Spiked Bat
 item.bat_barbed_wire.name=Barbed Wire Bat
+item.cigarette.name=Cigarette
+item.chainsaw.name=Chainsaw
 
 tile.nitrate_powder_ore.name=Nitrate Powder Ore
 tile.safe.name=Safe
 tile.battery.name=Battery
+tile.item_recolorer.name=Paint Machine
 
 container.safe=Safe
 
 gui.creepypasta_workbench=Workbench
-gui.item_recolorer=Item Recolorer
+gui.item_recolorer=Paint Machine
 gui.item_recolorer.color=Color
 gui.battery=Battery
 gui.battery.insert_energy.tooltip=Insert Energy

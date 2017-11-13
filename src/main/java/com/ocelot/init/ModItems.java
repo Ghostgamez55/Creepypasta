@@ -6,6 +6,8 @@ import java.util.List;
 import com.ocelot.Reference;
 import com.ocelot.handlers.EnumHandler;
 import com.ocelot.items.ItemBattery;
+import com.ocelot.items.ItemCigarette;
+import com.ocelot.items.ItemFlashlight;
 import com.ocelot.items.ItemKey;
 import com.ocelot.items.ItemNitratePowder;
 import com.ocelot.items.ItemPill;
@@ -29,6 +31,8 @@ public class ModItems {
 	public static Item SMILE_DOG;
 	public static Item NITRATE_POWDER;
 	public static Item KEY;
+	public static Item CIGARETTE;
+	public static Item FLASHLIGHT;
 
 	public static Item PILL;
 	public static Item BATTERY;
@@ -40,6 +44,8 @@ public class ModItems {
 		SMILE_DOG = new ItemSmileDog();
 		NITRATE_POWDER = new ItemNitratePowder();
 		KEY = new ItemKey();
+		CIGARETTE = new ItemCigarette();
+		FLASHLIGHT = new ItemFlashlight();
 
 		PILL = new ItemPill();
 		BATTERY = new ItemBattery();
@@ -64,6 +70,8 @@ public class ModItems {
 		registerItem(SMILE_DOG);
 		registerItem(NITRATE_POWDER);
 		registerItem(KEY);
+		registerItem(CIGARETTE);
+		registerItem(FLASHLIGHT);
 
 		registerMetaItem(PILL);
 		registerMetaItem(BATTERY);

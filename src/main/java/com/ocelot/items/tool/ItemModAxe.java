@@ -26,16 +26,24 @@ public class ItemModAxe extends ItemTool {
 		this.attackSpeed = speed;
 	}
 
+	protected ItemModAxe(ToolMaterial material, String unlocalizedName, float damage) {
+		this(material, unlocalizedName, damage, -3.1f);
+	}
+
 	protected ItemModAxe(ToolMaterial material, String unlocalizedName) {
-		super(material, EFFECTIVE_ON);
-		this.setUnlocalizedName(unlocalizedName);
-		this.setRegistryName(unlocalizedName);
-		this.damageVsEntity = material.getDamageVsEntity();
-		this.attackSpeed = -3.1f;
+		this(material, unlocalizedName, material.getDamageVsEntity(), -3.1f);
 	}
 
 	public float getStrVsBlock(ItemStack stack, IBlockState state) {
 		Material material = state.getMaterial();
 		return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
+	}
+
+	public void setAttackSpeed(float attackSpeed) {
+		this.attackSpeed = attackSpeed;
+	}
+	
+	public void setDamage(float damage) {
+		this.damageVsEntity = damage;
 	}
 }

@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 
 public class EntityCrow extends EntityAmbientCreature {
+	
 	/** Coordinates of where the bat spawned. */
 	private BlockPos spawnPosition;
 
@@ -56,10 +57,10 @@ public class EntityCrow extends EntityAmbientCreature {
 	}
 
 	/**
-	 * Returns true if this entity should push and be pushed by other entities when colliding.
+	 * @return true if this entity should push and be pushed by other entities when colliding.
 	 */
 	public boolean canBePushed() {
-		return false;
+		return true;
 	}
 
 	protected void collideWithEntity(Entity entityIn) {

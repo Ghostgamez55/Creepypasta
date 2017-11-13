@@ -1,4 +1,4 @@
-package com.ocelot.crafting;
+package com.ocelot.crafting.workbench;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import com.ocelot.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class CreepypastaWorkbenchShapelessRecipes implements IRecipe {
+public class CreepypastaWorkbenchShapelessRecipes implements CustomIRecipe {
 
 	/** Is the ItemStack that you get when craft the recipe. */
 	private final ItemStack recipeOutput;
