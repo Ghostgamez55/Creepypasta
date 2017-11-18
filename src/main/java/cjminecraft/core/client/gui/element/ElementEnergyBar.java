@@ -11,6 +11,7 @@ import cjminecraft.core.client.gui.GuiCore;
 import cjminecraft.core.client.gui.ISpecialOverlayElement;
 import cjminecraft.core.config.CJCoreConfig;
 import cjminecraft.core.energy.EnergyData;
+import cjminecraft.core.energy.EnergyUnits;
 import cjminecraft.core.energy.EnergyUnits.EnergyUnit;
 import cjminecraft.core.energy.compat.forge.CustomForgeEnergyStorage;
 import cjminecraft.core.energy.EnergyUtils;
@@ -262,4 +263,7 @@ public class ElementEnergyBar extends ElementTexture implements ISpecialOverlayE
 		return this.side;
 	}
 
+	public void syncData(BlockPos pos, EnumFacing facing) {
+		EnergyUtils.syncEnergyData(EnergyUnits.REDSTONE_FLUX, pos, facing, CJCore.MODID);		
+	}
 }

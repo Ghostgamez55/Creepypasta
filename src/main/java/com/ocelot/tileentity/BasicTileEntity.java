@@ -10,7 +10,7 @@ import net.minecraft.util.ITickable;
 public abstract class BasicTileEntity extends TileEntity implements ITickable {
 
 	@Override
-	public void update() {
+	public final void update() {
 		if (this.world != null) {
 			if (!this.world.isRemote) {
 				this.onServerUpdate();
@@ -72,7 +72,7 @@ public abstract class BasicTileEntity extends TileEntity implements ITickable {
 
 	protected void updateTileEntity() {
 		markDirty();
-		IBlockState state = world.getBlockState(pos);
-		world.notifyBlockUpdate(pos, state, state, 3);
+		IBlockState state = this.world.getBlockState(this.pos);
+		this.world.notifyBlockUpdate(this.pos, state, state, 3);
 	}
 }

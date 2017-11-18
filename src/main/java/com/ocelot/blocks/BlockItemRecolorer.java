@@ -84,7 +84,7 @@ public class BlockItemRecolorer extends Block implements ITileEntityProvider {
 	
 	@Override
 	public boolean canPlaceBlockAt(World world, BlockPos pos) {
-		return world.getBlockState(pos.up()).getBlock().isReplaceable(world, pos) && super.canPlaceBlockAt(world, pos);
+		return world.isAirBlock(pos.up()) && super.canPlaceBlockAt(world, pos);
 	}
 
 	@Override

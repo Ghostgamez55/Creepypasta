@@ -28,19 +28,19 @@ public class ModItems {
 
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 
-	public static Item SMILE_DOG;
-	public static Item NITRATE_POWDER;
-	public static Item KEY;
-	public static Item CIGARETTE;
-	public static Item FLASHLIGHT;
+	public static final Item SMILE_DOG;
+	public static final Item NITRATE_POWDER;
+	public static final Item KEY;
+	public static final Item CIGARETTE;
+	public static final Item FLASHLIGHT;
 
-	public static Item PILL;
-	public static Item BATTERY;
+	public static final Item PILL;
+	public static final Item BATTERY;
 
 	/**
 	 * Initializes all the items.
 	 */
-	public static void preInit() {
+	static {
 		SMILE_DOG = new ItemSmileDog();
 		NITRATE_POWDER = new ItemNitratePowder();
 		KEY = new ItemKey();
@@ -49,8 +49,6 @@ public class ModItems {
 
 		PILL = new ItemPill();
 		BATTERY = new ItemBattery();
-
-		ModTools.init();
 	}
 
 	/**

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "creepypasta:reserve_generator", "y": 0 },
+		"facing=east": { "model": "creepypasta:reserve_generator", "y": 90 },
+		"facing=south": { "model": "creepypasta:reserve_generator", "y": 180 },
+		"facing=west": { "model": "creepypasta:reserve_generator", "y": 270 }
+    }
+}

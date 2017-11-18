@@ -16,6 +16,7 @@ import com.ocelot.entity.passive.EntitySmileDog;
 import com.ocelot.entity.passive.EntitySmileMan;
 import com.ocelot.tileentity.TileEntityBattery;
 import com.ocelot.tileentity.TileEntityItemRecolorer;
+import com.ocelot.tileentity.TileEntityReserveGenerator;
 import com.ocelot.tileentity.TileEntitySafe;
 
 import net.minecraft.client.Minecraft;
@@ -50,6 +51,7 @@ public class ModEntities {
 		GameRegistry.registerTileEntity(TileEntitySafe.class, Reference.MOD_ID + ":TileEntitySafe");
 		GameRegistry.registerTileEntity(TileEntityItemRecolorer.class, Reference.MOD_ID + ":TileEntityItemRecolorer");
 		GameRegistry.registerTileEntity(TileEntityBattery.class, Reference.MOD_ID + ":TileEntityBattery");
+		GameRegistry.registerTileEntity(TileEntityReserveGenerator.class, Reference.MOD_ID + ":TileEntityReserveGenerator");
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySafe.class, new RenderSafe());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityItemRecolorer.class, new RenderItemRecolorer());

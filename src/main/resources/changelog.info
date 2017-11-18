@@ -1,0 +1,15 @@
+0.1.0001
+
+Changes:
+*fixed bug where item would not render correctly inside of the paint machine
+*fixed bug where icons would not render in the battery if shift clicked out
+*finished the pocket knife
+*converted all energy blocks to the new energy system
+*changed the name from Creepypasta Mod to Creepypasta
+*fixed some small bugs
+
+Additions:
++added some more item names to the lang file
++added the flashlight
++added the reserve generator
++added some mroe jei support

@@ -1,9 +1,9 @@
 [
 {
   "modid": "creepypasta",
-  "name": "Creepypasta Mod",
+  "name": "Creepypasta",
   "description": "This is a scary mod where it's not your regular survival world. There is dangers that are not just zombies and creepers, but things that stalk you and want your soul...",
-  "version": "1.0",
+  "version": "0.1",
   "mcversion": "[1.12][1.12.1][1.12.2]",
   "url": "",
   "updateUrl": "",

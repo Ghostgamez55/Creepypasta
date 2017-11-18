@@ -6,11 +6,10 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 
 /**
- * An easy way to draw a {@link ProgressBar}. Please use {@link GuiBase}, this
- * will be removed in the next update
+ * An easy way to draw a {@link ProgressBar}. Please use {@link GuiBase}, this will be removed in the next update
  * 
  * @author CJMinecraft
- *
+ * @deprecated
  */
 public class ProgressBar extends Gui {
 
@@ -42,8 +41,7 @@ public class ProgressBar extends Gui {
 	 * @param textureY
 	 *            The y position of the texture
 	 */
-	public ProgressBar(ResourceLocation texture, ProgressBarDirection direction, int width, int height, int positonX,
-			int positionY, int textureX, int textureY) {
+	public ProgressBar(ResourceLocation texture, ProgressBarDirection direction, int width, int height, int positonX, int positionY, int textureX, int textureY) {
 		this.texture = texture;
 		this.direction = direction;
 		this.width = width;
@@ -67,8 +65,7 @@ public class ProgressBar extends Gui {
 	}
 
 	/**
-	 * Set the maximum value (aka the cap or the something out of
-	 * <strong>this</strong>)
+	 * Set the maximum value (aka the cap or the something out of <strong>this</strong>)
 	 * 
 	 * @param max
 	 *            The <strong>this</strong> out of something
@@ -109,22 +106,18 @@ public class ProgressBar extends Gui {
 		switch (direction) {
 		case DIAGONAL_UP_LEFT:
 			this.drawTexturedModalRect(positionX, positionY, textureX, textureY, width, height);
-			this.drawTexturedModalRect(positionX, positionY, positionX, positionY, width - getAdjustedWidth(),
-					height - getAdjustedHeight());
+			this.drawTexturedModalRect(positionX, positionY, positionX, positionY, width - getAdjustedWidth(), height - getAdjustedHeight());
 			break;
 		case DIAGONAL_UP_RIGHT:
 			this.drawTexturedModalRect(positionX, positionY, textureX, textureY, width, height);
-			this.drawTexturedModalRect(positionX + getAdjustedWidth(), positionY, positionX + getAdjustedWidth(),
-					positionY, width - getAdjustedWidth(), height - getAdjustedHeight());
+			this.drawTexturedModalRect(positionX + getAdjustedWidth(), positionY, positionX + getAdjustedWidth(), positionY, width - getAdjustedWidth(), height - getAdjustedHeight());
 			break;
 		case DIAGONAL_DOWN_LEFT:
 			this.drawTexturedModalRect(positionX, positionY, textureX, textureY, width, height);
-			this.drawTexturedModalRect(positionX, positionY + getAdjustedHeight(), positionX,
-					positionY + getAdjustedHeight(), width - getAdjustedWidth(), height - getAdjustedHeight());
+			this.drawTexturedModalRect(positionX, positionY + getAdjustedHeight(), positionX, positionY + getAdjustedHeight(), width - getAdjustedWidth(), height - getAdjustedHeight());
 			break;
 		case DIAGONAL_DOWN_RIGHT:
-			this.drawTexturedModalRect(positionX, positionY, textureX, textureY, getAdjustedWidth(),
-					getAdjustedHeight());
+			this.drawTexturedModalRect(positionX, positionY, textureX, textureY, getAdjustedWidth(), getAdjustedHeight());
 			break;
 		case DOWN_TO_UP:
 			this.drawTexturedModalRect(positionX, positionY, textureX, textureY, width, height);
@@ -150,10 +143,9 @@ public class ProgressBar extends Gui {
 	 * Which way the {@link ProgressBar} will move
 	 * 
 	 * @author CJMinecraft
-	 *
+	 * @deprecated
 	 */
 	public static enum ProgressBarDirection {
 		LEFT_TO_RIGHT, RIGHT_TO_LEFT, UP_TO_DOWN, DOWN_TO_UP, DIAGONAL_UP_RIGHT, DIAGONAL_UP_LEFT, DIAGONAL_DOWN_RIGHT, DIAGONAL_DOWN_LEFT;
 	}
-
 }

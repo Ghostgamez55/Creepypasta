@@ -1,9 +1,7 @@
 {
 	"__comment": "Designed by Epicghost505 with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "items/particle",
-		"texture": "items/texture",
-		"mesh_palette": "items/mesh_palette"
+		"mesh_palette": "creepypasta:items/flashlight/flashlight_texture"
 	},
 	"elements": [ 	 
 		{

@@ -3,11 +3,18 @@ package com.ocelot.items.tool;
 import com.ocelot.creativetab.CreepypastaCreativeTabs;
 import com.ocelot.init.ModTools;
 
+import net.minecraft.item.ItemStack;
+
 public class ItemBat extends ItemModSword {
 
 	public ItemBat(EnumBatType type) {
 		super(type.getMaterial(), type.getUnlocalizedName());
 		setCreativeTab(CreepypastaCreativeTabs.CREEPYPASTA);
+	}
+	
+	@Override
+	public int getItemBurnTime(ItemStack itemStack) {
+		return 0;
 	}
 
 	public enum EnumBatType {

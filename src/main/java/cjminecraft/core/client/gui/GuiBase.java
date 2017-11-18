@@ -51,8 +51,7 @@ public abstract class GuiBase extends GuiCore {
 	}
 
 	/**
-	 * Initialise the {@link GuiContainer} setting the background of the gui's
-	 * texture
+	 * Initialise the {@link GuiContainer} setting the background of the gui's texture
 	 * 
 	 * @param container
 	 *            The container of the slots
@@ -73,6 +72,12 @@ public abstract class GuiBase extends GuiCore {
 		this.elements.clear();
 	}
 
+	@Override
+	public void updateScreen() {
+		super.updateScreen();
+		updateElements();
+	}
+
 	/**
 	 * Draws all the tooltips and sets the mouse position correctly
 	 */
@@ -90,7 +95,12 @@ public abstract class GuiBase extends GuiCore {
 		this.mouseX = x - this.guiLeft;
 		this.mouseY = y - this.guiTop;
 
-		updateElements();
+		drawExtraElements(x, y);
+
+		renderHoveredToolTip(x, y);
+	}
+
+	public void drawExtraElements(int mouseX, int mouseY) {
 	}
 
 	/**
@@ -99,12 +109,10 @@ public abstract class GuiBase extends GuiCore {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		if (this.drawTitle & this.name != null) {
-			if(this.centerTitle)
-				this.fontRenderer.drawString(I18n.format(this.name), getCenteredOffset(I18n.format(this.name)), 6,
-					0x404040);
+			if (this.centerTitle)
+				this.fontRenderer.drawString(I18n.format(this.name), getCenteredOffset(I18n.format(this.name)), 6, 0x404040);
 			else
-				this.fontRenderer.drawString(I18n.format(this.name), 6, 6,
-						0x404040);
+				this.fontRenderer.drawString(I18n.format(this.name), 6, 6, 0x404040);
 		}
 		if (this.drawInventory)
 			this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 93, 0x404040);
@@ -116,6 +124,7 @@ public abstract class GuiBase extends GuiCore {
 	 */
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
+		drawDefaultBackground();
 		RenderUtils.resetColour();
 		bindTexture(this.texture);
 		drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
@@ -345,7 +354,7 @@ public abstract class GuiBase extends GuiCore {
 	public int getMouseY() {
 		return this.mouseY;
 	}
-	
+
 	/**
 	 * @return All of the elements in the gui
 	 */

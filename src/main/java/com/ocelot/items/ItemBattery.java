@@ -26,6 +26,7 @@ public class ItemBattery extends ItemEnergy {
 		setRegistryName("battery_item");
 		setUnlocalizedName("battery_item");
 		setMaxDamage(0);
+		setMaxStackSize(1);
 		setHasSubtypes(true);
 		setCreativeTab(CreepypastaCreativeTabs.CREEPYPASTA);
 	}

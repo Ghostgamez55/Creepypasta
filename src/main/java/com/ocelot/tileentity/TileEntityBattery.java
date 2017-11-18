@@ -24,7 +24,6 @@ public class TileEntityBattery extends BasicTileEntity {
 
 	@Override
 	public void onServerUpdate() {
-
 		if (this.storage.getEnergyStored() > 1000) {
 			this.storage.extractEnergyInternal((int) EnergyUtils.giveEnergyAllFaces(this.world, this.pos, 1000, EnergyUnits.FORGE_ENERGY, false), false);
 		} else {
@@ -35,7 +34,7 @@ public class TileEntityBattery extends BasicTileEntity {
 		} else {
 			this.storage.receiveEnergyInternal((int) EnergyUtils.takeEnergyAllFaces(this.world, this.pos, this.storage.getMaxEnergyStored() - this.storage.getEnergyStored(), EnergyUnits.FORGE_ENERGY, false), false);
 		}
-		
+
 		if (this.storage.getEnergyStored() > 1000) {
 			this.storage.extractEnergyInternal((int) EnergyUtils.giveEnergy(this.handler.getStackInSlot(1), 1000, EnergyUnits.FORGE_ENERGY, false, null), false);
 		} else {

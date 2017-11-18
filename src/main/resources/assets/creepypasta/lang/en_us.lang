@@ -3,7 +3,7 @@ language.name=English
 language.region=United States
 language.code=en_us
 
-item.smile_dog.name=smiledog\.jpeg
+item.smile_dog.name=smiledogjpeg
 item.ticcys_axe.name=Ticcy's Axe
 item.nitrate_powder.name=Nitrate Powder
 item.pill.anti_depressants.name=Anti Depressants
@@ -14,11 +14,18 @@ item.bat_spiked.name=Spiked Bat
 item.bat_barbed_wire.name=Barbed Wire Bat
 item.cigarette.name=Cigarette
 item.chainsaw.name=Chainsaw
+item.battery_item.basic.name=Basic Battery
+item.battery_item.intermediate.name=Intermediate Battery
+item.battery_item.advanced.name=Advanced Battery
+item.pocket_knife.name=Pocket Knife
+item.flashlight.name=Flashlight
 
 tile.nitrate_powder_ore.name=Nitrate Powder Ore
 tile.safe.name=Safe
 tile.battery.name=Battery
+tile.creepypasta_workbench.name=Workbench
 tile.item_recolorer.name=Paint Machine
+tile.reserve_generator.name=Reserve Generator
 
 container.safe=Safe
 
@@ -28,6 +35,7 @@ gui.item_recolorer.color=Color
 gui.battery=Battery
 gui.battery.insert_energy.tooltip=Insert Energy
 gui.battery.extract_energy.tooltip=Extract Energy
+gui.reserve_generator=Reserve Generator
 
 entity.smile_dog.name=Smile Dog
 entity.smile_man.name=Smile Man

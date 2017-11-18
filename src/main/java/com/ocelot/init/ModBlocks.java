@@ -9,6 +9,7 @@ import com.ocelot.blocks.BlockCreepypastaWorkbench;
 import com.ocelot.blocks.BlockCross;
 import com.ocelot.blocks.BlockItemRecolorer;
 import com.ocelot.blocks.BlockNitratePowderOre;
+import com.ocelot.blocks.BlockReserveGenerator;
 import com.ocelot.blocks.BlockSafe;
 import com.ocelot.blocks.item.ItemBlockMeta;
 import com.ocelot.handlers.EnumHandler.CrossTypes;
@@ -35,23 +36,22 @@ public class ModBlocks {
 
 	public static final List<Block> BLOCKS = new ArrayList<Block>();
 
-	public static Block NITRATE_POWDER_ORE;
-	public static Block CROSS;
-	public static Block SAFE;
-	public static Block CREEPYPASTA_WORKBENCH;
-	public static Block ITEM_RECOLORER;
-	public static Block BATTERY;
+	public static final Block NITRATE_POWDER_ORE;
+	public static final Block CROSS;
+	public static final Block SAFE;
+	public static final Block CREEPYPASTA_WORKBENCH;
+	public static final Block ITEM_RECOLORER;
+	public static final Block BATTERY;
+	public static final Block RESERVE_GENERATOR;
 
-	/**
-	 * Initializes the blocks.
-	 */
-	public static void preInit() {
+	static {
 		NITRATE_POWDER_ORE = new BlockNitratePowderOre();
 		CROSS = new BlockCross();
 		SAFE = new BlockSafe();
 		CREEPYPASTA_WORKBENCH = new BlockCreepypastaWorkbench();
 		ITEM_RECOLORER = new BlockItemRecolorer();
 		BATTERY = new BlockBattery();
+		RESERVE_GENERATOR = new BlockReserveGenerator();
 	}
 
 	/**
@@ -64,6 +64,7 @@ public class ModBlocks {
 		registerBlock(CREEPYPASTA_WORKBENCH);
 		registerBlock(ITEM_RECOLORER);
 		registerBlock(BATTERY);
+		registerBlock(RESERVE_GENERATOR);
 	}
 
 	/**

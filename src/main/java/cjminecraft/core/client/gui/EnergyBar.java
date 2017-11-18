@@ -20,7 +20,7 @@ import net.minecraftforge.common.capabilities.Capability;
  * Draw a simple {@link EnergyBar} which represents the energy inside of a {@link TileEntity}. Please use {@link GuiBase}, this will be removed in the next update
  * 
  * @author CJMinecraft
- *
+ * @deprecated
  */
 public class EnergyBar extends GuiButton {
 

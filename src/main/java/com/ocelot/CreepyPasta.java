@@ -3,10 +3,13 @@ package com.ocelot;
 import com.ocelot.crafting.workbench.CreepypastaWorkbenchManager;
 import com.ocelot.events.ModEventHandler;
 import com.ocelot.init.ModBlocks;
+import com.ocelot.init.ModCapabilities;
 import com.ocelot.init.ModCrafting;
 import com.ocelot.init.ModEntities;
 import com.ocelot.init.ModItems;
+import com.ocelot.init.ModTools;
 import com.ocelot.init.OBJHandler;
+import com.ocelot.network.NetworkHandler;
 import com.ocelot.proxy.CommonProxy;
 import com.ocelot.sound.ModSounds;
 import com.ocelot.world.OreGen;
@@ -45,12 +48,12 @@ public class Creepypasta {
 		CJCoreConfig.ENERGY_BAR_SHOW_CAPACITY = true;
 
 		ModSounds.register();
-		ModBlocks.preInit();
-		ModItems.preInit();
+		ModCapabilities.register();
+		ModEntities.preInit();
 		ModItems.register();
 		ModBlocks.register();
-		ModEntities.preInit();
 		OBJHandler.preInit();
+		NetworkHandler.preInit();
 
 		proxy.preInit(event);
 	}

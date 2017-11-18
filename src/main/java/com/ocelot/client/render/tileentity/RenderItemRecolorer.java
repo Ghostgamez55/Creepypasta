@@ -25,7 +25,25 @@ public class RenderItemRecolorer extends TileEntitySpecialRenderer<TileEntityIte
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(x, y, z);
 			GlStateManager.rotate(facing.getHorizontalIndex() * 90, 0, 1, 0);
-			GlStateManager.translate(0.0625 * 8, 0.0625 * 4, 0.0625 * 9.5);
+
+			switch (facing) {
+			case SOUTH:
+				GlStateManager.translate(0.0625 * 8, 0.0625 * 4, 0.0625 * 9.3);
+				break;
+			case WEST:
+				GlStateManager.translate(0.0625 * -8, 0.0625 * 4, 0.0625 * 6.7);
+				break;
+			case NORTH:
+				GlStateManager.translate(0.0625 * -8, 0.0625 * 4, 0.0625 * -6.7);
+				break;
+			case EAST:
+				GlStateManager.translate(0.0625 * 8, 0.0625 * 4, 0.0625 * -9.3);
+				break;
+			default:
+				GlStateManager.popMatrix();
+				return;
+			}
+
 			Minecraft.getMinecraft().getRenderManager().doRenderEntity(item, 0, 0, 0, 0, 0, false);
 			GlStateManager.popMatrix();
 		}

@@ -1,12 +1,13 @@
 package com.ocelot.jei;
 
-import com.ocelot.client.gui.GuiItemRecolorer;
+import com.ocelot.client.gui.GuiReserveGenerator;
+import com.ocelot.init.ModBlocks;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
-import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IVanillaRecipeFactory;
+import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -30,5 +31,8 @@ public class CreepypastaJEIPlugin implements IModPlugin {
 				}
 			}
 		}
+
+		registry.addRecipeClickArea(GuiReserveGenerator.class, 79, 35, 16, 16, VanillaRecipeCategoryUid.FUEL);
+		registry.addRecipeCatalyst(new ItemStack(ModBlocks.RESERVE_GENERATOR), VanillaRecipeCategoryUid.FUEL);
 	}
 }
