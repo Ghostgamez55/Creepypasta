@@ -1,4 +1,4 @@
-package cofh.api.energy;
+package cjminecraft.core.api;
 
 import net.minecraft.util.EnumFacing;
 import net.minecraft.tileentity.TileEntity;

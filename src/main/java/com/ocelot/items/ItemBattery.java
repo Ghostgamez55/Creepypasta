@@ -10,7 +10,6 @@ import cjminecraft.core.energy.compat.forge.CustomForgeEnergyStorage;
 import cjminecraft.core.energy.compat.forge.ForgeEnergyCapabilityProvider;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
@@ -20,9 +19,10 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 /**
  * @author Ocelot5836
  */
-public class ItemBattery extends Item {
+public class ItemBattery extends ItemEnergy {
 
 	public ItemBattery() {
+		super(100000, 1000, 1000);
 		setRegistryName("battery_item");
 		setUnlocalizedName("battery_item");
 		setMaxDamage(0);
@@ -34,14 +34,15 @@ public class ItemBattery extends Item {
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		for (int i = 0; i < BatteryTypes.values().length; i++) {
 			if (isInCreativeTab(tab)) {
+				int level = (int) (i * 4.5 + 1);
 				NBTTagCompound nbt = new NBTTagCompound();
-				CustomForgeEnergyStorage storage = new CustomForgeEnergyStorage(100000 * (i + 1), 1000 * (i + 1), 1000 * (i + 1), 100000 * (i + 1));
+				CustomForgeEnergyStorage storage = new CustomForgeEnergyStorage(getCapacity() * level, getMaxRecieve() * level, getMaxExtract() * level, getCapacity() * level);
 				storage.writeToNBT(nbt);
 				ItemStack stack = new ItemStack(this, 1, i, nbt);
 				stack.setTagCompound(nbt);
 				items.add(stack);
 				nbt = new NBTTagCompound();
-				storage = new CustomForgeEnergyStorage(100000 * (i + 1), 1000 * (i + 1), 1000 * (i + 1), 0 * (i + 1));
+				storage = new CustomForgeEnergyStorage(getCapacity() * level, getMaxRecieve() * level, getMaxExtract() * level, 0);
 				storage.writeToNBT(nbt);
 				stack = new ItemStack(this, 1, i, nbt);
 				stack.setTagCompound(nbt);
@@ -97,6 +98,7 @@ public class ItemBattery extends Item {
 	public ItemStack getDefaultInstance() {
 		NBTTagCompound nbt = new ItemStack(this).serializeNBT();
 		CustomForgeEnergyStorage storage = new CustomForgeEnergyStorage(100000, 1000, 1000, 0);
+		storage.writeToNBT(nbt);
 		ItemStack stack = new ItemStack(nbt);
 		stack.setTagCompound(nbt);
 		return stack;

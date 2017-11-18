@@ -1,10 +1,10 @@
 package cjminecraft.core.energy.support;
 
+import cjminecraft.core.api.IEnergyHandler;
+import cjminecraft.core.api.IEnergyProvider;
+import cjminecraft.core.api.IEnergyReceiver;
 import cjminecraft.core.energy.EnergyUnits;
 import cjminecraft.core.energy.EnergyUnits.EnergyUnit;
-import cofh.api.energy.IEnergyHandler;
-import cofh.api.energy.IEnergyProvider;
-import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;

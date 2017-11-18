@@ -22,7 +22,7 @@ public class TileEntityItemRecolorer extends BasicTileEntity implements ICapabil
 
 	@Override
 	public void onServerUpdate() {
-		this.storage.extractEnergyInternal(1, false);
+		
 	}
 
 	@Override

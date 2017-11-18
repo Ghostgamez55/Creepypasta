@@ -1,9 +1,9 @@
 package cjminecraft.core.energy.compat;
 
+import cjminecraft.core.api.IEnergyContainerItem;
 import cjminecraft.core.energy.EnergyUnits;
 import cjminecraft.core.energy.EnergyUtils;
 import cjminecraft.core.energy.compat.forge.CustomForgeEnergyStorage;
-import cofh.api.energy.IEnergyContainerItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
