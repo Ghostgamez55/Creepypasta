@@ -8,6 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class SlotCrafting extends Slot {
+	
 	/** The craft matrix inventory linked to this result slot. */
 	private final InventoryCrafting craftMatrix;
 	/** The player that is using the GUI where this slot resides. */
@@ -24,6 +25,7 @@ public class SlotCrafting extends Slot {
 	/**
 	 * Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 	 */
+	@Override
 	public boolean isItemValid(ItemStack stack) {
 		return false;
 	}
@@ -31,6 +33,7 @@ public class SlotCrafting extends Slot {
 	/**
 	 * Decrease the size of the stack in slot (first int arg) by the amount of the second int arg. Returns the new stack.
 	 */
+	@Override
 	public ItemStack decrStackSize(int amount) {
 		if (this.getHasStack()) {
 			this.amountCrafted += Math.min(amount, this.getStack().getCount());
@@ -42,6 +45,7 @@ public class SlotCrafting extends Slot {
 	/**
 	 * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an internal count then calls onCrafting(item).
 	 */
+	@Override
 	protected void onCrafting(ItemStack stack, int amount) {
 		this.amountCrafted += amount;
 		this.onCrafting(stack);
@@ -50,30 +54,29 @@ public class SlotCrafting extends Slot {
 	/**
 	 * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood.
 	 */
+	@Override
 	protected void onCrafting(ItemStack stack) {
 		if (this.amountCrafted > 0) {
 			stack.onCrafting(this.player.world, this.player, this.amountCrafted);
 		}
 	}
 
-	public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack) {
-		net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerCraftingEvent(playerIn, stack, craftMatrix);
+	@Override
+	public ItemStack onTake(EntityPlayer player, ItemStack stack) {
 		this.onCrafting(stack);
-		net.minecraftforge.common.ForgeHooks.setCraftingPlayer(playerIn);
-		ItemStack[] aitemstack = CreepypastaWorkbenchManager.getInstance().getRemainingItems(this.craftMatrix, playerIn.world);
-		net.minecraftforge.common.ForgeHooks.setCraftingPlayer(null);
+		ItemStack[] aitemstack = CreepypastaWorkbenchManager.getInstance().getRemainingItems(this.craftMatrix, player.world);
 
 		for (int i = 0; i < aitemstack.length; ++i) {
 			ItemStack itemstack = this.craftMatrix.getStackInSlot(i);
 			ItemStack itemstack1 = aitemstack[i];
 
-			if (itemstack != null) {
+			if (!itemstack.isEmpty()) {
 				this.craftMatrix.decrStackSize(i, 1);
 				itemstack = this.craftMatrix.getStackInSlot(i);
 			}
 
-			if (itemstack1 != null) {
-				if (itemstack == null) {
+			if (!itemstack1.isEmpty()) {
+				if (itemstack.isEmpty()) {
 					this.craftMatrix.setInventorySlotContents(i, itemstack1);
 				} else if (ItemStack.areItemsEqual(itemstack, itemstack1) && ItemStack.areItemStackTagsEqual(itemstack, itemstack1)) {
 					itemstack1.grow(itemstack.getCount());
@@ -83,5 +86,6 @@ public class SlotCrafting extends Slot {
 				}
 			}
 		}
+		return stack;
 	}
 }

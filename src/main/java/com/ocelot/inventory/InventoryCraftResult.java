@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -33,7 +32,6 @@ public class InventoryCraftResult implements IInventory {
 	/**
 	 * Returns the stack in the given slot.
 	 */
-	@Nullable
 	public ItemStack getStackInSlot(int index) {
 		return this.stackResult.get(0);
 	}
@@ -62,7 +60,6 @@ public class InventoryCraftResult implements IInventory {
 	/**
 	 * Removes up to a specified number of items from an inventory slot and returns them in a new stack.
 	 */
-	@Nullable
 	public ItemStack decrStackSize(int index, int count) {
 		return ItemStackHelper.getAndRemove(this.stackResult, 0);
 	}
@@ -70,7 +67,6 @@ public class InventoryCraftResult implements IInventory {
 	/**
 	 * Removes a stack from the given slot and returns it.
 	 */
-	@Nullable
 	public ItemStack removeStackFromSlot(int index) {
 		return ItemStackHelper.getAndRemove(this.stackResult, 0);
 	}
@@ -78,7 +74,7 @@ public class InventoryCraftResult implements IInventory {
 	/**
 	 * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
 	 */
-	public void setInventorySlotContents(int index, @Nullable ItemStack stack) {
+	public void setInventorySlotContents(int index, ItemStack stack) {
 		this.stackResult.set(0, stack);
 	}
 

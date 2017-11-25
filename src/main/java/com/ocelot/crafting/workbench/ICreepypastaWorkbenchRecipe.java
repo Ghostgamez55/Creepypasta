@@ -7,7 +7,7 @@ import com.ocelot.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public interface CustomIRecipe {
+public interface ICreepypastaWorkbenchRecipe {
 	/**
 	 * Used to check if a recipe matches current crafting inventory
 	 */
@@ -16,7 +16,6 @@ public interface CustomIRecipe {
 	/**
 	 * Returns an Item that is the result of this recipe
 	 */
-	@Nullable
 	ItemStack getCraftingResult(InventoryCrafting inv);
 
 	/**

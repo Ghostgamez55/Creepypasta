@@ -8,7 +8,7 @@ import com.ocelot.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class CreepypastaWorkbenchShapelessRecipes implements CustomIRecipe {
+public class CreepypastaWorkbenchShapelessRecipes implements ICreepypastaWorkbenchRecipe {
 
 	/** Is the ItemStack that you get when craft the recipe. */
 	private final ItemStack recipeOutput;
@@ -41,11 +41,11 @@ public class CreepypastaWorkbenchShapelessRecipes implements CustomIRecipe {
 	public boolean matches(InventoryCrafting inv, World worldIn) {
 		List<ItemStack> list = Lists.newArrayList(this.recipeItems);
 
-		for (int i = 0; i < 8; ++i) {
-			for (int j = 0; j < 8; ++j) {
-				ItemStack itemstack = inv.getStackInRowAndColumn(j, i);
+		for (int x = 0; x < 8; ++x) {
+			for (int y = 0; y < 8; ++y) {
+				ItemStack itemstack = inv.getStackInRowAndColumn(x, y);
 
-				if (itemstack != null) {
+				if (!itemstack.isEmpty()) {
 					boolean flag = false;
 
 					for (ItemStack itemstack1 : list) {

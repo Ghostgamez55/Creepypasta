@@ -1,10 +1,11 @@
 package com.ocelot.crafting.workbench;
 
 import com.ocelot.inventory.InventoryCrafting;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class CreepypastaWorkbenchShapedRecipes implements CustomIRecipe {
+public class CreepypastaWorkbenchShapedRecipes implements ICreepypastaWorkbenchRecipe {
 
 	/** How many horizontal slots this recipe is wide. */
 	public final int recipeWidth;
@@ -15,6 +16,7 @@ public class CreepypastaWorkbenchShapedRecipes implements CustomIRecipe {
 	/** Is the ItemStack that you get when craft the recipe. */
 	private final ItemStack recipeOutput;
 	private boolean copyIngredientNBT;
+
 	public CreepypastaWorkbenchShapedRecipes(int width, int height, ItemStack[] p_i1917_3_, ItemStack output) {
 		this.recipeWidth = width;
 		this.recipeHeight = height;
@@ -59,12 +61,12 @@ public class CreepypastaWorkbenchShapedRecipes implements CustomIRecipe {
 	/**
 	 * Checks if the region of a crafting inventory is match for the recipe.
 	 */
-	private boolean checkMatch(InventoryCrafting p_77573_1_, int p_77573_2_, int p_77573_3_, boolean p_77573_4_) {
+	private boolean checkMatch(InventoryCrafting inventory, int p_77573_2_, int p_77573_3_, boolean p_77573_4_) {
 		for (int i = 0; i < 8; ++i) {
 			for (int j = 0; j < 8; ++j) {
 				int k = i - p_77573_2_;
 				int l = j - p_77573_3_;
-				ItemStack itemstack = null;
+				ItemStack itemstack = ItemStack.EMPTY;
 
 				if (k >= 0 && l >= 0 && k < this.recipeWidth && l < this.recipeHeight) {
 					if (p_77573_4_) {
@@ -74,10 +76,10 @@ public class CreepypastaWorkbenchShapedRecipes implements CustomIRecipe {
 					}
 				}
 
-				ItemStack itemstack1 = p_77573_1_.getStackInRowAndColumn(i, j);
+				ItemStack itemstack1 = inventory.getStackInRowAndColumn(i, j);
 
-				if (itemstack1 != null || itemstack != null) {
-					if (itemstack1 == null && itemstack != null || itemstack1 != null && itemstack == null) {
+				if (!itemstack1.isEmpty() || !itemstack.isEmpty()) {
+					if (itemstack1.isEmpty() && !itemstack.isEmpty() || !itemstack1.isEmpty() && itemstack.isEmpty()) {
 						return false;
 					}
 
@@ -105,7 +107,7 @@ public class CreepypastaWorkbenchShapedRecipes implements CustomIRecipe {
 			for (int i = 0; i < inv.getSizeInventory(); ++i) {
 				ItemStack itemstack1 = inv.getStackInSlot(i);
 
-				if (itemstack1 != null && itemstack1.hasTagCompound()) {
+				if (!itemstack1.isEmpty() && itemstack1.hasTagCompound()) {
 					itemstack.setTagCompound(itemstack1.getTagCompound().copy());
 				}
 			}

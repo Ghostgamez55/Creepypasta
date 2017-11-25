@@ -19,7 +19,7 @@ public class CreepypastaWorkbenchManager {
 	/** The static instance of this class */
 	private static final CreepypastaWorkbenchManager INSTANCE = new CreepypastaWorkbenchManager();
 	/** A list of all the recipes added */
-	private final List<CustomIRecipe> recipes = Lists.<CustomIRecipe>newArrayList();
+	private final List<ICreepypastaWorkbenchRecipe> recipes = Lists.<ICreepypastaWorkbenchRecipe>newArrayList();
 
 	/**
 	 * Returns the static instance of this class
@@ -29,7 +29,7 @@ public class CreepypastaWorkbenchManager {
 	}
 
 	private CreepypastaWorkbenchManager() {
-		this.addRecipe(new ItemStack(Items.DIAMOND, 1), "CCC", "CCC", "CCC", 'C', Blocks.COBBLESTONE);
+		this.addRecipe(new ItemStack(Items.DIAMOND, 1), "CCCCCCCC", "CCCCCCCC", "CCCCCCCC", "CCCCCCCC", "CCCCCCCC", "CCCCCCCC", "CCCCCCCC", "CCCCCCCC", 'C', Blocks.COBBLESTONE);
 		this.addShapelessRecipe(new ItemStack(Items.DIAMOND, 1), Blocks.COBBLESTONE);
 		Collections.sort(this.recipes, new CreepypastaRecipeSorter(this));
 	}
@@ -120,7 +120,7 @@ public class CreepypastaWorkbenchManager {
 	/**
 	 * Adds an IRecipe to the list of crafting recipes.
 	 */
-	public void addRecipe(CustomIRecipe recipe) {
+	public void addRecipe(ICreepypastaWorkbenchRecipe recipe) {
 		this.recipes.add(recipe);
 	}
 
@@ -128,7 +128,7 @@ public class CreepypastaWorkbenchManager {
 	 * Retrieves an ItemStack that has multiple recipes for it.
 	 */
 	public ItemStack findMatchingRecipe(InventoryCrafting craftMatrix, World worldIn) {
-		for (CustomIRecipe irecipe : this.recipes) {
+		for (ICreepypastaWorkbenchRecipe irecipe : this.recipes) {
 			if (irecipe.matches(craftMatrix, worldIn)) {
 				return irecipe.getCraftingResult(craftMatrix);
 			}
@@ -138,7 +138,7 @@ public class CreepypastaWorkbenchManager {
 	}
 
 	public ItemStack[] getRemainingItems(InventoryCrafting craftMatrix, World worldIn) {
-		for (CustomIRecipe irecipe : this.recipes) {
+		for (ICreepypastaWorkbenchRecipe irecipe : this.recipes) {
 			if (irecipe.matches(craftMatrix, worldIn)) {
 				return irecipe.getRemainingItems(craftMatrix);
 			}
@@ -150,13 +150,15 @@ public class CreepypastaWorkbenchManager {
 			aitemstack[i] = craftMatrix.getStackInSlot(i);
 		}
 
+		System.out.println(aitemstack.length);
+
 		return aitemstack;
 	}
 
 	/**
 	 * returns the List<> of all recipes
 	 */
-	public List<CustomIRecipe> getRecipeList() {
+	public List<ICreepypastaWorkbenchRecipe> getRecipeList() {
 		return this.recipes;
 	}
 }
