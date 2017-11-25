@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 import com.ocelot.Reference;
 import com.ocelot.blocks.BlockSafe;
-import com.ocelot.client.render.model.block.ModelSafe;
+import com.ocelot.client.model.block.ModelSafe;
 import com.ocelot.tileentity.TileEntitySafe;
 
 import net.minecraft.block.Block;

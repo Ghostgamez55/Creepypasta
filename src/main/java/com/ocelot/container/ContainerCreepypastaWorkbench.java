@@ -1,6 +1,7 @@
 package com.ocelot.container;
 
 import com.ocelot.crafting.workbench.CreepypastaWorkbenchManager;
+import com.ocelot.init.ModBlocks;
 import com.ocelot.inventory.InventoryCraftResult;
 import com.ocelot.inventory.InventoryCrafting;
 import com.ocelot.inventory.SlotCrafting;
@@ -29,20 +30,20 @@ public class ContainerCreepypastaWorkbench extends Container {
 
 		this.addSlotToContainer(new SlotCrafting(playerInventory.player, this.craftMatrix, this.craftResult, 0, 192, 71));
 
-		for (int i = 0; i < 8; ++i) {
-			for (int j = 0; j < 8; ++j) {
-				this.addSlotToContainer(new Slot(this.craftMatrix, j + i * 8, 8 + j * 18, 8 + i * 18));
+		for (int y = 0; y < 8; ++y) {
+			for (int x = 0; x < 8; ++x) {
+				this.addSlotToContainer(new Slot(this.craftMatrix, x + y * 8, 8 + x * 18, 8 + y * 18));
 			}
 		}
 
-		for (int k = 0; k < 3; ++k) {
-			for (int i1 = 0; i1 < 9; ++i1) {
-				this.addSlotToContainer(new Slot(playerInventory, i1 + k * 9 + 9, 32 + i1 * 18, 166 + k * 18));
+		for (int y = 0; y < 3; ++y) {
+			for (int x = 0; x < 9; ++x) {
+				this.addSlotToContainer(new Slot(playerInventory, x + y * 9 + 9, 32 + x * 18, 166 + y * 18));
 			}
 		}
 
-		for (int l = 0; l < 9; ++l) {
-			this.addSlotToContainer(new Slot(playerInventory, l, 32 + l * 18, 224));
+		for (int i = 0; i < 9; ++i) {
+			this.addSlotToContainer(new Slot(playerInventory, i, 32 + i * 18, 224));
 		}
 
 		onCraftMatrixChanged(craftMatrix);
@@ -68,7 +69,11 @@ public class ContainerCreepypastaWorkbench extends Container {
 	 * Determines whether supplied player can use this container
 	 */
 	public boolean canInteractWith(EntityPlayer player) {
-		return !player.isSpectator();
+		if (world.getBlockState(pos).getBlock() != ModBlocks.CREEPYPASTA_WORKBENCH) {
+			return false;
+		} else {
+			return player.getDistanceSq(pos) <= 64.0;
+		}
 	}
 
 	/**
@@ -85,20 +90,21 @@ public class ContainerCreepypastaWorkbench extends Container {
 			if (index == 0) {
 				itemstack1.getItem().onCreated(itemstack1, this.world, playerIn);
 
-				if (!this.mergeItemStack(itemstack1, 10, 46, true)) {
+				if (!this.mergeItemStack(itemstack1, 65, 101, true)) {
 					return ItemStack.EMPTY;
 				}
+				// add 55 to each
 
 				slot.onSlotChange(itemstack1, itemstack);
-			} else if (index >= 10 && index < 37) {
-				if (!this.mergeItemStack(itemstack1, 37, 46, false)) {
+			} else if (index >= 65 && index < 92) {
+				if (!this.mergeItemStack(itemstack1, 92, 101, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (index >= 37 && index < 46) {
-				if (!this.mergeItemStack(itemstack1, 10, 37, false)) {
+			} else if (index >= 92 && index < 101) {
+				if (!this.mergeItemStack(itemstack1, 65, 92, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.mergeItemStack(itemstack1, 10, 46, false)) {
+			} else if (!this.mergeItemStack(itemstack1, 65, 101, false)) {
 				return ItemStack.EMPTY;
 			}
 

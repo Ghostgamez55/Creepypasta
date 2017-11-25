@@ -21,11 +21,6 @@ public class TileEntityItemRecolorer extends BasicTileEntity implements ICapabil
 	}
 
 	@Override
-	public void onServerUpdate() {
-		
-	}
-
-	@Override
 	public void writeNBTTag(NBTTagCompound nbt) {
 		nbt.setTag("ItemStackHandler", this.handler.serializeNBT());
 		this.storage.writeToNBT(nbt);
@@ -36,12 +31,12 @@ public class TileEntityItemRecolorer extends BasicTileEntity implements ICapabil
 		this.handler.deserializeNBT(nbt.getCompoundTag("ItemStackHandler"));
 		this.storage.readFromNBT(nbt);
 	}
-	
+
 	@Override
 	public void writeNBTTagToClient(NBTTagCompound nbt) {
 		nbt.setTag("ItemStackHandler", this.handler.serializeNBT());
 	}
-	
+
 	@Override
 	public void readNBTTagFromClient(NBTTagCompound nbt) {
 		this.handler.deserializeNBT(nbt.getCompoundTag("ItemStackHandler"));

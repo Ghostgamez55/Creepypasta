@@ -362,4 +362,10 @@ public abstract class GuiBase extends GuiCore {
 		return elements;
 	}
 
+	@Override
+	public void setGuiSize(int w, int h) {
+		this.xSize = w;
+		this.ySize = h;
+		super.setGuiSize(w, h);
+	}
 }

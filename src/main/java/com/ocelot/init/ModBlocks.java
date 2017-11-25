@@ -15,6 +15,7 @@ import com.ocelot.blocks.item.ItemBlockMeta;
 import com.ocelot.handlers.EnumHandler.CrossTypes;
 import com.ocelot.proxy.ClientProxy;
 
+import cjminecraft.core.energy.compat.ItemBlockEnergy;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

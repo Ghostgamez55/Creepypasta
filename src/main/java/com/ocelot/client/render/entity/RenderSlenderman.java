@@ -1,12 +1,9 @@
 package com.ocelot.client.render.entity;
 
 import com.ocelot.Reference;
-import com.ocelot.client.render.model.entity.ModelSlenderman;
+import com.ocelot.client.model.entity.ModelSlenderman;
 import com.ocelot.entity.hostile.EntitySlenderman;
-import com.ocelot.entity.passive.EntitySmileDog;
 
-import net.minecraft.client.model.ModelWolf;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;

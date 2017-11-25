@@ -51,7 +51,7 @@ public class BlockCreepypastaWorkbench extends Block {
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		player.openGui(Creepypasta.instance, GuiHandler.CREEPYPASTA_WORKBENCH_ID, world, (int) hitX, (int) hitY, (int) hitZ);
+		player.openGui(Creepypasta.instance, GuiHandler.CREEPYPASTA_WORKBENCH_ID, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 
@@ -172,43 +172,4 @@ public class BlockCreepypastaWorkbench extends Block {
 			return id;
 		}
 	}
-
-	// public static class InterfaceCraftingTable implements IInteractionObject {
-	// private final World world;
-	// private final BlockPos position;
-	//
-	// public InterfaceCraftingTable(World world, BlockPos pos) {
-	// this.world = world;
-	// this.position = pos;
-	// }
-	//
-	// /**
-	// * Get the name of this object. For players this returns their username
-	// */
-	// public String getName() {
-	// return "creepypasta_workbench";
-	// }
-	//
-	// /**
-	// * Returns true if this thing is named
-	// */
-	// public boolean hasCustomName() {
-	// return false;
-	// }
-	//
-	// /**
-	// * Get the formatted ChatComponent that will be used for the sender's username in chat
-	// */
-	// public ITextComponent getDisplayName() {
-	// return new TextComponentTranslation(ModBlocks.CREEPYPASTA_WORKBENCH.getUnlocalizedName() + ".name", new Object[0]);
-	// }
-	//
-	// public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
-	// return new ContainerCreepypastaWorkbench(playerInventory, this.world, this.position);
-	// }
-	//
-	// public String getGuiID() {
-	// return Reference.MOD_ID + ":creepypasta_workbench";
-	// }
-	// }
 }

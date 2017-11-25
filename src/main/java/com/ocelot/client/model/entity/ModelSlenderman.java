@@ -1,4 +1,4 @@
-package com.ocelot.client.render.model.entity;
+package com.ocelot.client.model.entity;
 // Cubik Studio 2.8.445 Beta JAVA exporter
 
 // Designed by Stereo Strider with Cubik Studio - https://cubik.studio

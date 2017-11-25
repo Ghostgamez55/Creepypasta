@@ -6,14 +6,11 @@ import com.ocelot.network.NetworkHandler;
 import com.ocelot.network.message.MessageGetWorker;
 import com.ocelot.tileentity.TileEntityReserveGenerator;
 
-import cjminecraft.core.CJCore;
 import cjminecraft.core.client.gui.GuiBase;
 import cjminecraft.core.client.gui.element.ElementBase;
 import cjminecraft.core.client.gui.element.ElementEnergyBar;
 import cjminecraft.core.client.gui.element.ElementProgressBar;
 import cjminecraft.core.client.gui.element.ElementProgressBar.ProgressBarDirection;
-import cjminecraft.core.energy.EnergyUnits;
-import cjminecraft.core.energy.EnergyUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -35,7 +32,7 @@ public class GuiReserveGenerator extends GuiBase {
 		super(new ContainerReserveGenerator(player, te), TEXTURE);
 		this.te = te;
 		this.storage = te.getCapability(CapabilityEnergy.ENERGY, null);
-		
+
 		this.setGuiSize(176, 166);
 		this.name = "gui.reserve_generator";
 	}
@@ -56,7 +53,7 @@ public class GuiReserveGenerator extends GuiBase {
 		super.updateElementInformation();
 
 		energyBar.syncData(te.getPos(), null);
-		
+
 		if (cooldown == 0)
 			cooldown = maxCooldown;
 		NetworkHandler.sendToServer(new MessageGetWorker(te.getPos(), this.mc.player.getHorizontalFacing(), "com.ocelot.client.gui.GuiReserveGenerator", "cooldown", "maxCooldown"));

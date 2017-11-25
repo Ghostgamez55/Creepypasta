@@ -81,7 +81,7 @@ public class BlockItemRecolorer extends Block implements ITileEntityProvider {
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
 		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
 	}
-	
+
 	@Override
 	public boolean canPlaceBlockAt(World world, BlockPos pos) {
 		return world.isAirBlock(pos.up()) && super.canPlaceBlockAt(world, pos);

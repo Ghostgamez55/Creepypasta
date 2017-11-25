@@ -1,7 +1,6 @@
 package com.ocelot.blocks;
 
 import com.ocelot.blocks.item.IMetaBlockName;
-import com.ocelot.creativetab.CreepypastaCreativeTabs;
 import com.ocelot.handlers.EnumHandler.CrossTypes;
 import com.ocelot.tileentity.TileEntityCross;
 
@@ -33,16 +32,16 @@ public class BlockCross extends Block implements ITileEntityProvider, IMetaBlock
 		setHardness(3.0f);
 		setResistance(15.0f);
 		setDefaultState(getDefaultState().withProperty(TIER, 0));
-		setCreativeTab(CreepypastaCreativeTabs.CREEPYPASTA);
+		// setCreativeTab(CreepypastaCreativeTabs.CREEPYPASTA);
 	}
 
 	@Override
 	public void getSubBlocks(CreativeTabs item, NonNullList<ItemStack> items) {
-		for(int i = 0; i < TIER.getAllowedValues().size(); i++) {
+		for (int i = 0; i < TIER.getAllowedValues().size(); i++) {
 			items.add(new ItemStack(this, 1, i));
 		}
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		return state.getValue(TIER);

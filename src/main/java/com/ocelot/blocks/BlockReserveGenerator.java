@@ -3,7 +3,6 @@ package com.ocelot.blocks;
 import com.ocelot.Creepypasta;
 import com.ocelot.client.gui.GuiHandler;
 import com.ocelot.creativetab.CreepypastaCreativeTabs;
-import com.ocelot.tileentity.TileEntityBattery;
 import com.ocelot.tileentity.TileEntityReserveGenerator;
 
 import net.minecraft.block.Block;
@@ -106,7 +105,7 @@ public class BlockReserveGenerator extends Block implements ITileEntityProvider 
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityReserveGenerator();
 	}
-	
+
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state) {
 		if (world.getTileEntity(pos) instanceof TileEntityReserveGenerator) {

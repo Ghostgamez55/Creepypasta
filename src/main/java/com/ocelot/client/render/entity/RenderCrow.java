@@ -1,11 +1,9 @@
 package com.ocelot.client.render.entity;
 
 import com.ocelot.Reference;
-import com.ocelot.client.render.model.entity.ModelCrow;
+import com.ocelot.client.model.entity.ModelCrow;
 import com.ocelot.entity.passive.EntityCrow;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;

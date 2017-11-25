@@ -1,8 +1,9 @@
-package com.ocelot.client.render.model.entity;
+package com.ocelot.client.model.entity;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 /**
@@ -116,11 +117,18 @@ public class ModelCrow extends ModelBase {
 
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
-		this.RightWing.rotateAngleZ = MathHelper.cos(limbSwing * 1.3F) * (float) Math.PI * 0.4F;
-		this.LeftWing.rotateAngleZ = -MathHelper.cos(limbSwing * 1.3F) * (float) Math.PI * 0.4F;
-		this.Leg.rotateAngleX = MathHelper.cos(limbSwing * 1.3F) * (float) Math.PI * 0.058F;
-		this.Leg_1.rotateAngleX = -MathHelper.cos(limbSwing * 1.3F) * (float) Math.PI * 0.058F;
-		this.Tail.rotateAngleX = MathHelper.cos(limbSwing * 1.3F) * (float) Math.PI * 0.058F;
+		this.Main_1.rotateAngleX = headPitch * 0.017453292F;
+		this.Main_1.rotateAngleY = netHeadYaw * 0.017453292F;
+	}
+
+	@Override
+	public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
+		float ageInTicks = entitylivingbaseIn.ticksExisted + partialTickTime;
+		this.RightWing.rotateAngleZ = MathHelper.cos(limbSwing * 1.3F) * 0.4F * limbSwingAmount;
+		this.LeftWing.rotateAngleZ = -MathHelper.cos(limbSwing * 1.3F) * 0.4F * limbSwingAmount;
+		this.Leg.rotateAngleX = MathHelper.cos(limbSwing * 1.3F) * 0.058F * limbSwingAmount;
+		this.Leg_1.rotateAngleX = -MathHelper.cos(limbSwing * 1.3F) * 0.058F * limbSwingAmount;
+		this.Tail.rotateAngleX = MathHelper.cos(ageInTicks * 1.3F) * 0.058F;
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.ocelot.client.render.model.armor;
+package com.ocelot.client.model.armor;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;

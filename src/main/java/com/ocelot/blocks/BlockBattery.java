@@ -6,7 +6,6 @@ import com.ocelot.Creepypasta;
 import com.ocelot.client.gui.GuiHandler;
 import com.ocelot.creativetab.CreepypastaCreativeTabs;
 import com.ocelot.tileentity.TileEntityBattery;
-import com.ocelot.tileentity.TileEntityBattery;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -40,9 +39,9 @@ public class BlockBattery extends Block implements ITileEntityProvider {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	public static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(2 * 0.0625, 0, 2 * 0.0625, 14 * 0.0625, 15 * 0.0625, 14 * 0.0625);
-	
+
 	public BlockBattery() {
-		super(Material.CLAY, MapColor.ORANGE_STAINED_HARDENED_CLAY);
+		super(Material.IRON, MapColor.ORANGE_STAINED_HARDENED_CLAY);
 		setUnlocalizedName("battery");
 		setRegistryName("battery");
 		setSoundType(SoundType.STONE);
@@ -58,7 +57,7 @@ public class BlockBattery extends Block implements ITileEntityProvider {
 		player.openGui(Creepypasta.instance, GuiHandler.BATTERY_ID, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -68,12 +67,12 @@ public class BlockBattery extends Block implements ITileEntityProvider {
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
-	
+
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean p_185477_7_) {
 		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX);
 	}
-	
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return FULL_BLOCK_AABB;
@@ -124,7 +123,7 @@ public class BlockBattery extends Block implements ITileEntityProvider {
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityBattery();
 	}
-	
+
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state) {
 		if (world.getTileEntity(pos) instanceof TileEntityBattery) {
