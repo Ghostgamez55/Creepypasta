@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ocelot.Reference;
+import com.ocelot.api.utils.GuiUtils;
+import com.ocelot.api.utils.TextureUtils;
 import com.ocelot.container.ContainerBattery;
-import com.ocelot.lib.GuiUtils;
-import com.ocelot.lib.TextureUtils;
 import com.ocelot.tileentity.TileEntityBattery;
 
 import cjminecraft.core.client.gui.GuiBase;

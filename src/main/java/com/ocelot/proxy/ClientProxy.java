@@ -7,6 +7,7 @@ import com.ocelot.client.gui.GuiHandler;
 import com.ocelot.init.ModBlocks;
 import com.ocelot.init.ModEntities;
 import com.ocelot.init.ModItems;
+import com.ocelot.init.OBJHandler;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -22,25 +23,15 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		ModItems.linkModels();
-		ModBlocks.linkModels();
+		ModItems.registerRenders();
+		ModBlocks.registerRenders();
 		ModBlocks.createStateMappers();
+		ModEntities.registerEntityRenders();
 	}
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		ModItems.registerRenders();
-		ModBlocks.registerRenders();
-		ModEntities.registerEntityRenders();
-		
+		OBJHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(Creepypasta.instance, new GuiHandler());
-	}
-
-	@Override
-	@Nullable
-	public ModelBiped getArmorModel(int id) {
-		switch (id) {
-		}
-		return super.getArmorModel(id);
 	}
 }

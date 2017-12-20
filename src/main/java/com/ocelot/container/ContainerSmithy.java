@@ -15,35 +15,35 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ContainerCreepypastaWorkbench extends Container {
+public class ContainerSmithy extends Container {
 
-	public InventoryCrafting craftMatrix = new InventoryCrafting(this, 8, 8);
+	public InventoryCrafting craftMatrix = new InventoryCrafting(this, 6, 6);
 	public InventoryCraftResult craftResult = new InventoryCraftResult();
 	private World world;
 	private BlockPos pos;
 	private EntityPlayer player;
 
-	public ContainerCreepypastaWorkbench(InventoryPlayer playerInventory, World world, BlockPos pos) {
+	public ContainerSmithy(InventoryPlayer playerInventory, World world, BlockPos pos) {
 		this.world = world;
 		this.pos = pos;
 		this.player = playerInventory.player;
 
-		this.addSlotToContainer(new SlotCrafting(playerInventory.player, this.craftMatrix, this.craftResult, 0, 192, 71));
+		this.addSlotToContainer(new SlotCrafting(playerInventory.player, this.craftMatrix, this.craftResult, 0, 160, 70));
 
-		for (int y = 0; y < 8; ++y) {
-			for (int x = 0; x < 8; ++x) {
-				this.addSlotToContainer(new Slot(this.craftMatrix, x + y * 8, 8 + x * 18, 8 + y * 18));
+		for (int y = 0; y < 6; ++y) {
+			for (int x = 0; x < 6; ++x) {
+				this.addSlotToContainer(new Slot(this.craftMatrix, x + y * 8, 12 + x * 18, 17 + y * 18));
 			}
 		}
 
 		for (int y = 0; y < 3; ++y) {
 			for (int x = 0; x < 9; ++x) {
-				this.addSlotToContainer(new Slot(playerInventory, x + y * 9 + 9, 32 + x * 18, 166 + y * 18));
+				this.addSlotToContainer(new Slot(playerInventory, x + y * 9 + 9, 16 + x * 18, 139 + y * 18));
 			}
 		}
 
 		for (int i = 0; i < 9; ++i) {
-			this.addSlotToContainer(new Slot(playerInventory, i, 32 + i * 18, 224));
+			this.addSlotToContainer(new Slot(playerInventory, i, 16 + i * 18, 197));
 		}
 
 		onCraftMatrixChanged(craftMatrix);
@@ -69,7 +69,7 @@ public class ContainerCreepypastaWorkbench extends Container {
 	 * Determines whether supplied player can use this container
 	 */
 	public boolean canInteractWith(EntityPlayer player) {
-		if (world.getBlockState(pos).getBlock() != ModBlocks.CREEPYPASTA_WORKBENCH) {
+		if (world.getBlockState(pos).getBlock() != ModBlocks.SMITHY) {
 			return false;
 		} else {
 			return player.getDistanceSq(pos) <= 64.0;
@@ -95,15 +95,15 @@ public class ContainerCreepypastaWorkbench extends Container {
 				}
 
 				slot.onSlotChange(itemstack1, itemstack);
-			} else if (index >= 65 && index < 92) {
-				if (!this.mergeItemStack(itemstack1, 92, 101, false)) {
+			} else if (index >= 37 && index < 64) {
+				if (!this.mergeItemStack(itemstack1, 64, 73, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (index >= 92 && index < 101) {
-				if (!this.mergeItemStack(itemstack1, 65, 92, false)) {
+			} else if (index >= 64 && index < 73) {
+				if (!this.mergeItemStack(itemstack1, 37, 64, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.mergeItemStack(itemstack1, 65, 101, false)) {
+			} else if (!this.mergeItemStack(itemstack1, 37, 73, false)) {
 				return ItemStack.EMPTY;
 			}
 

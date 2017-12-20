@@ -8,9 +8,11 @@ import com.ocelot.blocks.BlockBattery;
 import com.ocelot.blocks.BlockCreepypastaWorkbench;
 import com.ocelot.blocks.BlockCross;
 import com.ocelot.blocks.BlockItemRecolorer;
+import com.ocelot.blocks.BlockMailbox;
 import com.ocelot.blocks.BlockNitratePowderOre;
 import com.ocelot.blocks.BlockReserveGenerator;
 import com.ocelot.blocks.BlockSafe;
+import com.ocelot.blocks.BlockTv;
 import com.ocelot.blocks.item.ItemBlockMeta;
 import com.ocelot.handlers.EnumHandler.CrossTypes;
 import com.ocelot.proxy.ClientProxy;
@@ -25,6 +27,7 @@ import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,15 +40,23 @@ public class ModBlocks {
 
 	public static final List<Block> BLOCKS = new ArrayList<Block>();
 
-	public static final Block NITRATE_POWDER_ORE;
-	public static final Block CROSS;
-	public static final Block SAFE;
-	public static final Block CREEPYPASTA_WORKBENCH;
-	public static final Block ITEM_RECOLORER;
-	public static final Block BATTERY;
-	public static final Block RESERVE_GENERATOR;
+	public static Block NITRATE_POWDER_ORE;
+	public static Block CROSS;
+	public static Block SAFE;
+	public static Block CREEPYPASTA_WORKBENCH;
+	public static Block SMITHY;
+	public static Block ITEM_RECOLORER;
+	public static Block BATTERY;
+	public static Block RESERVE_GENERATOR;
+	public static Block MAILBOX;
+	public static Block TV;
 
-	static {
+	public static void preInit() {
+		instantiate();
+		register();
+	}
+	
+	private static void instantiate() {
 		NITRATE_POWDER_ORE = new BlockNitratePowderOre();
 		CROSS = new BlockCross();
 		SAFE = new BlockSafe();
@@ -53,12 +64,11 @@ public class ModBlocks {
 		ITEM_RECOLORER = new BlockItemRecolorer();
 		BATTERY = new BlockBattery();
 		RESERVE_GENERATOR = new BlockReserveGenerator();
+		MAILBOX = new BlockMailbox();
+		TV = new BlockTv();
 	}
 
-	/**
-	 * Register's the blocks.
-	 */
-	public static void register() {
+	private static void register() {
 		registerBlock(NITRATE_POWDER_ORE);
 		registerBlock(CROSS, new ItemBlockMeta(CROSS));
 		registerBlock(SAFE);
@@ -66,6 +76,8 @@ public class ModBlocks {
 		registerBlock(ITEM_RECOLORER);
 		registerBlock(BATTERY);
 		registerBlock(RESERVE_GENERATOR);
+		registerBlock(MAILBOX);
+		registerBlock(TV);
 	}
 
 	/**
@@ -75,12 +87,7 @@ public class ModBlocks {
 		for (Block block : BLOCKS) {
 			registerRender(block);
 		}
-	}
-
-	/**
-	 * Link's the meta block's item models to the block's in the {@link ClientProxy}'s preInitialization.
-	 */
-	public static void linkModels() {
+		
 		for (int i = 0; i < CrossTypes.values().length; i++) {
 			registerRender(CROSS, i, "cross_" + CrossTypes.values()[i].getName());
 		}
@@ -146,7 +153,7 @@ public class ModBlocks {
 	 *            The block to have the render registered for.
 	 */
 	private static void registerRender(Block block) {
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
 	}
 
 	/**
@@ -159,6 +166,6 @@ public class ModBlocks {
 	 *            The block's name in the files.
 	 */
 	private static void registerRender(Block block, int meta, String fileName) {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), meta, new ModelResourceLocation(Reference.MOD_ID + ":" + fileName, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), meta, new ModelResourceLocation(new ResourceLocation(Reference.MOD_ID, fileName), "inventory"));
 	}
 }

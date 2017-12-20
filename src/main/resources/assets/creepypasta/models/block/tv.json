@@ -1,11 +1,11 @@
 {
 	"__comment": "Designed by Epicghost505 with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"texture1": "static1",
-		"texture2": "metal2",
-		"texture3": "old2texture",
-		"texture4": "metal1",
-		"texture5": "speaker"
+		"texture1": "creepypasta:blocks/tv/static1",
+		"texture2": "creepypasta:blocks/tv/metal2",
+		"texture3": "creepypasta:blocks/tv/old2texture",
+		"texture4": "creepypasta:blocks/tv/metal1",
+		"texture5": "creepypasta:blocks/tv/speaker"
 	},
 	"elements": [ 	 
 		{

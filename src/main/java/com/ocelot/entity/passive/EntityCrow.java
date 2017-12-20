@@ -1,26 +1,22 @@
 package com.ocelot.entity.passive;
 
-import java.util.Calendar;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAmbientCreature;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 
 public class EntityCrow extends EntityAmbientCreature {
-	
+
 	/** Coordinates of where the bat spawned. */
 	private BlockPos spawnPosition;
 
@@ -121,13 +117,6 @@ public class EntityCrow extends EntityAmbientCreature {
 	}
 
 	/**
-	 * Return whether this entity should NOT trigger a pressure plate or a tripwire.
-	 */
-	public boolean doesEntityNotTriggerPressurePlate() {
-		return true;
-	}
-
-	/**
 	 * Called when the entity is attacked.
 	 */
 	public boolean attackEntityFrom(DamageSource source, float amount) {
@@ -136,10 +125,6 @@ public class EntityCrow extends EntityAmbientCreature {
 		} else {
 			return super.attackEntityFrom(source, amount);
 		}
-	}
-
-	public static void registerFixesBat(DataFixer fixer) {
-		EntityLiving.registerFixesMob(fixer, EntityCrow.class);
 	}
 
 	/**
@@ -154,18 +139,12 @@ public class EntityCrow extends EntityAmbientCreature {
 			int i = this.world.getLightFromNeighbors(blockpos);
 			int j = 4;
 
-			if (this.isDateAroundHalloween(this.world.getCurrentDate())) {
-				j = 7;
-			} else if (this.rand.nextBoolean()) {
+			if (this.rand.nextBoolean()) {
 				return false;
 			}
 
 			return i > this.rand.nextInt(j) ? false : super.getCanSpawnHere();
 		}
-	}
-
-	private boolean isDateAroundHalloween(Calendar p_175569_1_) {
-		return p_175569_1_.get(2) + 1 == 10 && p_175569_1_.get(5) >= 20 || p_175569_1_.get(2) + 1 == 11 && p_175569_1_.get(5) <= 3;
 	}
 
 	public float getEyeHeight() {

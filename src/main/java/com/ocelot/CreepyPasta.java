@@ -1,13 +1,12 @@
 package com.ocelot;
 
-import com.ocelot.crafting.workbench.CreepypastaWorkbenchManager;
+import com.ocelot.client.gui.overlay.GuiOverlayHandler;
 import com.ocelot.events.ModEventHandler;
 import com.ocelot.init.ModBlocks;
 import com.ocelot.init.ModCapabilities;
 import com.ocelot.init.ModCrafting;
 import com.ocelot.init.ModEntities;
 import com.ocelot.init.ModItems;
-import com.ocelot.init.ModTools;
 import com.ocelot.init.OBJHandler;
 import com.ocelot.network.NetworkHandler;
 import com.ocelot.proxy.CommonProxy;
@@ -17,6 +16,7 @@ import com.ocelot.world.OreGen;
 import cjminecraft.core.config.CJCoreConfig;
 import cjminecraft.core.energy.EnergyUnits;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 /**
  * This class is the basis for the entire creepypasta mod.<br>
@@ -50,22 +51,27 @@ public class Creepypasta {
 		ModSounds.register();
 		ModCapabilities.register();
 		ModEntities.preInit();
-		ModItems.register();
-		ModBlocks.register();
+		ModItems.preInit();
+		ModBlocks.preInit();
 		OBJHandler.preInit();
 		NetworkHandler.preInit();
+		ModEntities.preInit();
+		OBJHandler.preInit();
 
 		proxy.preInit(event);
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		ModCrafting.init();
 		ModEntities.init();
-		OBJHandler.init();
-		
+		ModCrafting.init();
+
 		GameRegistry.registerWorldGenerator(new OreGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
+
+		if (FMLClientHandler.instance().getSide() == Side.CLIENT) {
+			MinecraftForge.EVENT_BUS.register(new GuiOverlayHandler());
+		}
 
 		proxy.init(event);
 	}

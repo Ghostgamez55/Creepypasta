@@ -39,11 +39,11 @@ public class ModEntities {
 	private static int entityID = 0;
 
 	public static void preInit() {
-		registerEntities();
 		registerTileEntities();
 	}
 
 	public static void init() {
+		registerEntities();
 		registerSpawns();
 	}
 

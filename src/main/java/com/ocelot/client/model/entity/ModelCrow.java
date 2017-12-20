@@ -10,6 +10,7 @@ import net.minecraft.util.math.MathHelper;
  * Crow - Ocelot5836 Created using Tabula 7.0.0
  */
 public class ModelCrow extends ModelBase {
+	
 	public ModelRenderer Leg;
 	public ModelRenderer toe1;
 	public ModelRenderer toe2;

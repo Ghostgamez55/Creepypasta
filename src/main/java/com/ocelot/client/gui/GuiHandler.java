@@ -4,6 +4,7 @@ import com.ocelot.container.ContainerBattery;
 import com.ocelot.container.ContainerCreepypastaWorkbench;
 import com.ocelot.container.ContainerItemRecolorer;
 import com.ocelot.container.ContainerReserveGenerator;
+import com.ocelot.container.ContainerSmithy;
 import com.ocelot.tileentity.TileEntityBattery;
 import com.ocelot.tileentity.TileEntityItemRecolorer;
 import com.ocelot.tileentity.TileEntityReserveGenerator;
@@ -17,9 +18,10 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 public class GuiHandler implements IGuiHandler {
 
 	public static final int CREEPYPASTA_WORKBENCH_ID = 0;
-	public static final int ITEM_RECOLORER_ID = 1;
-	public static final int BATTERY_ID = 2;
-	public static final int RESERVE_GENERATOR_ID = 3;
+	public static final int SMITHY_ID = 1;
+	public static final int ITEM_RECOLORER_ID = 2;
+	public static final int BATTERY_ID = 3;
+	public static final int RESERVE_GENERATOR_ID = 4;
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -28,6 +30,8 @@ public class GuiHandler implements IGuiHandler {
 
 		if (ID == CREEPYPASTA_WORKBENCH_ID)
 			return new ContainerCreepypastaWorkbench(player.inventory, world, pos);
+		if(ID == SMITHY_ID)
+			return new ContainerSmithy(player.inventory, world, pos);
 		if (ID == ITEM_RECOLORER_ID)
 			return new ContainerItemRecolorer(player, (TileEntityItemRecolorer) te);
 		if (ID == BATTERY_ID)
@@ -45,6 +49,8 @@ public class GuiHandler implements IGuiHandler {
 
 		if (ID == CREEPYPASTA_WORKBENCH_ID)
 			return new GuiCreepypastaWorkbench(player.inventory, world, pos);
+		if(ID == SMITHY_ID)
+			return new GuiSmithy(player.inventory, world, pos);
 		if (ID == ITEM_RECOLORER_ID)
 			return new GuiItemRecolorer(player, (TileEntityItemRecolorer) te);
 		if (ID == BATTERY_ID)

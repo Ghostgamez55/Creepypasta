@@ -6,16 +6,12 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import com.ocelot.Reference;
+import com.ocelot.api.utils.GuiUtils;
 import com.ocelot.container.ContainerItemRecolorer;
-import com.ocelot.lib.GuiUtils;
 import com.ocelot.tileentity.TileEntityItemRecolorer;
 
-import cjminecraft.core.CJCore;
 import cjminecraft.core.client.gui.GuiBase;
 import cjminecraft.core.client.gui.element.ElementEnergyBar;
-import cjminecraft.core.energy.EnergyData;
-import cjminecraft.core.energy.EnergyUnits;
-import cjminecraft.core.energy.EnergyUtils;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;

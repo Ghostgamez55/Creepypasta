@@ -1,12 +1,11 @@
 package com.ocelot.container;
 
+import com.ocelot.container.slot.SlotEnergyItem;
 import com.ocelot.container.slot.SlotFuel;
-import com.ocelot.container.slot.SlotWhitelist;
 import com.ocelot.tileentity.TileEntityReserveGenerator;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -16,16 +15,14 @@ import net.minecraftforge.items.IItemHandler;
 public class ContainerReserveGenerator extends Container {
 
 	private InventoryPlayer playerInv;
-	private TileEntityReserveGenerator te;
 	private IItemHandler handler;
 
 	public ContainerReserveGenerator(EntityPlayer player, TileEntityReserveGenerator te) {
 		this.playerInv = player.inventory;
-		this.te = te;
 		this.handler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
 		this.addSlotToContainer(new SlotFuel(handler, 0, 44, 36));
-		this.addSlotToContainer(new SlotWhitelist(player, handler, Items.BUCKET, 1, 116, 36));
+		this.addSlotToContainer(new SlotEnergyItem(handler, 1, 116, 36));
 
 		int xPos = 8;
 		int yPos = 84;
