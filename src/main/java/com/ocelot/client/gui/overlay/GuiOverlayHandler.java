@@ -6,5 +6,6 @@ public class GuiOverlayHandler extends GuiOverlay {
 
 	public GuiOverlayHandler() {
 		overlays.add(new GuiOverlaySanity(this));
+		// overlays.add(new GuiOverlayStatic(this));
 	}
 }

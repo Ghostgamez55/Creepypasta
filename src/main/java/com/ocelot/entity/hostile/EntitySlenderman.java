@@ -14,43 +14,45 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.init.Biomes;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSourceIndirect;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 
 public class EntitySlenderman extends EntityMob {
 
-	private int lastCreepySound;
 	private int targetChangeTime;
+	private static final DataParameter<Boolean> LOCKED_INSIDE_FOREST = EntityDataManager.<Boolean>createKey(EntitySlenderman.class, DataSerializers.BOOLEAN);
 
 	public EntitySlenderman(World worldIn) {
 		super(worldIn);
 		this.setSize(0.6F, 2.9F);
 		this.stepHeight = 1.0F;
-		this.setPathPriority(PathNodeType.WATER, -1.0F);
+	}
+
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataManager.register(LOCKED_INSIDE_FOREST, Boolean.valueOf(false));
 	}
 
 	protected void initEntityAI() {
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
-		this.tasks.addTask(7, new EntityAIWanderAvoidWater(this, 1.0D, 0.0F));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntitySlenderman.AIFindPlayer(this));
@@ -61,7 +63,7 @@ public class EntitySlenderman extends EntityMob {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(80 + rand.nextInt(21));
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6 + rand.nextInt(2));
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6 + rand.nextInt(3));
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
 	}
 
@@ -79,17 +81,7 @@ public class EntitySlenderman extends EntityMob {
 		}
 	}
 
-	public void playEndermanSound() {
-		if (this.ticksExisted >= this.lastCreepySound + 400) {
-			this.lastCreepySound = this.ticksExisted;
-
-			if (!this.isSilent()) {
-				this.world.playSound(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ, SoundEvents.ENTITY_ENDERMEN_STARE, this.getSoundCategory(), 2.5F, 1.0F, false);
-			}
-		}
-	}
-
-	public static void registerFixesEnderman(DataFixer fixer) {
+	public static void registerFixesSlenderman(DataFixer fixer) {
 		EntityLiving.registerFixesMob(fixer, EntitySlenderman.class);
 	}
 
@@ -97,18 +89,7 @@ public class EntitySlenderman extends EntityMob {
 	 * Checks to see if this enderman should be attacking this player
 	 */
 	private boolean shouldAttackPlayer(EntityPlayer player) {
-		ItemStack itemstack = player.inventory.armorInventory.get(3);
-
-		if (itemstack.getItem() == Item.getItemFromBlock(Blocks.PUMPKIN)) {
-			return false;
-		} else {
-			Vec3d vec3d = player.getLook(1.0F).normalize();
-			Vec3d vec3d1 = new Vec3d(this.posX - player.posX, this.getEntityBoundingBox().minY + (double) this.getEyeHeight() - (player.posY + (double) player.getEyeHeight()), this.posZ - player.posZ);
-			double d0 = vec3d1.lengthVector();
-			vec3d1 = vec3d1.normalize();
-			double d1 = vec3d.dotProduct(vec3d1);
-			return d1 > 1.0D - 0.025D / d0 ? player.canEntityBeSeen(this) : false;
-		}
+		return player.getDistanceSqToEntity(this) <= this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue();
 	}
 
 	public float getEyeHeight() {
@@ -119,31 +100,47 @@ public class EntitySlenderman extends EntityMob {
 	 * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	 */
 	public void onLivingUpdate() {
-		if (this.world.isRemote) {
-			for (int i = 0; i < 2; ++i) {
-				this.world.spawnParticle(EnumParticleTypes.PORTAL, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);
-			}
+		if (ticksExisted == 1) {
+			this.setLockedInForest(this.isInForest());
 		}
-
+		
 		this.isJumping = false;
 		super.onLivingUpdate();
 	}
 
 	protected void updateAITasks() {
-		if (this.isWet()) {
-			this.attackEntityFrom(DamageSource.DROWN, 1.0F);
-		}
-
-		if (this.world.isDaytime() && this.ticksExisted >= this.targetChangeTime + 600) {
+		if (this.ticksExisted >= this.targetChangeTime + 600) {
 			float f = this.getBrightness();
 
-			if (f > 0.5F && this.world.canSeeSky(new BlockPos(this)) && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F) {
+			if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F) {
 				this.setAttackTarget((EntityLivingBase) null);
 				this.teleportRandomly();
 			}
 		}
 
+		if (!this.isInForest() && isLockedInForest()) {
+			this.setAttackTarget((EntityLivingBase) null);
+			this.teleportRandomly();
+		}
+
 		super.updateAITasks();
+	}
+
+	public boolean isInForest(BlockPos pos) {
+		Biome biome = world.getBiome(pos);
+		return biome == Biomes.TAIGA || biome == Biomes.TAIGA_HILLS || biome == Biomes.MUTATED_TAIGA;
+	}
+
+	public boolean isInForest() {
+		return this.isInForest(this.getPosition());
+	}
+
+	public void setLockedInForest(boolean lockedInForest) {
+		this.dataManager.set(LOCKED_INSIDE_FOREST, Boolean.valueOf(lockedInForest));
+	}
+
+	public boolean isLockedInForest() {
+		return this.dataManager.get(LOCKED_INSIDE_FOREST);
 	}
 
 	/**
@@ -173,17 +170,19 @@ public class EntitySlenderman extends EntityMob {
 	 * Teleport the enderman
 	 */
 	private boolean teleportTo(double x, double y, double z) {
-		net.minecraftforge.event.entity.living.EnderTeleportEvent event = new net.minecraftforge.event.entity.living.EnderTeleportEvent(this, x, y, z, 0);
-		if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event))
-			return false;
-		boolean flag = this.attemptTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ());
+		boolean flag = this.attemptTeleport(x, y, z);
+		boolean flag1 = isInForest(new BlockPos(x, y, z));
 
-		if (flag) {
+		if (!this.isLockedInForest()) {
+			flag1 = true;
+		}
+
+		if (flag && flag1) {
 			this.world.playSound((EntityPlayer) null, this.prevPosX, this.prevPosY, this.prevPosZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, this.getSoundCategory(), 1.0F, 1.0F);
 			this.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
 		}
 
-		return flag;
+		return flag && flag1;
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -208,14 +207,6 @@ public class EntitySlenderman extends EntityMob {
 	 */
 	public boolean attackEntityFrom(DamageSource source, float amount) {
 		if (this.isEntityInvulnerable(source)) {
-			return false;
-		} else if (source instanceof EntityDamageSourceIndirect) {
-			for (int i = 0; i < 64; ++i) {
-				if (this.teleportRandomly()) {
-					return true;
-				}
-			}
-
 			return false;
 		} else {
 			boolean flag = super.attackEntityFrom(source, amount);

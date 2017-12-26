@@ -34,7 +34,7 @@ import net.minecraftforge.fml.relauncher.Side;
  * 
  * @author Ocelot5836
  */
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, acceptedMinecraftVersions = "[1.12][1.12.1][1.12.2]", useMetadata = true, version = "1.6")
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, acceptedMinecraftVersions = "[1.12,1.12.9]", useMetadata = true, version = "1.6")
 public class Creepypasta {
 
 	@Instance(Reference.MOD_ID)

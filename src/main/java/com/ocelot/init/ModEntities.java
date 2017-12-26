@@ -20,12 +20,14 @@ import com.ocelot.tileentity.TileEntityReserveGenerator;
 import com.ocelot.tileentity.TileEntitySafe;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -81,14 +83,41 @@ public class ModEntities {
 	 */
 	public static void registerEntityRenders() {
 		Minecraft mc = Minecraft.getMinecraft();
-		RenderManager renderManager = mc.getRenderManager();
 
-		RenderingRegistry.registerEntityRenderingHandler(EntitySmileDog.class, new RenderSmileDog(renderManager));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySmileMan.class, new RenderSmileMan(renderManager));
-		RenderingRegistry.registerEntityRenderingHandler(EntityCrow.class, new RenderCrow(renderManager));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySmileDog.class, new IRenderFactory() {
+			@Override
+			public Render createRenderFor(RenderManager manager) {
+				return new RenderSmileDog(manager);
+			}
+		});
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityTiccy.class, new RenderTiccy(renderManager));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySlenderman.class, new RenderSlenderman(renderManager));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySmileMan.class, new IRenderFactory() {
+			@Override
+			public Render createRenderFor(RenderManager manager) {
+				return new RenderSmileMan(manager);
+			}
+		});
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityCrow.class, new IRenderFactory() {
+			@Override
+			public Render createRenderFor(RenderManager manager) {
+				return new RenderCrow(manager);
+			}
+		});
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityTiccy.class, new IRenderFactory() {
+			@Override
+			public Render createRenderFor(RenderManager manager) {
+				return new RenderTiccy(manager);
+			}
+		});
+
+		RenderingRegistry.registerEntityRenderingHandler(EntitySlenderman.class, new IRenderFactory() {
+			@Override
+			public Render createRenderFor(RenderManager manager) {
+				return new RenderSlenderman(manager);
+			}
+		});
 	}
 
 	/**

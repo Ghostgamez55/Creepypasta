@@ -1,179 +1,92 @@
 package com.ocelot.client.model.entity;
-// Cubik Studio 2.8.445 Beta JAVA exporter
-
-// Designed by Stereo Strider with Cubik Studio - https://cubik.studio
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.math.MathHelper;
 
+/**
+ * slenderman - Undefined Created using Tabula 7.0.0
+ */
 public class ModelSlenderman extends ModelBase {
 
-	// fields
-	private ModelRenderer e1;
-	private ModelRenderer e2;
-	private ModelRenderer e3;
-	private ModelRenderer e4;
-	private ModelRenderer e5;
-	private ModelRenderer e6;
-	private ModelRenderer e7;
-	private ModelRenderer e8;
-	private ModelRenderer e9;
-	private ModelRenderer e10;
-	private ModelRenderer e11;
-	private ModelRenderer e12;
-	private ModelRenderer e13;
-	private ModelRenderer e14;
-	private ModelRenderer e15;
-	private ModelRenderer e16;
-	private ModelRenderer e17;
-	private ModelRenderer e18;
+	public ModelRenderer body;
+	public ModelRenderer neck;
+	public ModelRenderer head;
+	public ModelRenderer LeftLeg;
+	public ModelRenderer RightLeg;
+	public ModelRenderer Leftfoot;
+	public ModelRenderer Rightfoot;
+	public ModelRenderer rightarm;
+	public ModelRenderer leftarm;
 
 	public ModelSlenderman() {
-		textureWidth = 64;
-		textureHeight = 64;
-
-		e1 = new ModelRenderer(this, 18, 27);
-		e1.addBox(5F, -16F, 7F, 3, 16, 3);
-		e1.setRotationPoint(5F, -16F, 7F);
-		e1.setTextureSize(64, 64);
-		e1.mirror = false;
-		setRotation(e1, 0F, 0F, 0F);
-		e2 = new ModelRenderer(this, 18, 27);
-		e2.addBox(8.5F, -16F, 7F, 3, 16, 3);
-		e2.setRotationPoint(8.5F, -16F, 7F);
-		e2.setTextureSize(64, 64);
-		e2.mirror = false;
-		setRotation(e2, 0F, 0F, 0F);
-		e3 = new ModelRenderer(this, 0, 25);
-		e3.addBox(5F, 0F, 7F, 6, 18, 3);
-		e3.setRotationPoint(5F, 0F, 7F);
-		e3.setTextureSize(64, 64);
-		e3.mirror = false;
-		setRotation(e3, 0F, 0F, 0F);
-		e4 = new ModelRenderer(this, 0, 4);
-		e4.addBox(2F, -1F, 7F, 3, 18, 3);
-		e4.setRotationPoint(2F, -1F, 7F);
-		e4.setTextureSize(64, 64);
-		e4.mirror = false;
-		setRotation(e4, 0F, 0F, 0F);
-		e5 = new ModelRenderer(this, 0, 4);
-		e5.addBox(11F, -1F, 7F, 3, 18, 3);
-		e5.setRotationPoint(11F, -1F, 7F);
-		e5.setTextureSize(64, 64);
-		e5.mirror = false;
-		setRotation(e5, 0F, 0F, 0F);
-		e6 = new ModelRenderer(this, 28, 62);
-		e6.addBox(7.875F, 9F, 2.625F, 9, 1, 1);
-		e6.setRotationPoint(7.875F, 9F, 2.625F);
-		e6.setTextureSize(64, 64);
-		e6.mirror = false;
-		setRotation(e6, 0F, 0.3926991F, 0F);
-		e7 = new ModelRenderer(this, 28, 62);
-		e7.addBox(7.875F, 5F, 2.75F, 9, 1, 1);
-		e7.setRotationPoint(7.875F, 5F, 2.75F);
-		e7.setTextureSize(64, 64);
-		e7.mirror = false;
-		setRotation(e7, 0F, 0.3926991F, 0F);
-		e8 = new ModelRenderer(this, 28, 62);
-		e8.addBox(7.75F, 13F, 2.625F, 9, 1, 1);
-		e8.setRotationPoint(7.75F, 13F, 2.625F);
-		e8.setTextureSize(64, 64);
-		e8.mirror = false;
-		setRotation(e8, 0F, 0.3926991F, 0F);
-		e9 = new ModelRenderer(this, 28, 62);
-		e9.addBox(-1.625F, 9F, 6.125F, 9, 1, 1);
-		e9.setRotationPoint(-1.625F, 9F, 6.125F);
-		e9.setTextureSize(64, 64);
-		e9.mirror = false;
-		setRotation(e9, 0F, 5.890486F, 0F);
-		e10 = new ModelRenderer(this, 28, 62);
-		e10.addBox(-1.75F, 5F, 6.125F, 9, 1, 1);
-		e10.setRotationPoint(-1.75F, 5F, 6.125F);
-		e10.setTextureSize(64, 64);
-		e10.mirror = false;
-		setRotation(e10, 0F, 5.890486F, 0F);
-		e11 = new ModelRenderer(this, 28, 62);
-		e11.addBox(-1.75F, 13F, 6.125F, 9, 1, 1);
-		e11.setRotationPoint(-1.75F, 13F, 6.125F);
-		e11.setTextureSize(64, 64);
-		e11.mirror = false;
-		setRotation(e11, 0F, 5.890486F, 0F);
-		e12 = new ModelRenderer(this, 28, 62);
-		e12.addBox(14.25F, 9F, 9F, 9, 1, 1);
-		e12.setRotationPoint(14.25F, 9F, 9F);
-		e12.setTextureSize(64, 64);
-		e12.mirror = false;
-		setRotation(e12, 0F, 5.497787F, 0F);
-		e13 = new ModelRenderer(this, 28, 62);
-		e13.addBox(14.25F, 5F, 9F, 9, 1, 1);
-		e13.setRotationPoint(14.25F, 5F, 9F);
-		e13.setTextureSize(64, 64);
-		e13.mirror = false;
-		setRotation(e13, 0F, 5.497787F, 0F);
-		e14 = new ModelRenderer(this, 28, 62);
-		e14.addBox(14.25F, 13F, 9F, 9, 1, 1);
-		e14.setRotationPoint(14.25F, 13F, 9F);
-		e14.setTextureSize(64, 64);
-		e14.mirror = false;
-		setRotation(e14, 0F, 5.497787F, 0F);
-		e15 = new ModelRenderer(this, 28, 62);
-		e15.addBox(-10.125F, 9F, 2.75F, 9, 1, 1);
-		e15.setRotationPoint(-10.125F, 9F, 2.75F);
-		e15.setTextureSize(64, 64);
-		e15.mirror = false;
-		setRotation(e15, 0F, 0.7853982F, 0F);
-		e16 = new ModelRenderer(this, 28, 62);
-		e16.addBox(-10.125F, 5F, 2.75F, 9, 1, 1);
-		e16.setRotationPoint(-10.125F, 5F, 2.75F);
-		e16.setTextureSize(64, 64);
-		e16.mirror = false;
-		setRotation(e16, 0F, 0.7853982F, 0F);
-		e17 = new ModelRenderer(this, 28, 62);
-		e17.addBox(-10F, 13F, 2.75F, 9, 1, 1);
-		e17.setRotationPoint(-10F, 13F, 2.75F);
-		e17.setTextureSize(64, 64);
-		e17.mirror = false;
-		setRotation(e17, 0F, 0.7853982F, 0F);
-		e18 = new ModelRenderer(this, 0, 46);
-		e18.addBox(4.5F, 18F, 5F, 7, 11, 7);
-		e18.setRotationPoint(4.5F, 18F, 5F);
-		e18.setTextureSize(64, 64);
-		e18.mirror = false;
-		setRotation(e18, 0F, 0F, 0F);
-	}
-
-	public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-		setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
-
-		e1.render(scale);
-		e2.render(scale);
-		e3.render(scale);
-		e4.render(scale);
-		e5.render(scale);
-		e6.render(scale);
-		e7.render(scale);
-		e8.render(scale);
-		e9.render(scale);
-		e10.render(scale);
-		e11.render(scale);
-		e12.render(scale);
-		e13.render(scale);
-		e14.render(scale);
-		e15.render(scale);
-		e16.render(scale);
-		e17.render(scale);
-		e18.render(scale);
-	}
-
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
+		this.textureWidth = 130;
+		this.textureHeight = 130;
+		this.neck = new ModelRenderer(this, 61, 31);
+		this.neck.setRotationPoint(-1.9F, -11.9F, -4.3F);
+		this.neck.addBox(0.0F, 0.0F, 0.0F, 4, 3, 4, 0.0F);
+		this.body = new ModelRenderer(this, 51, 49);
+		this.body.setRotationPoint(-4.8F, -8.8F, -5.1F);
+		this.body.addBox(0.0F, 0.0F, 0.0F, 10, 17, 6, 0.0F);
+		this.leftarm = new ModelRenderer(this, 32, 51);
+		this.leftarm.setRotationPoint(-4.8F, -7.5F, -0.8F);
+		this.leftarm.addBox(0.0F, 0.0F, 0.0F, 2, 22, 2, 0.0F);
+		this.setRotateAngle(leftarm, 0.0F, 3.141592653589793F, 0.0F);
+		this.Leftfoot = new ModelRenderer(this, 49, 112);
+		this.Leftfoot.setRotationPoint(-3.7F, 23.0F, -5.2F);
+		this.Leftfoot.addBox(0.0F, 0.0F, 0.0F, 3, 1, 4, 0.0F);
+		this.LeftLeg = new ModelRenderer(this, 53, 83);
+		this.LeftLeg.setRotationPoint(-0.7F, 7.5F, -2.9F);
+		this.LeftLeg.addBox(0.0F, 0.0F, 0.0F, 2, 16, 3, 0.0F);
+		this.setRotateAngle(LeftLeg, 0.0F, -1.5667820695153094F, 0.0F);
+		this.Rightfoot = new ModelRenderer(this, 73, 111);
+		this.Rightfoot.setRotationPoint(1.5F, 23.0F, -5.2F);
+		this.Rightfoot.addBox(0.0F, 0.0F, 0.0F, 3, 1, 4, 0.0F);
+		this.RightLeg = new ModelRenderer(this, 75, 84);
+		this.RightLeg.setRotationPoint(1.5F, 7.5F, -2.8F);
+		this.RightLeg.addBox(0.0F, 0.0F, 0.0F, 3, 16, 2, 0.0F);
+		this.rightarm = new ModelRenderer(this, 96, 49);
+		this.rightarm.setRotationPoint(5.1F, -7.3F, -3.0F);
+		this.rightarm.addBox(0.0F, 0.0F, 0.0F, 2, 22, 2, 0.0F);
+		this.head = new ModelRenderer(this, 54, 5);
+		this.head.setRotationPoint(-3.9F, -21.0F, -5.1F);
+		this.head.addBox(0.0F, 0.0F, 0.0F, 8, 9, 6, 0.0F);
 	}
 
 	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
-		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+	public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+		setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
+		this.neck.render(scale);
+		this.body.render(scale);
+		this.leftarm.render(scale);
+		this.Leftfoot.render(scale);
+		this.LeftLeg.render(scale);
+		this.Rightfoot.render(scale);
+		this.RightLeg.render(scale);
+		this.rightarm.render(scale);
+		this.head.render(scale);
+	}
+
+	@Override
+	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale, Entity entity) {
+		// this.head.rotateAngleX = headPitch * 0.017453292F;
+		// this.head.rotateAngleY = netHeadYaw * 0.017453292F;
+	}
+
+	@Override
+	public void setLivingAnimations(EntityLivingBase entity, float limbSwing, float limbSwingAmount, float partialTickTime) {
+		this.leftarm.rotateAngleX = MathHelper.cos(limbSwing * 0.6F) * 1.5f * limbSwingAmount;
+		this.rightarm.rotateAngleX = MathHelper.cos(limbSwing * 0.6F) * 1.5F * limbSwingAmount;
+	}
+
+	/**
+	 * This is a helper function from Tabula to set the rotation of model parts
+	 */
+	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+		modelRenderer.rotateAngleX = x;
+		modelRenderer.rotateAngleY = y;
+		modelRenderer.rotateAngleZ = z;
 	}
 }
