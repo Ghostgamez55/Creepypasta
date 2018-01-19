@@ -26,6 +26,7 @@ tile.battery.name=Battery
 tile.creepypasta_workbench.name=Workbench
 tile.item_recolorer.name=Paint Machine
 tile.reserve_generator.name=Reserve Generator
+tile.tv.name=Broken Tv
 
 container.safe=Safe
 
@@ -41,6 +42,8 @@ entity.smile_dog.name=Smile Dog
 entity.smile_man.name=Smile Man
 entity.ticcy.name=Ticcy
 entity.slenderman.name=Slenderman
+
+effect.missing_kidney=Missing Kidney
 
 block.safe.lock=Safe Locks
 block.safe.unlock=Safe Unlocks

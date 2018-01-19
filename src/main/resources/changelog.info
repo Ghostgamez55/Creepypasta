@@ -12,7 +12,7 @@ Additions:
 +added some more item names to the lang file
 +added the flashlight
 +added the reserve generator
-+added some mroe jei support
++added some more jei support
 
 0.1.0002
 
@@ -22,3 +22,18 @@ Additions:
 
 Removed:
 -removed the cross from the creative tab
+
+0.1.0002
+
+Changes:
+*fixed the whole mod from crashing when starting up
+*fixed bug where entities would crash the game
+*fixed small bugs and issues
+
+Additions:
++kinda added the tv (not done)
++kinda added the mailbox (not done)
++started work on the slenderman static
++added slenderman ai
++added slenderman model
++added slenderman abilities

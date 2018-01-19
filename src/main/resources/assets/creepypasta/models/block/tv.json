@@ -1,11 +1,13 @@
 {
 	"__comment": "Designed by Epicghost505 with Cubik Studio - https://cubik.studio",
+	"parent": "block/cube",
 	"textures": {
-		"texture1": "creepypasta:blocks/tv/static1",
+		"texture1": "creepypasta:blocks/tv/static",
 		"texture2": "creepypasta:blocks/tv/metal2",
 		"texture3": "creepypasta:blocks/tv/old2texture",
 		"texture4": "creepypasta:blocks/tv/metal1",
-		"texture5": "creepypasta:blocks/tv/speaker"
+		"texture5": "creepypasta:blocks/tv/speaker",
+		"particle": "creepypasta:blocks/tv/old2texture"
 	},
 	"elements": [ 	 
 		{
@@ -762,40 +764,5 @@
 				"east": { "uv": [ 4.96, 0.96, 7.04, 3.04 ], "texture": "#texture3" }
 			}
 		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"rotation":  [ 41, -122, 0 ],
-			"translation":  [ 4.8695, 2.7826, 2.0869 ],
-			"scale":  [ 0.9999, 0.8955, 0.5478 ]
-		},
-		"thirdperson_lefthand": {
-			"rotation":  [ 41, -122, 0 ],
-			"translation":  [ 4.8695, 2.7826, 2.0869 ],
-			"scale":  [ 0.9999, 0.8955, 0.5478 ]
-		},
-		"firstperson_righthand": {
-			"rotation":  [ -5, -80, 0 ],
-			"translation":  [ 2.7826, 6.9565, 0 ]
-		},
-		"firstperson_lefthand": {
-			"rotation":  [ -5, -69, 0 ],
-			"translation":  [ 2.7826, 6.9565, 0 ]
-		},
-		"gui": {
-			"rotation":  [ 2, -17, 0 ],
-			"translation":  [ 0.6956, 4.8695, 0 ]
-		},
-		"head": {
-			"rotation":  [ 180, -2, 174 ],
-			"translation":  [ 0.6956, 0, -9.738 ],
-			"scale":  [ 1.3478, 1, 1 ]
-		},
-		"ground": {
-			"translation":  [ -0.695, 5.5652, 0 ]
-		},
-		"fixed": {
-			"rotation":  [ 0, 180, 0 ]
-		}
-	}
+	]
 }

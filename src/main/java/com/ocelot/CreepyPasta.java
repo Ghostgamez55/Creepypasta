@@ -7,6 +7,7 @@ import com.ocelot.init.ModCapabilities;
 import com.ocelot.init.ModCrafting;
 import com.ocelot.init.ModEntities;
 import com.ocelot.init.ModItems;
+import com.ocelot.init.ModPotions;
 import com.ocelot.init.OBJHandler;
 import com.ocelot.network.NetworkHandler;
 import com.ocelot.proxy.CommonProxy;
@@ -34,7 +35,7 @@ import net.minecraftforge.fml.relauncher.Side;
  * 
  * @author Ocelot5836
  */
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, acceptedMinecraftVersions = "[1.12,1.12.9]", useMetadata = true, version = "1.6")
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, acceptedMinecraftVersions = "[1.12,1.12.2]", useMetadata = true)
 public class Creepypasta {
 
 	@Instance(Reference.MOD_ID)
@@ -50,6 +51,7 @@ public class Creepypasta {
 
 		ModSounds.register();
 		ModCapabilities.register();
+		ModPotions.preInit();
 		ModEntities.preInit();
 		ModItems.preInit();
 		ModBlocks.preInit();
