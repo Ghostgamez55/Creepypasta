@@ -1,0 +1,51 @@
+{
+	"__comment": "Designed by Epicghost505 with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "blocks/e_particle",
+		"texture1": "spooks:ouiji/ouijib"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "Box1",
+			"from": [ 1.5, 0, 4 ],
+			"to": [ 14.5, 1, 11.5 ],
+			"faces": {
+				"down": { "uv": [ 0, 5.259562, 1, 11.27049 ], "texture": "#texture1" },
+				"up": { "uv": [ 0, 2.861023E-06, 16, 15.77869 ], "texture": "#texture1" },
+				"north": { "uv": [ 0, 15, 0.5, 4.508197 ], "texture": "#texture1" },
+				"south": { "uv": [ 1.5, 15, 14.5, 16 ], "texture": "#texture1" },
+				"west": { "uv": [ 4, 15, 11.5, 16 ], "texture": "#texture1" },
+				"east": { "uv": [ 4.5, 15, 12, 16 ], "texture": "#texture1" }
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation":  [ 0, 0, -91 ],
+			"translation":  [ 7.6521, -1.391, -2.782 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation":  [ 0, 0, -91 ],
+			"translation":  [ 7.6521, -1.391, -2.782 ]
+		},
+		"firstperson_righthand": {
+			"rotation":  [ 0, 19, 88 ],
+			"translation":  [ -6.26, 2.7826, 0 ]
+		},
+		"firstperson_lefthand": {
+			"rotation":  [ 0, 19, 88 ],
+			"translation":  [ -4.868, 2.7826, 0 ]
+		},
+		"gui": {
+			"rotation":  [ 75, 8, -3 ]
+		},
+		"ground": {
+			"rotation":  [ -2, 0, 0 ],
+			"translation":  [ 0, 10.434, 0 ]
+		},
+		"fixed": {
+			"rotation":  [ -92, 180, 0 ],
+			"translation":  [ -1.391, 1.3913, -6.956 ]
+		}
+	}
+}

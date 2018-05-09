@@ -3,6 +3,7 @@ package com.ocelot.init;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.PintsizedSix40.block.Blockouiji;
 import com.ocelot.Reference;
 import com.ocelot.blocks.BlockBattery;
 import com.ocelot.blocks.BlockCreepypastaWorkbench;
@@ -50,6 +51,7 @@ public class ModBlocks {
 	public static Block RESERVE_GENERATOR;
 	public static Block MAILBOX;
 	public static Block TV;
+	public static Block OUIJI;
 
 	public static void preInit() {
 		instantiate();
@@ -66,6 +68,7 @@ public class ModBlocks {
 		RESERVE_GENERATOR = new BlockReserveGenerator();
 		MAILBOX = new BlockMailbox();
 		TV = new BlockTv();
+		OUIJI = new Blockouiji();
 	}
 
 	private static void register() {
@@ -78,6 +81,7 @@ public class ModBlocks {
 		registerBlock(RESERVE_GENERATOR);
 		registerBlock(MAILBOX);
 		registerBlock(TV);
+		registerBlock(OUIJI);
 	}
 
 	/**

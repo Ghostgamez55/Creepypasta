@@ -27,6 +27,7 @@ tile.creepypasta_workbench.name=Workbench
 tile.item_recolorer.name=Paint Machine
 tile.reserve_generator.name=Reserve Generator
 tile.tv.name=Broken Tv
+tile.ouiji.name=Ouiji Board
 
 container.safe=Safe
 

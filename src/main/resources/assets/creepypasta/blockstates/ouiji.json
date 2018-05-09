@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "normal": { "model": "creepypasta:ouiji" },
+		"inventory": { "model": "creepypasta:ouiji" }
+    }
+}

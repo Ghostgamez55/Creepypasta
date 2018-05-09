@@ -1,0 +1,21 @@
+{
+    "forge_marker": 1,
+    "defaults": 
+    {
+        "textures": 
+        {
+            "all": "spooks:ouiji/sun_crystal"
+        }
+    },
+    "variants": 
+    {
+        "normal": 
+        { 
+            "model": "spooks:ouiji/ouiji" 
+        },
+        "inventory": 
+        { 
+            "model": "luminousity:ouiji/ouiji" 
+        }
+    }
+}

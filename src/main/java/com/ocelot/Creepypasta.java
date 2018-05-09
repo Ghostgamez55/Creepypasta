@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-
+import com.PintsizedSix40.*;
 /**
  * This class is the basis for the entire creepypasta mod.<br>
  * </br>
@@ -59,7 +59,7 @@ public class Creepypasta {
 		NetworkHandler.preInit();
 		ModEntities.preInit();
 		OBJHandler.preInit();
-
+        main.preinit();
 		proxy.preInit(event);
 	}
 
