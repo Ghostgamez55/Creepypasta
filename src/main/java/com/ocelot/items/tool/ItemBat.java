@@ -12,7 +12,7 @@ public class ItemBat extends ItemModSword {
 		setCreativeTab(CreepypastaCreativeTabs.CREEPYPASTA);
 	}
 	
-	@Override
+	
 	public int getItemBurnTime(ItemStack itemStack) {
 		return 0;
 	}
